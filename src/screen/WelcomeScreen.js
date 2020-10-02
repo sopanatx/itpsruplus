@@ -1,6 +1,6 @@
 import React, {constructor, useContext, useState} from 'react';
 import {Component} from 'react';
-import {PrimaryButton} from '../components/button';
+import {PrimaryButton, RegisterButton} from '../components/button';
 import {
   View,
   StyleSheet,
@@ -36,7 +36,20 @@ export default class WelcomeScreen extends Component {
             style={{width: '100%'}}
             containerStyle={{width: '100%'}}
             title={'เข้าสู่ระบบ'}
-            onPress={() => props.navigation.navigate('Login')}
+            onPress={() =>
+              Alert.alert(
+                'แจ้งเตือน',
+                'ตอนนี้ทีม Developer กำลังปรับปรุงโครงสร้างแอพลิเคชั่นใหม่ ซึ่งจะยังไม่สามารถใช้งานได้ในขณะนี้ ขออภัยในความไม่สะดวกครับ',
+              )
+            }
+          />
+          <RegisterButton
+            style={{width: '80%'}}
+            containerStyle={{width: '100%'}}
+            title={'ลงทะเบียน'}
+            onPress={() =>
+              Alert.alert('Error!', 'ระบบยังไม่เปิดให้ลงทะเบียนในขณะนี้')
+            }
           />
         </View>
       </SafeAreaView>
