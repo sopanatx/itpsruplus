@@ -36,12 +36,7 @@ export default class WelcomeScreen extends Component {
             style={{width: '100%'}}
             containerStyle={{width: '100%'}}
             title={'เข้าสู่ระบบ'}
-            onPress={() =>
-              Alert.alert(
-                'แจ้งเตือน',
-                'ตอนนี้ทีม Developer กำลังปรับปรุงโครงสร้างแอพลิเคชั่นใหม่ ซึ่งจะยังไม่สามารถใช้งานได้ในขณะนี้ ขออภัยในความไม่สะดวกครับ',
-              )
-            }
+            onPress={() => this.props.navigation.navigate('Login')}
           />
           <RegisterButton
             style={{width: '80%'}}

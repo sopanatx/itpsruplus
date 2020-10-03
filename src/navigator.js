@@ -3,6 +3,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Text, Alert} from 'react-native';
 import WelcomeScreen from './screen/WelcomeScreen';
+import LoginScreen from './screen/LoginScreen';
+
 const Stack = createStackNavigator();
 export default class Navigator extends Component {
   render() {
@@ -12,6 +14,11 @@ export default class Navigator extends Component {
           <Stack.Screen
             name="Welcome"
             component={WelcomeScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Login"
+            component={LoginScreen}
             options={{headerShown: false}}
           />
         </Stack.Navigator>
