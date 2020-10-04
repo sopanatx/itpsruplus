@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "100704612108",
+    "firebase_url": "https://itpsruplus.firebaseio.com",
+    "project_id": "itpsruplus",
+    "storage_bucket": "itpsruplus.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:100704612108:android:61b0aaf96212ff71e1e329",
+        "android_client_info": {
+          "package_name": "th.in.pleum.itpsruplus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "100704612108-epntibme8pual5e7bd4uig9555bvrju1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwGNLXWxfNO0HEHv3SxqPftPJ1jpl6gK8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "100704612108-epntibme8pual5e7bd4uig9555bvrju1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

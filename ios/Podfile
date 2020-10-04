@@ -10,6 +10,8 @@ target 'itpsruplus' do
 
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
 
+  pod 'RNFirebase', :path => '../node_modules/react-native-firebase'
+
   target 'itpsruplusTests' do
     inherit! :complete
     # Pods for testing
