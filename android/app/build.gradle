@@ -130,8 +130,8 @@ android {
         applicationId "th.in.pleum.itpsruplus"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 34
-        versionName "1.3.4"
+        versionCode 35
+        versionName "1.3.5"
 
     }
     splits {
