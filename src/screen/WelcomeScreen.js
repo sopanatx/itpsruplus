@@ -14,7 +14,7 @@ import {
   AsyncStorage,
   SafeAreaView,
 } from 'react-native';
-
+import {FONT_FAMILY, FONT_BOLD} from '../styles';
 export default class WelcomeScreen extends Component {
   render() {
     return (
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   TextInfo: {
     fontSize: 20,
     textAlign: 'center',
-    fontFamily: 'DBHelvethaicaX-Bd',
+    fontFamily: FONT_BOLD,
     margin: 30,
     marginVertical: 50,
   },

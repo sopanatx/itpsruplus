@@ -9,6 +9,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
+import {FONT_FAMILY, FONT_BOLD} from '../styles';
 const LoginScreen = (props) => {
   const [studentId, setStudentId] = useState('');
   const [studentPassword, setPassword] = useState('');
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
   SubTitle: {
     fontSize: 20,
     marginTop: 25,
-    fontFamily: 'DBHelvethaicaX-Reg',
+    fontFamily: FONT_FAMILY,
     textAlign: 'center',
   },
   input: {
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
     height: 45,
     alignSelf: 'center',
     borderRadius: 24,
-    fontFamily: 'DBHelvethaicaX-Reg',
+    fontFamily: FONT_FAMILY,
     fontSize: 30,
     textAlign: 'center',
   },

@@ -19,10 +19,10 @@ export const authLogin = async (studentId, studentPassword) => {
 export const isAuthen = async () => {
   const value = await AsyncStorage.getItem('token');
   if (value) {
-    console.log('Found Authentication Token:', value);
+    console.log('Authen Message : Found Authentication Token:', value);
     return true;
   } else {
-    console.log('This Device is not authenticated!');
+    console.log('Authen Message : This Device is not authenticated!');
     return false;
   }
 };
