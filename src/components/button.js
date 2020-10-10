@@ -3,7 +3,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {Button as RButton} from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
-import {FONT_FAMILY, FONT_BOLD, FONT_THIN} from '../styles';
+import {FONT_FAMILY, FONT_BOLD, FONT_THIN, Color} from '../styles';
 export const PrimaryButton = ({
   onPress,
   title,
@@ -59,7 +59,7 @@ export const RegisterButton = ({
         shadowColor: '#E9E9E9',
         shadowOffset: 1,
         shadowOpacity: 1,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: Color.WHITE,
         alignSelf: 'center',
 
         ...style,
