@@ -12,6 +12,8 @@ target 'itpsruplus' do
 
   pod 'RNFirebase', :path => '../node_modules/react-native-firebase'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'itpsruplusTests' do
     inherit! :complete
     # Pods for testing

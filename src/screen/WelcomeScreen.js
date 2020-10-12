@@ -15,6 +15,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import {FONT_FAMILY, FONT_BOLD} from '../styles';
+import {isAuthen} from '../api/authen';
 export default class WelcomeScreen extends Component {
   render() {
     return (
