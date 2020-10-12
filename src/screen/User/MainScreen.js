@@ -287,9 +287,9 @@ const MainUserScreen = (props) => {
               fontFamily: 'DBHelvethaicaX-Bd',
               fontSize: 25,
             }}>
-            Application Version: 1.4.0
+            Application Version: 1.3.6
             {'\n'}
-            Build: 2020100601
+            Build: 2020101002
           </Text>
         </View>
       </ScrollView>

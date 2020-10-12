@@ -17,12 +17,12 @@ const LoginScreen = (props) => {
     try {
       const Login = await authLogin(studentId, studentPassword);
       console.log('Login Success');
+
       if (Login == 201) {
         props.navigation.navigate('Main');
       }
     } catch (err) {
       console.log(err);
-      console.log(props);
       Alert.alert('Error!', ErrorMessage.LOGIN_FAILED, [{text: 'ตกลง'}]);
     }
   };
