@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   StyleSheet,
@@ -23,17 +23,22 @@ const MainUserScreen = (props) => {
   const [studentName, setStudentName] = useState('');
   const [studentId, setstudentId] = useState('');
 
-  const showStudentData = async (props) => {
+  const showStudentData = async () => {
     const jwtToken = await AsyncStorage.getItem('token');
     const decodeJWT = await jwt_decode(jwtToken);
     setStudentName(decodeJWT.studentName);
     setstudentId(decodeJWT.username);
   };
-  showStudentData();
+
+  useEffect(() => {
+    showStudentData();
+  }, []);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <LinearGradient
+          start={{x: 0, y: 0}}
+          end={{x: 1, y: 0.5}}
           colors={['#F5872C', '#FF6996']}
           style={{
             shadowColor: 'rgba(245, 44, 80, 0.38)',
@@ -113,10 +118,10 @@ const MainUserScreen = (props) => {
               icon={{
                 name: 'work', //A
                 size: 25,
-                color: '#FA7958', //#FA7958
+                color: '#FFFFFF', //#FA7958
               }}
               onPress={() => props.navigation.navigate('Grade')}
-              disabled={false}
+              disabled={true}
             />
 
             <Button
@@ -151,12 +156,7 @@ const MainUserScreen = (props) => {
                 size: 25,
                 color: '#FA7958',
               }}
-              onPress={() =>
-                Alert.alert(
-                  'Info',
-                  'อยู่ในช่วงพัฒนาระบบ โปรดอดใจรอสักนิดนะครับ จะเปิดให้ใช้งานในเร็วๆนี้ครับ',
-                )
-              }
+              onPress={() => props.navigation.navigate('Time')}
             />
           </View>
           <View

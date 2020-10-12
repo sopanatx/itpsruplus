@@ -5,6 +5,8 @@ import {Text, Alert} from 'react-native';
 import WelcomeScreen from './screen/WelcomeScreen';
 import LoginScreen from './screen/LoginScreen';
 import MainScreen from './screen/User/MainScreen';
+import TimeTableScreen from './screen/User/TimeTableScreen';
+
 import {isAuthen} from './api/authen';
 import AsyncStorage from '@react-native-community/async-storage';
 const Stack = createStackNavigator();
@@ -28,6 +30,11 @@ const Navigator = () => {
           <Stack.Screen
             name="Main"
             component={MainScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Time"
+            component={TimeTableScreen}
             options={{headerShown: false}}
           />
         </Stack.Navigator>
