@@ -15,14 +15,3 @@ export const authLogin = async (studentId, studentPassword) => {
   const value = await AsyncStorage.setItem('token', resp.data.accessToken);
   return result;
 };
-
-export const isAuthen = async () => {
-  const value = await AsyncStorage.getItem('token');
-  if (value) {
-    console.log('Authen Message : Found Authentication Token:', value);
-    return true;
-  } else {
-    console.log('Authen Message : This Device is not authenticated!');
-    return false;
-  }
-};
