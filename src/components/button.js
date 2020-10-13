@@ -15,7 +15,7 @@ export const PrimaryButton = ({
   return (
     <LinearGradient
       start={{x: 0, y: 0}}
-      end={{x: 1, y: 0.5}}
+      end={{x: 1, y: 0}}
       colors={['#F87E4D', '#FF6A73']}
       style={{
         borderRadius: 9,
