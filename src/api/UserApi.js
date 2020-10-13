@@ -35,7 +35,7 @@ const apiUserData = async () => {
   console.log({profileImage});
 };
 
-apiGrade();
+//apiGrade();
 apiUserData();
 export {
   apiUserData,
