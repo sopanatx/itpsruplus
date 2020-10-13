@@ -93,16 +93,14 @@ export default class TimeTableScreen extends React.Component {
 
           <View>
             <Text style={styles.HeaderText}>
-              ตารางเรียน ภาคเรียนที่ 1 / 2563
+              ตารางเรียน {'\n'}ภาคเรียนที่ 1 / 2563
             </Text>
-            <Text style={styles.DebugText}>
-              Class Code : {this.state.classID}
-            </Text>
+
             {this.state.monday.map((monday, index) => (
               <LinearGradient
                 start={{x: 0, y: 1}}
                 end={{x: 1, y: 0}}
-                colors={['#F86B4D', '#FF6A73']}
+                colors={['#ff9966', '#ff5e62']}
                 style={{
                   shadowColor: 'rgba(245, 44, 80, 0.38)',
                   width: 337,
@@ -112,16 +110,14 @@ export default class TimeTableScreen extends React.Component {
                   elevation: 8,
                   alignSelf: 'center',
                 }}>
-                <Text style={styles.Day}>วันจันทร์</Text>
+                <Text style={styles.Day}>วัน{monday.subjectTime}</Text>
 
                 <Text style={styles.subjectName}>
                   {monday.subjectCode} {monday.subjectName}
                 </Text>
                 <Text style={styles.subjectName}>
-                  {monday.subjectTime} | ห้องเรียน {monday.subjectClassroom}
-                </Text>
-                <Text style={styles.subjectName}>
-                  ผู้สอน: {monday.subjectTeacher}
+                  ผู้สอน: {monday.subjectTeacher} | ห้องเรียน :{' '}
+                  {monday.subjectClassroom}
                 </Text>
               </LinearGradient>
             ))}
@@ -130,7 +126,7 @@ export default class TimeTableScreen extends React.Component {
               <LinearGradient
                 start={{x: 0, y: 1}}
                 end={{x: 1, y: 0}}
-                colors={['#F86B4D', '#FF6A73']}
+                colors={['#ff9966', '#ff5e62']}
                 style={{
                   shadowColor: 'rgba(245, 44, 80, 0.38)',
                   width: 337,
@@ -140,16 +136,14 @@ export default class TimeTableScreen extends React.Component {
                   elevation: 8,
                   alignSelf: 'center',
                 }}>
-                <Text style={styles.Day}>วันอังคาร</Text>
+                <Text style={styles.Day}>วัน{tuesday.subjectTime}</Text>
 
                 <Text style={styles.subjectName}>
                   {tuesday.subjectCode} {tuesday.subjectName}
                 </Text>
                 <Text style={styles.subjectName}>
-                  {tuesday.subjectTime} | ห้องเรียน {tuesday.subjectClassroom}
-                </Text>
-                <Text style={styles.subjectName}>
-                  ผู้สอน: {tuesday.subjectTeacher}
+                  ผู้สอน: {tuesday.subjectTeacher} | ห้องเรียน :{' '}
+                  {tuesday.subjectClassroom}
                 </Text>
               </LinearGradient>
             ))}
@@ -158,7 +152,7 @@ export default class TimeTableScreen extends React.Component {
               <LinearGradient
                 start={{x: 0, y: 1}}
                 end={{x: 1, y: 0}}
-                colors={['#F86B4D', '#FF6A73']}
+                colors={['#ff9966', '#ff5e62']}
                 style={{
                   shadowColor: 'rgba(245, 44, 80, 0.38)',
                   width: 337,
@@ -168,17 +162,14 @@ export default class TimeTableScreen extends React.Component {
                   elevation: 8,
                   alignSelf: 'center',
                 }}>
-                <Text style={styles.Day}>วันพุธ</Text>
+                <Text style={styles.Day}>วัน{wednesday.subjectTime}</Text>
 
                 <Text style={styles.subjectName}>
                   {wednesday.subjectCode} {wednesday.subjectName}
                 </Text>
                 <Text style={styles.subjectName}>
-                  {wednesday.subjectTime} | ห้องเรียน{' '}
+                  ผู้สอน: {wednesday.subjectTeacher} | ห้องเรียน :{' '}
                   {wednesday.subjectClassroom}
-                </Text>
-                <Text style={styles.subjectName}>
-                  ผู้สอน: {wednesday.subjectTeacher}
                 </Text>
               </LinearGradient>
             ))}
@@ -187,7 +178,7 @@ export default class TimeTableScreen extends React.Component {
               <LinearGradient
                 start={{x: 0, y: 1}}
                 end={{x: 1, y: 0}}
-                colors={['#F86B4D', '#FF6A73']}
+                colors={['#ff9966', '#ff5e62']}
                 style={{
                   shadowColor: 'rgba(245, 44, 80, 0.38)',
                   width: 337,
@@ -197,16 +188,13 @@ export default class TimeTableScreen extends React.Component {
                   elevation: 8,
                   alignSelf: 'center',
                 }}>
-                <Text style={styles.Day}>วันพฤหัสบดี</Text>
-
+                <Text style={styles.Day}>วัน{thursday.subjectTime}</Text>
                 <Text style={styles.subjectName}>
                   {thursday.subjectCode} {thursday.subjectName}
                 </Text>
                 <Text style={styles.subjectName}>
-                  {thursday.subjectTime} | ห้องเรียน {thursday.subjectClassroom}
-                </Text>
-                <Text style={styles.subjectName}>
-                  ผู้สอน: {thursday.subjectTeacher}
+                  ผู้สอน: {thursday.subjectTeacher} | ห้องเรียน :{' '}
+                  {thursday.subjectClassroom}
                 </Text>
               </LinearGradient>
             ))}
@@ -215,7 +203,7 @@ export default class TimeTableScreen extends React.Component {
               <LinearGradient
                 start={{x: 0, y: 1}}
                 end={{x: 1, y: 0}}
-                colors={['#F86B4D', '#FF6A73']}
+                colors={['#ff9966', '#ff5e62']}
                 style={{
                   shadowColor: 'rgba(245, 44, 80, 0.38)',
                   width: 337,
@@ -225,16 +213,14 @@ export default class TimeTableScreen extends React.Component {
                   elevation: 8,
                   alignSelf: 'center',
                 }}>
-                <Text style={styles.Day}>วันศุกร์</Text>
+                <Text style={styles.Day}>วัน{friday.subjectTime}</Text>
 
                 <Text style={styles.subjectName}>
                   {friday.subjectCode} {friday.subjectName}
                 </Text>
                 <Text style={styles.subjectName}>
-                  {friday.subjectTime} | ห้องเรียน {friday.subjectClassroom}
-                </Text>
-                <Text style={styles.subjectName}>
-                  ผู้สอน: {friday.subjectTeacher}
+                  ผู้สอน: {friday.subjectTeacher} | ห้องเรียน :{' '}
+                  {friday.subjectClassroom}
                 </Text>
               </LinearGradient>
             ))}
@@ -278,9 +264,15 @@ const styles = StyleSheet.create({
   },
   subjectName: {
     fontFamily: FONT_BOLD,
-    fontSize: 20,
+    fontSize: 17,
     marginHorizontal: 10,
     margin: 2,
+    color: 'white',
+  },
+  subjectTeacher: {
+    fontFamily: FONT_BOLD,
+    fontSize: 16,
+    marginHorizontal: 10,
     color: 'white',
   },
   Day: {
