@@ -59,6 +59,11 @@ const Navigator = () => {
             component={MainScreen}
             options={{headerShown: false}}
           />
+          <Stack.Screen
+            name="Time"
+            component={TimeTableScreen}
+            options={{headerShown: false}}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );
