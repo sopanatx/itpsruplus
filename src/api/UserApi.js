@@ -37,11 +37,4 @@ const apiUserData = async () => {
 
 //apiGrade();
 apiUserData();
-export {
-  apiUserData,
-  totalGrade,
-  totalGradeMain,
-  totalCredit,
-  profileImage,
-  studentID,
-};
+export {apiUserData, totalGrade, totalGradeMain, totalCredit, studentID};

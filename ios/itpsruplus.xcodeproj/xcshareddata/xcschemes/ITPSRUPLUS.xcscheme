@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "ITPSRUPLUS.app"
-               BlueprintName = "ITPSRUPLUS"
-               ReferencedContainer = "container:ITPSRUPLUS.xcodeproj">
+               BuildableName = "itpsruplus.app"
+               BlueprintName = "itpsruplus"
+               ReferencedContainer = "container:itpsruplus.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,12 +33,14 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "ITPSRUPLUSTests.xctest"
-               BlueprintName = "ITPSRUPLUSTests"
-               ReferencedContainer = "container:ITPSRUPLUS.xcodeproj">
+               BuildableName = "itpsruplusTests.xctest"
+               BlueprintName = "itpsruplusTests"
+               ReferencedContainer = "container:itpsruplus.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -55,11 +57,13 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "ITPSRUPLUS.app"
-            BlueprintName = "ITPSRUPLUS"
-            ReferencedContainer = "container:ITPSRUPLUS.xcodeproj">
+            BuildableName = "itpsruplus.app"
+            BlueprintName = "itpsruplus"
+            ReferencedContainer = "container:itpsruplus.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -72,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "ITPSRUPLUS.app"
-            BlueprintName = "ITPSRUPLUS"
-            ReferencedContainer = "container:ITPSRUPLUS.xcodeproj">
+            BuildableName = "itpsruplus.app"
+            BlueprintName = "itpsruplus"
+            ReferencedContainer = "container:itpsruplus.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
