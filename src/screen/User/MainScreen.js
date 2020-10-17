@@ -16,7 +16,7 @@ import jwt_decode from 'jwt-decode';
 import LinearGradient from 'react-native-linear-gradient';
 import {FONT_FAMILY, FONT_BOLD, THEME} from '../../styles';
 import axios from 'axios';
-
+import dayjs from 'dayjs';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -70,7 +70,8 @@ function convertDate(date) {
       break;
   }
 
-  console.log({year, month, day});
+  //console.log({year, month, day});
+
   return `${day} ${monthText} ${year}`;
 }
 export default class MainUserScreen extends React.Component {
@@ -78,8 +79,9 @@ export default class MainUserScreen extends React.Component {
     activityCalendar: [],
   };
   async componentDidMount() {
-    this.setState({activityCalendar: await getCalendar()});
-    //console.log(this.state.activityCalendar[0]);
+    this.setState({
+      activityCalendar: await getCalendar(),
+    });
   }
 
   render() {
@@ -119,6 +121,7 @@ export default class MainUserScreen extends React.Component {
 
           <FlatList
             horizontal={true}
+            showsHorizontalScrollIndicator={false}
             data={this.state.activityCalendar}
             renderItem={({item}) => (
               <ImageBackground
@@ -149,6 +152,34 @@ export default class MainUserScreen extends React.Component {
               </ImageBackground>
             )}
           />
+        </View>
+        <View
+          style={{
+            width: wp('90%'),
+            height: hp('20%'),
+            backgroundColor: '#FFFFFF',
+            alignSelf: 'center',
+            borderRadius: 15,
+            elevation: 10,
+          }}>
+          <LinearGradient
+            start={{x: 0, y: 1}}
+            end={{x: 1, y: 0}}
+            colors={[THEME.WINTER_GECARD1, THEME.WINTER_GECARD2]}
+            style={{
+              shadowColor: 'rgba(245, 44, 80, 0.38)',
+              width: wp('90%'),
+              height: hp('20%'),
+              alignSelf: 'center',
+              borderRadius: 15,
+            }}>
+            <Text style={styles.StudentName}>นายโสภณัฐ สุรเดช</Text>
+            <Text style={styles.MajorName}>6 1 1 2 2 2 4 0 6 0</Text>
+            <Text style={styles.MajorName}>คณะวิทยาศาสตร์และเทคโนโลยี</Text>
+            <Text style={styles.MajorName}>
+              สาขาวิชา เทคโนโลยีสารสนเทศ กลุ่ม 2
+            </Text>
+          </LinearGradient>
         </View>
       </SafeAreaView>
     );
@@ -191,6 +222,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     textAlign: 'left',
   },
+  MenuText1: {
+    fontFamily: 'DBHelvethaicaX-Bd',
+    fontSize: 28,
+    marginTop: 10,
+    textAlign: 'center',
+  },
   CalendarDateText: {
     fontFamily: 'DBHelvethaicaX-Bd',
     fontSize: 30,
@@ -208,5 +245,23 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     marginTop: 40,
     margin: 7,
+  },
+  StudentName: {
+    fontFamily: 'DBHelvethaicaX-Bd',
+    fontSize: 30,
+    textAlign: 'center',
+    color: 'white',
+    textAlign: 'left',
+    marginHorizontal: 25,
+    marginTop: 10,
+  },
+  MajorName: {
+    fontFamily: 'DBHelvethaicaX-Bd',
+    fontSize: 20,
+    textAlign: 'center',
+    color: 'white',
+    textAlign: 'left',
+    marginHorizontal: 25,
+    marginTop: 10,
   },
 });
