@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 24,
     fontFamily: FONT_FAMILY,
-    fontSize: 30,
+    fontSize: 20,
     textAlign: 'center',
   },
   card: {
