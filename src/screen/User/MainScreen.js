@@ -21,13 +21,13 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {getStudentName} from '../../api/UserApi';
 import {TEST_API_URL} from '../../constant/API';
-
+import apiUserData from '../../api/UserApi';
 async function getCalendar() {
   const calendar = await axios.get(TEST_API_URL.calendar);
   return calendar.data;
 }
+let studentData = [];
 function convertDate(date) {
   //2020-10-30T18:00:00.000Z
   const year = Number(date.slice(2, 4)) + 43;
@@ -77,10 +77,26 @@ function convertDate(date) {
 export default class MainUserScreen extends React.Component {
   state = {
     activityCalendar: [],
+    userdata: [],
+    studentTitileName: '',
+    studentFirstName: 'Loading',
+    studentLastName: '...',
+    studentProfileImage:
+      'https://www2.guidestar.org/App_Themes/MainSite/images/loading.gif',
   };
   async componentDidMount() {
+    studentData = await apiUserData();
+    console.log(
+      'STD_DATA:',
+      studentData.getAccountInfo.AccountInfo.profileImageUrl,
+    );
     this.setState({
       activityCalendar: await getCalendar(),
+      userdata: await apiUserData(),
+      studentFirstName: studentData.getAccountInfo.studentFirstName,
+      studentLastName: studentData.getAccountInfo.studentLastName,
+      studentProfileImage:
+        studentData.getAccountInfo.AccountInfo.profileImageUrl,
     });
   }
 
@@ -173,12 +189,26 @@ export default class MainUserScreen extends React.Component {
               alignSelf: 'center',
               borderRadius: 15,
             }}>
-            <Text style={styles.StudentName}>นายโสภณัฐ สุรเดช</Text>
+            <Text style={styles.StudentName}>
+              {this.state.studentFirstName} {this.state.studentLastName}
+            </Text>
             <Text style={styles.MajorName}>6 1 1 2 2 2 4 0 6 0</Text>
             <Text style={styles.MajorName}>คณะวิทยาศาสตร์และเทคโนโลยี</Text>
             <Text style={styles.MajorName}>
               สาขาวิชา เทคโนโลยีสารสนเทศ กลุ่ม 2
             </Text>
+            <Image
+              source={{uri: this.state.studentProfileImage}}
+              style={{
+                width: 100,
+                height: 100,
+                alignSelf: 'flex-end',
+                borderRadius: 9,
+                marginTop: -140,
+                marginHorizontal: 10,
+              }}
+              imageStyle={{}}
+            />
           </LinearGradient>
         </View>
       </SafeAreaView>
