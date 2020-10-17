@@ -56,7 +56,6 @@ export default class MainUserScreen extends React.Component {
         studentData.getAccountInfo.AccountInfo.profileImageUrl,
       studentId: studentData.getAccountInfo.studentId,
     });
-    console.log('Today is ', getDay());
   }
 
   render() {
@@ -169,7 +168,7 @@ export default class MainUserScreen extends React.Component {
             style={{
               shadowColor: 'rgba(245, 44, 80, 0.38)',
               width: wp('90%'),
-              height: hp('22%'),
+              height: hp('27%'),
               alignSelf: 'center',
               borderRadius: 15,
               marginTop: 10,
@@ -217,6 +216,23 @@ export default class MainUserScreen extends React.Component {
                 <Text style={styles.myGradeText}> 3.xx </Text>
               </View>
             </ScrollView>
+
+            <Button
+              title="ข้อมูลเพิ่มเติม"
+              buttonStyle={{
+                width: 100,
+                height: 40,
+                alignSelf: 'center',
+                marginVertical: 10,
+                backgroundColor: '#0f3057',
+                elevation: 10,
+              }}
+              titleStyle={{
+                fontFamily: FONT_FAMILY,
+                fontSize: 14,
+              }}
+              disabled={true}
+            />
           </LinearGradient>
         </ScrollView>
       </SafeAreaView>
