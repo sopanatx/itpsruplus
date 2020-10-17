@@ -23,18 +23,13 @@ const apiGrade = async () => {
   totalGradeMain = TotalGradeCalculate[0].TotalMainSubjectGrade;
 };
 
-const apiUserData = async () => {
+export default async function apiUserData() {
   const jwtToken = await AsyncStorage.getItem('token');
   const decodeJWT = await jwt_decode(jwtToken);
   const doGetUserData = await Axios.get(
     `https://test-api.itpsru.in.th/user/find/${decodeJWT.aud}`,
   );
   //console.log(doGetUserData.data.getAccountInfo.AccountInfo[0]);
-  const AccountInfo = doGetUserData.data.getAccountInfo.AccountInfo[0];
-  profileImage = AccountInfo.profileImageUrl;
-  console.log({profileImage});
-};
-
-//apiGrade();
-apiUserData();
-export {apiUserData, totalGrade, totalGradeMain, totalCredit, studentID};
+  console.log('USER_DATA_API_REQ: OK!');
+  return doGetUserData.data;
+}
