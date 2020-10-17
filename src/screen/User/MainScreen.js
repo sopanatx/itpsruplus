@@ -81,6 +81,7 @@ export default class MainUserScreen extends React.Component {
     studentTitileName: '',
     studentFirstName: 'Loading',
     studentLastName: '...',
+    studentId: '0 0 0 0 0 0 0 0 0 0',
     studentProfileImage:
       'https://www2.guidestar.org/App_Themes/MainSite/images/loading.gif',
   };
@@ -97,6 +98,7 @@ export default class MainUserScreen extends React.Component {
       studentLastName: studentData.getAccountInfo.studentLastName,
       studentProfileImage:
         studentData.getAccountInfo.AccountInfo.profileImageUrl,
+      studentId: studentData.getAccountInfo.studentId,
     });
   }
 
@@ -192,11 +194,9 @@ export default class MainUserScreen extends React.Component {
             <Text style={styles.StudentName}>
               {this.state.studentFirstName} {this.state.studentLastName}
             </Text>
-            <Text style={styles.MajorName}>6 1 1 2 2 2 4 0 6 0</Text>
+            <Text style={styles.MajorName}>{this.state.studentId}</Text>
             <Text style={styles.MajorName}>คณะวิทยาศาสตร์และเทคโนโลยี</Text>
-            <Text style={styles.MajorName}>
-              สาขาวิชา เทคโนโลยีสารสนเทศ กลุ่ม 2
-            </Text>
+            <Text style={styles.MajorName}>สาขาวิชา เทคโนโลยีสารสนเทศ</Text>
             <Image
               source={{uri: this.state.studentProfileImage}}
               style={{
