@@ -10,8 +10,6 @@ target 'itpsruplus' do
 
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
 
-  pod 'RNFirebase', :path => '../node_modules/react-native-firebase'
-
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
   target 'itpsruplusTests' do
