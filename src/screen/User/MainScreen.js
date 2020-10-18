@@ -23,13 +23,15 @@ import {
 } from 'react-native-responsive-screen';
 import {TEST_API_URL} from '../../constant/API';
 import apiUserData from '../../api/UserApi';
+import getMyGrade from '../../api/myGradeAPI';
+
 import {getDay, convertDate} from '../../utils/misc';
 async function getCalendar() {
   const calendar = await axios.get(TEST_API_URL.calendar);
   return calendar.data;
 }
 let studentData = [];
-
+let studentGrade = [];
 export default class MainUserScreen extends React.Component {
   state = {
     activityCalendar: [],
@@ -40,6 +42,7 @@ export default class MainUserScreen extends React.Component {
     studentId: '0 0 0 0 0 0 0 0 0 0',
     studentProfileImage:
       'https://www2.guidestar.org/App_Themes/MainSite/images/loading.gif',
+    studentGrade: [],
   };
   async componentDidMount() {
     studentData = await apiUserData();
@@ -56,6 +59,9 @@ export default class MainUserScreen extends React.Component {
         studentData.getAccountInfo.AccountInfo.profileImageUrl,
       studentId: studentData.getAccountInfo.studentId,
     });
+    this.setState({studentGrade: await getMyGrade(this.state.studentId)});
+    this.setState({studentGrade: this.state.studentGrade[0]});
+    console.log(this.state.studentGrade);
   }
 
   render() {
@@ -102,8 +108,8 @@ export default class MainUserScreen extends React.Component {
                 <ImageBackground
                   source={{uri: item.activityImage}}
                   style={{
-                    width: 170,
-                    height: 170,
+                    width: 120,
+                    height: 120,
                     marginHorizontal: 5,
                     elevation: 10,
                   }}
@@ -112,8 +118,8 @@ export default class MainUserScreen extends React.Component {
                   }}>
                   <View
                     style={{
-                      width: 170,
-                      height: 170,
+                      width: 120,
+                      height: 120,
                       borderRadius: 9,
                       backgroundColor: 'rgba(68, 129, 235, 0.35)',
                     }}>
@@ -136,7 +142,7 @@ export default class MainUserScreen extends React.Component {
             style={{
               shadowColor: 'rgba(245, 44, 80, 0.38)',
               width: wp('90%'),
-              height: hp('20%'),
+              height: 180,
               alignSelf: 'center',
               borderRadius: 15,
               elevation: 10,
@@ -145,13 +151,13 @@ export default class MainUserScreen extends React.Component {
               {this.state.studentFirstName} {this.state.studentLastName}
             </Text>
             <Text style={styles.MajorName}>{this.state.studentId}</Text>
-            <Text style={styles.MajorName}>คณะวิทยาศาสตร์และเทคโนโลยี</Text>
+            <Text style={styles.MajorName}>คณะ วิทยาศาสตร์และเทคโนโลยี</Text>
             <Text style={styles.MajorName}>สาขาวิชา เทคโนโลยีสารสนเทศ</Text>
             <Image
               source={{uri: this.state.studentProfileImage}}
               style={{
-                width: 100,
-                height: 100,
+                width: 80,
+                height: 80,
                 alignSelf: 'flex-end',
                 borderRadius: 9,
                 marginTop: -140,
@@ -168,7 +174,7 @@ export default class MainUserScreen extends React.Component {
             style={{
               shadowColor: 'rgba(245, 44, 80, 0.38)',
               width: wp('90%'),
-              height: hp('27%'),
+              height: 220,
               alignSelf: 'center',
               borderRadius: 15,
               marginTop: 10,
@@ -181,7 +187,7 @@ export default class MainUserScreen extends React.Component {
                 style={{
                   width: 150,
                   height: 100,
-                  backgroundColor: '#F2F2F2',
+                  backgroundColor: THEME.DEFAULT_DARK_MODE2,
                   marginHorizontal: 10,
                   borderRadius: 5,
                   elevation: 10,
@@ -195,28 +201,31 @@ export default class MainUserScreen extends React.Component {
                 style={{
                   width: 150,
                   height: 100,
-                  backgroundColor: '#F2F2F2',
+                  backgroundColor: THEME.DEFAULT_DARK_MODE2,
                   marginHorizontal: 10,
                   borderRadius: 5,
                   elevation: 10,
                 }}>
                 <Text style={styles.myGradeText}> เกรดเฉลี่ยรวม </Text>
-                <Text style={styles.myGradeText}> 3.xx </Text>
+                <Text style={styles.myGradeText}>
+                  {this.state.studentGrade.TotalAverageGrade}
+                </Text>
               </View>
               <View
                 style={{
                   width: 150,
                   height: 100,
-                  backgroundColor: '#F2F2F2',
+                  backgroundColor: THEME.DEFAULT_DARK_MODE2,
                   marginHorizontal: 10,
                   borderRadius: 5,
                   elevation: 10,
                 }}>
                 <Text style={styles.myGradeText}> เกรดเฉลี่ยวิิชาเอก </Text>
-                <Text style={styles.myGradeText}> 3.xx </Text>
+                <Text style={styles.myGradeText}>
+                  {this.state.studentGrade.TotalMainSubjectGrade}
+                </Text>
               </View>
             </ScrollView>
-
             <Button
               title="ข้อมูลเพิ่มเติม"
               buttonStyle={{
@@ -285,21 +294,21 @@ const styles = StyleSheet.create({
   },
   CalendarDateText: {
     fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: 30,
+    fontSize: 20,
     textAlign: 'center',
     color: 'white',
     textAlign: 'left',
-    marginTop: -3,
+    marginTop: 3,
     margin: 7,
   },
   CalendarInfoText: {
     fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: 20,
+    fontSize: 14,
     textAlign: 'center',
     color: 'white',
     textAlign: 'right',
-    marginTop: 40,
-    margin: 7,
+    paddingTop: 30,
+    paddingEnd: 3,
   },
   StudentName: {
     fontFamily: 'DBHelvethaicaX-Bd',
@@ -330,7 +339,7 @@ const styles = StyleSheet.create({
     fontFamily: 'DBHelvethaicaX-Bd',
     fontSize: 25,
     textAlign: 'center',
-    color: '#4c4c4c',
+    color: '#f2f2f2',
     marginTop: 10,
   },
 });

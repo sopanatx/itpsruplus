@@ -14,7 +14,7 @@ import {
   AsyncStorage,
   SafeAreaView,
 } from 'react-native';
-import {FONT_FAMILY, FONT_BOLD} from '../styles';
+import {FONT_FAMILY, FONT_BOLD, THEME} from '../styles';
 export default class WelcomeScreen extends Component {
   render() {
     return (
@@ -52,7 +52,7 @@ export default class WelcomeScreen extends Component {
   }
 }
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: 'white'},
+  container: {flex: 1, backgroundColor: THEME.DEFAULT_DARK_MODE1},
   mainView: {},
   Logo: {
     width: 122,
@@ -66,13 +66,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   subView: {
-    backgroundColor: '#F2F2F2',
+    backgroundColor: THEME.DEFAULT_DARK_MODE2,
     flex: 2,
     marginTop: 30,
   },
   TextInfo: {
     fontSize: 20,
     textAlign: 'center',
+    color: 'white',
     fontFamily: FONT_BOLD,
     margin: 30,
     marginVertical: 50,

@@ -14,6 +14,7 @@ export const THEME = {
   WINTER_GRADE_CARD1: '#09203f',
   WINTER_GRADE_CARD2: '#537895',
   DEFAULT_DARK_MODE1: '#222831',
+  DEFAULT_DARK_MODE2: '#393e46',
 };
 
 export const FONT_FAMILY = 'DBHelvethaicaX-Reg';

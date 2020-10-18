@@ -9,7 +9,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
-import {FONT_FAMILY, FONT_BOLD} from '../styles';
+import {FONT_FAMILY, FONT_BOLD, THEME} from '../styles';
 const LoginScreen = (props) => {
   const [studentId, setStudentId] = useState('');
   const [studentPassword, setPassword] = useState('');
@@ -73,7 +73,7 @@ const LoginScreen = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: THEME.DEFAULT_DARK_MODE1,
     height: hp('100%'), // 70% of height device screen
     width: wp('100%'), // 80% of width device screen
   },
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   mainView: {
     alignContent: 'center',
   },
-  subView: {flex: 2, marginTop: 55, backgroundColor: '#F2F2F2'},
+  subView: {flex: 2, marginTop: 55, backgroundColor: THEME.DEFAULT_DARK_MODE2},
 
   Logo: {
     width: 122,
@@ -94,12 +94,14 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontFamily: 'ProductSansRegular',
     textAlign: 'center',
+    color: 'white',
   },
   SubTitle: {
     fontSize: 20,
     marginTop: 25,
     fontFamily: FONT_FAMILY,
     textAlign: 'center',
+    color: 'white',
   },
   input: {
     margin: 10,
