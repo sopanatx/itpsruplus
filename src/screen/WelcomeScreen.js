@@ -52,7 +52,7 @@ export default class WelcomeScreen extends Component {
   }
 }
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: THEME.DEFAULT_DARK_MODE1},
+  container: {flex: 1, backgroundColor: THEME.DEFAULT_DARK_MODE2},
   mainView: {},
   Logo: {
     width: 122,
@@ -64,9 +64,10 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontFamily: 'ProductSansRegular',
     textAlign: 'center',
+    color: '#F2F2F2',
   },
   subView: {
-    backgroundColor: THEME.DEFAULT_DARK_MODE2,
+    backgroundColor: THEME.DEFAULT_DARK_MODE1,
     flex: 2,
     marginTop: 30,
   },

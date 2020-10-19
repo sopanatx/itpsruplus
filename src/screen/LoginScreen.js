@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     width: 244,
     height: 45,
     alignSelf: 'center',
-    borderRadius: 24,
+    borderRadius: 18,
     fontFamily: FONT_FAMILY,
     fontSize: 20,
     textAlign: 'center',
