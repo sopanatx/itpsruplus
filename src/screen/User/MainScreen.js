@@ -5,9 +5,9 @@ import {
   Text,
   Image,
   ScrollView,
-  Alert,
   ImageBackground,
   FlatList,
+  StatusBar,
 } from 'react-native';
 import {Button} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -45,6 +45,7 @@ export default class MainUserScreen extends React.Component {
     studentGrade: [],
   };
   async componentDidMount() {
+    // StatusBar.setHidden(true);
     studentData = await apiUserData();
     console.log(
       'IMAGE_PROFILE_DATA:',
@@ -66,194 +67,197 @@ export default class MainUserScreen extends React.Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.container}>
-        <ScrollView>
-          <View style={styles.header}>
-            <LinearGradient
-              start={{x: 1, y: 0}}
-              end={{x: 0, y: 1}}
-              colors={[THEME.WINTER_HEADER_1, THEME.WINTER_HEADER_2]}
-              style={{
-                shadowColor: 'rgba(245, 44, 80, 0.38)',
-                width: 480,
-                height: 165,
-                alignSelf: 'center',
-              }}>
-              <Image
-                style={styles.Logo}
-                source={require('../../assets/images/WhiteLogo_4x.png')}
-              />
-              <Text
+      <>
+        <SafeAreaView style={styles.container}>
+          <ScrollView>
+            <View style={styles.header}>
+              <LinearGradient
+                start={{x: 1, y: 0}}
+                end={{x: 0, y: 1}}
+                colors={[THEME.WINTER_HEADER_1, THEME.WINTER_HEADER_2]}
                 style={{
-                  color: 'white',
-                  fontSize: 30,
-                  width: 245,
-                  marginHorizontal: 110,
-                  margin: 20,
-                  fontFamily: 'DBHelvethaicaX-Bd',
+                  shadowColor: 'rgba(245, 44, 80, 0.38)',
+                  width: 480,
+                  height: 165,
+                  alignSelf: 'center',
                 }}>
-                Infomation Technology {'\n'}PSRU
-              </Text>
-            </LinearGradient>
-          </View>
-
-          <View style={{margin: 10}}>
-            <Text style={styles.MenuText}>กิจกรรมที่กำลังมาถึง</Text>
-
-            <FlatList
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
-              data={this.state.activityCalendar}
-              renderItem={({item}) => (
-                <ImageBackground
-                  source={{uri: item.activityImage}}
+                <Image
+                  style={styles.Logo}
+                  source={require('../../assets/images/WhiteLogo_4x.png')}
+                />
+                <Text
                   style={{
-                    width: 120,
-                    height: 120,
-                    marginHorizontal: 5,
-                    elevation: 10,
-                  }}
-                  imageStyle={{
-                    borderRadius: 9,
+                    color: 'white',
+                    fontSize: 30,
+                    width: 245,
+                    marginHorizontal: 110,
+                    margin: 20,
+                    fontFamily: 'DBHelvethaicaX-Bd',
                   }}>
-                  <View
+                  Infomation Technology {'\n'}PSRU
+                </Text>
+              </LinearGradient>
+            </View>
+
+            <View style={{margin: 10}}>
+              <Text style={styles.MenuText}>กิจกรรมที่กำลังมาถึง</Text>
+
+              <FlatList
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                data={this.state.activityCalendar}
+                renderItem={({item}) => (
+                  <ImageBackground
+                    source={{uri: item.activityImage}}
                     style={{
                       width: 120,
                       height: 120,
+                      marginHorizontal: 5,
+                      elevation: 10,
+                    }}
+                    imageStyle={{
                       borderRadius: 9,
-                      backgroundColor: 'rgba(68, 129, 235, 0.35)',
                     }}>
-                    <Text style={styles.CalendarDateText}>
-                      {convertDate(item.activityStartDate)}
-                    </Text>
-                    <Text style={styles.CalendarInfoText}>
-                      {item.activityName}
-                    </Text>
-                  </View>
-                </ImageBackground>
-              )}
-            />
-          </View>
+                    <View
+                      style={{
+                        width: 120,
+                        height: 120,
+                        borderRadius: 9,
+                        backgroundColor: 'rgba(68, 129, 235, 0.35)',
+                      }}>
+                      <Text style={styles.CalendarDateText}>
+                        {convertDate(item.activityStartDate)}
+                      </Text>
+                      <Text style={styles.CalendarInfoText}>
+                        {item.activityName}
+                      </Text>
+                    </View>
+                  </ImageBackground>
+                )}
+              />
+            </View>
 
-          <LinearGradient
-            start={{x: 0, y: 1}}
-            end={{x: 1, y: 0}}
-            colors={[THEME.WINTER_GECARD1, THEME.WINTER_GECARD2]}
-            style={{
-              shadowColor: 'rgba(245, 44, 80, 0.38)',
-              width: wp('90%'),
-              height: 180,
-              alignSelf: 'center',
-              borderRadius: 15,
-              elevation: 10,
-            }}>
-            <Text style={styles.StudentName}>
-              {this.state.studentFirstName} {this.state.studentLastName}
-            </Text>
-            <Text style={styles.MajorName}>{this.state.studentId}</Text>
-            <Text style={styles.MajorName}>คณะ วิทยาศาสตร์และเทคโนโลยี</Text>
-            <Text style={styles.MajorName}>สาขาวิชา เทคโนโลยีสารสนเทศ</Text>
-            <Image
-              source={{uri: this.state.studentProfileImage}}
+            <LinearGradient
+              start={{x: 0, y: 1}}
+              end={{x: 1, y: 0}}
+              colors={[THEME.WINTER_GECARD1, THEME.WINTER_GECARD2]}
               style={{
-                width: 80,
-                height: 80,
-                alignSelf: 'flex-end',
-                borderRadius: 9,
-                marginTop: -140,
-                marginHorizontal: 10,
-              }}
-              imageStyle={{}}
-            />
-          </LinearGradient>
-
-          <LinearGradient
-            start={{x: 0, y: 1}}
-            end={{x: 1, y: 0}}
-            colors={[THEME.WINTER_GRADE_CARD1, THEME.WINTER_GRADE_CARD2]}
-            style={{
-              shadowColor: 'rgba(245, 44, 80, 0.38)',
-              width: wp('90%'),
-              height: 220,
-              alignSelf: 'center',
-              borderRadius: 15,
-              marginTop: 10,
-            }}>
-            <Text style={styles.studentGradeInfoText}> ระดับผลการเรียน </Text>
-            <ScrollView
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}>
-              <View
-                style={{
-                  width: 150,
-                  height: 100,
-                  backgroundColor: THEME.DEFAULT_DARK_MODE2,
-                  marginHorizontal: 10,
-                  borderRadius: 5,
-                  elevation: 10,
-                }}>
-                <Text style={styles.myGradeText}> ระดับผลการเรียน </Text>
-                <Text style={styles.myGradeText}>
-                  <Text style={{color: 'green'}}> ดี </Text>
-                </Text>
-              </View>
-              <View
-                style={{
-                  width: 150,
-                  height: 100,
-                  backgroundColor: THEME.DEFAULT_DARK_MODE2,
-                  marginHorizontal: 10,
-                  borderRadius: 5,
-                  elevation: 10,
-                }}>
-                <Text style={styles.myGradeText}> เกรดเฉลี่ยรวม </Text>
-                <Text style={styles.myGradeText}>
-                  {this.state.studentGrade.TotalAverageGrade}
-                </Text>
-              </View>
-              <View
-                style={{
-                  width: 150,
-                  height: 100,
-                  backgroundColor: THEME.DEFAULT_DARK_MODE2,
-                  marginHorizontal: 10,
-                  borderRadius: 5,
-                  elevation: 10,
-                }}>
-                <Text style={styles.myGradeText}> เกรดเฉลี่ยวิิชาเอก </Text>
-                <Text style={styles.myGradeText}>
-                  {this.state.studentGrade.TotalMainSubjectGrade}
-                </Text>
-              </View>
-            </ScrollView>
-            <Button
-              title="ข้อมูลเพิ่มเติม"
-              buttonStyle={{
-                width: 100,
-                height: 40,
+                shadowColor: 'rgba(245, 44, 80, 0.38)',
+                width: wp('90%'),
+                height: 180,
                 alignSelf: 'center',
-                marginVertical: 10,
-                backgroundColor: '#0f3057',
+                borderRadius: 15,
                 elevation: 10,
-              }}
-              titleStyle={{
-                fontFamily: FONT_FAMILY,
-                fontSize: 14,
-              }}
-              disabled={true}
-            />
-          </LinearGradient>
-        </ScrollView>
-      </SafeAreaView>
+              }}>
+              <Text style={styles.StudentName}>
+                {this.state.studentFirstName} {this.state.studentLastName}
+              </Text>
+              <Text style={styles.MajorName}>{this.state.studentId}</Text>
+              <Text style={styles.MajorName}>คณะ วิทยาศาสตร์และเทคโนโลยี</Text>
+              <Text style={styles.MajorName}>สาขาวิชา เทคโนโลยีสารสนเทศ</Text>
+              <Image
+                source={{uri: this.state.studentProfileImage}}
+                style={{
+                  width: 80,
+                  height: 80,
+                  alignSelf: 'flex-end',
+                  borderRadius: 9,
+                  marginTop: -140,
+                  marginHorizontal: 10,
+                }}
+                imageStyle={{}}
+              />
+            </LinearGradient>
+
+            <LinearGradient
+              start={{x: 0, y: 1}}
+              end={{x: 1, y: 0}}
+              colors={[THEME.WINTER_GRADE_CARD1, THEME.WINTER_GRADE_CARD2]}
+              style={{
+                shadowColor: 'rgba(245, 44, 80, 0.38)',
+                width: wp('90%'),
+                height: 220,
+                alignSelf: 'center',
+                borderRadius: 15,
+                marginTop: 10,
+              }}>
+              <Text style={styles.studentGradeInfoText}> ระดับผลการเรียน </Text>
+              <ScrollView
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}>
+                <View
+                  style={{
+                    width: 150,
+                    height: 100,
+                    backgroundColor: THEME.DEFAULT_DARK_MODE2,
+                    marginHorizontal: 10,
+                    borderRadius: 5,
+                    elevation: 10,
+                  }}>
+                  <Text style={styles.myGradeText}> ระดับผลการเรียน </Text>
+                  <Text style={styles.myGradeText}>
+                    <Text style={{color: 'green'}}> ดี </Text>
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: 150,
+                    height: 100,
+                    backgroundColor: THEME.DEFAULT_DARK_MODE2,
+                    marginHorizontal: 10,
+                    borderRadius: 5,
+                    elevation: 10,
+                  }}>
+                  <Text style={styles.myGradeText}> เกรดเฉลี่ยรวม </Text>
+                  <Text style={styles.myGradeText}>
+                    {this.state.studentGrade.TotalAverageGrade}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: 150,
+                    height: 100,
+                    backgroundColor: THEME.DEFAULT_DARK_MODE2,
+                    marginHorizontal: 10,
+                    borderRadius: 5,
+                    elevation: 10,
+                  }}>
+                  <Text style={styles.myGradeText}> เกรดเฉลี่ยวิิชาเอก </Text>
+                  <Text style={styles.myGradeText}>
+                    {this.state.studentGrade.TotalMainSubjectGrade}
+                  </Text>
+                </View>
+              </ScrollView>
+              <Button
+                title="ข้อมูลเพิ่มเติม"
+                buttonStyle={{
+                  width: 100,
+                  height: 40,
+                  alignSelf: 'center',
+                  marginVertical: 10,
+                  backgroundColor: '#0f3057',
+                  elevation: 10,
+                }}
+                titleStyle={{
+                  fontFamily: FONT_FAMILY,
+                  fontSize: 14,
+                }}
+                disabled={true}
+              />
+            </LinearGradient>
+          </ScrollView>
+        </SafeAreaView>
+      </>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
+    resizeMode: 'cover',
     flex: 1,
-    height: hp('100%'),
-    width: wp('100%'),
+    height: '100%',
+    width: '100%',
     backgroundColor: THEME.DEFAULT_DARK_MODE1,
   },
 
