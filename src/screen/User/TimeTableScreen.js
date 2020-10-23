@@ -106,16 +106,16 @@ export default class TimeTableScreen extends React.Component {
               data={this.state.monday}
               renderItem={({item}) => (
                 <LinearGradient
-                  start={{x: 0, y: 1}}
-                  end={{x: 1, y: 0}}
-                  colors={[THEME.WINTER_ROW_1, THEME.WINTER_ROW_2]}
+                  start={{x: 1, y: 0}}
+                  end={{x: 0, y: 2}}
+                  colors={['#FFE29F', '#FFA99F', '#FF719A']}
                   style={{
                     shadowColor: 'rgba(245, 44, 80, 0.38)',
                     width: 337,
                     height: 120,
                     borderRadius: 9,
                     marginVertical: 5,
-                    elevation: 8,
+                    elevation: 4,
                     alignSelf: 'center',
                   }}>
                   <Text style={styles.Day}>วัน{item.subjectTime}</Text>
@@ -139,14 +139,14 @@ export default class TimeTableScreen extends React.Component {
                 <LinearGradient
                   start={{x: 0, y: 1}}
                   end={{x: 1, y: 0}}
-                  colors={[THEME.WINTER_ROW_1, THEME.WINTER_ROW_2]}
+                  colors={['#ff9a9e', '#fecfef']} // Tuesday Color
                   style={{
                     shadowColor: 'rgba(245, 44, 80, 0.38)',
                     width: 337,
                     height: 120,
                     borderRadius: 9,
                     marginVertical: 5,
-                    elevation: 8,
+                    elevation: 4,
                     alignSelf: 'center',
                   }}>
                   <Text style={styles.Day}>วัน{item.subjectTime}</Text>
@@ -170,7 +170,7 @@ export default class TimeTableScreen extends React.Component {
                 <LinearGradient
                   start={{x: 0, y: 1}}
                   end={{x: 1, y: 0}}
-                  colors={[THEME.WINTER_ROW_1, THEME.WINTER_ROW_2]}
+                  colors={['#20E2D7', '#F9FEA5']}
                   style={{
                     shadowColor: 'rgba(245, 44, 80, 0.38)',
                     width: 337,
@@ -199,9 +199,9 @@ export default class TimeTableScreen extends React.Component {
               data={this.state.thursday}
               renderItem={({item}) => (
                 <LinearGradient
-                  start={{x: 0, y: 1}}
-                  end={{x: 1, y: 0}}
-                  colors={[THEME.WINTER_ROW_1, THEME.WINTER_ROW_2]}
+                  start={{x: 1, y: 0}}
+                  end={{x: 0, y: 1}}
+                  colors={['#fc6076', '#ff9a44']}
                   style={{
                     shadowColor: 'rgba(245, 44, 80, 0.38)',
                     width: 337,
