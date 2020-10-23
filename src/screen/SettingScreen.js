@@ -34,7 +34,7 @@ export default class SettingScreen extends React.Component {
       <SafeAreaView>
         <View>
           <Text>การตั้งค่าแอพลิเคชั่น</Text>
-          <Text>App Version: 1.4.6</Text>
+          <Text>App Version: 1.4.7</Text>
         </View>
       </SafeAreaView>
     );

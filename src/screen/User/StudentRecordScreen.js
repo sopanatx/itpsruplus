@@ -42,7 +42,7 @@ export default class StudentRecordScreen extends React.Component {
         <View style={styles.header}>
           <LinearGradient
             start={{x: 1, y: 0}}
-            end={{x: 0, y: 1}}            
+            end={{x: 0, y: 1}}
             colors={[THEME.WINTER_HEADER_1, THEME.WINTER_HEADER_2]}
             style={{
               shadowColor: 'rgba(245, 44, 80, 0.38)',
@@ -67,11 +67,7 @@ export default class StudentRecordScreen extends React.Component {
             </Text>
           </LinearGradient>
         </View>
-        <View style={{alignItems: 'center'}}>
-              <Text style={styles.HeaderText}>ระเบียนประวัติ</Text>
-              <Text style={styles.HeaderText}>คุณ %s รหัสนักศึกษา %s</Text>
-
-        </View>
+        <View style={{alignItems: 'center'}}></View>
       </SafeAreaView>
     );
   }
@@ -100,7 +96,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     textAlign: 'center',
     margin: 20,
-    color:'#4C4C4C'
+    color: '#4C4C4C',
   },
   classRoom: {
     fontFamily: FONT_BOLD,

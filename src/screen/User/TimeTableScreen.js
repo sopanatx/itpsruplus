@@ -7,6 +7,7 @@ import {
   ScrollView,
   Alert,
   ImageBackground,
+  FlatList,
 } from 'react-native';
 import {Button} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -64,44 +65,46 @@ export default class TimeTableScreen extends React.Component {
   }
   render() {
     return (
-      
-        <SafeAreaView>
-          <ScrollView>
-            <View style={styles.header}>
-              <LinearGradient
-                start={{x: 1, y: 0}}
-                end={{x: 0, y: 1}}
-                colors={[THEME.WINTER_HEADER_1, THEME.WINTER_HEADER_2]}
+      <SafeAreaView>
+        <ScrollView>
+          <View style={styles.header}>
+            <LinearGradient
+              start={{x: 1, y: 0}}
+              end={{x: 0, y: 1}}
+              colors={[THEME.WINTER_HEADER_1, THEME.WINTER_HEADER_2]}
+              style={{
+                shadowColor: 'rgba(245, 44, 80, 0.38)',
+                width: 480,
+                height: 165,
+                alignSelf: 'center',
+              }}>
+              <Image
+                style={styles.Logo}
+                source={require('../../assets/images/WhiteLogo_4x.png')}
+              />
+              <Text
                 style={{
-                  shadowColor: 'rgba(245, 44, 80, 0.38)',
-                  width: 480,
-                  height: 165,
-                  alignSelf: 'center',
+                  color: 'white',
+                  fontSize: 30,
+                  width: 245,
+                  marginHorizontal: 110,
+                  margin: 20,
+                  fontFamily: 'DBHelvethaicaX-Bd',
                 }}>
-                <Image
-                  style={styles.Logo}
-                  source={require('../../assets/images/WhiteLogo_4x.png')}
-                />
-                <Text
-                  style={{
-                    color: 'white',
-                    fontSize: 30,
-                    width: 245,
-                    marginHorizontal: 110,
-                    margin: 20,
-                    fontFamily: 'DBHelvethaicaX-Bd',
-                  }}>
-                  Infomation Technology {'\n'}PSRU
-                </Text>
-              </LinearGradient>
-            </View>
-
-            <View>
-              <Text style={styles.HeaderText}>
-                ตารางเรียน {'\n'}ภาคเรียนที่ 1 / 2563
+                Infomation Technology {'\n'}PSRU
               </Text>
+            </LinearGradient>
+          </View>
 
-              {this.state.monday.map((monday, index) => (
+          <View>
+            <Text style={styles.HeaderText}>
+              ตารางเรียน {'\n'}ภาคเรียนที่ 1 / 2563
+            </Text>
+
+            <FlatList
+              showsHorizontalScrollIndicator={false}
+              data={this.state.monday}
+              renderItem={({item}) => (
                 <LinearGradient
                   start={{x: 0, y: 1}}
                   end={{x: 1, y: 0}}
@@ -115,19 +118,24 @@ export default class TimeTableScreen extends React.Component {
                     elevation: 8,
                     alignSelf: 'center',
                   }}>
-                  <Text style={styles.Day}>วัน{monday.subjectTime}</Text>
+                  <Text style={styles.Day}>วัน{item.subjectTime}</Text>
 
                   <Text style={styles.subjectName}>
-                    {monday.subjectCode} {monday.subjectName}
+                    {item.subjectCode} {item.subjectName}
                   </Text>
                   <Text style={styles.subjectName}>
-                    ผู้สอน: {monday.subjectTeacher} | ห้องเรียน :{' '}
-                    {monday.subjectClassroom}
+                    ผู้สอน: {item.subjectTeacher} | ห้องเรียน :{' '}
+                    {item.subjectClassroom}
                   </Text>
                 </LinearGradient>
-              ))}
+              )}
+              keyExtractor={(item, index) => index.toString()}
+            />
 
-              {this.state.tuesday.map((tuesday, index) => (
+            <FlatList
+              showsHorizontalScrollIndicator={false}
+              data={this.state.tuesday}
+              renderItem={({item}) => (
                 <LinearGradient
                   start={{x: 0, y: 1}}
                   end={{x: 1, y: 0}}
@@ -141,19 +149,24 @@ export default class TimeTableScreen extends React.Component {
                     elevation: 8,
                     alignSelf: 'center',
                   }}>
-                  <Text style={styles.Day}>วัน{tuesday.subjectTime}</Text>
+                  <Text style={styles.Day}>วัน{item.subjectTime}</Text>
 
                   <Text style={styles.subjectName}>
-                    {tuesday.subjectCode} {tuesday.subjectName}
+                    {item.subjectCode} {item.subjectName}
                   </Text>
                   <Text style={styles.subjectName}>
-                    ผู้สอน: {tuesday.subjectTeacher} | ห้องเรียน :{' '}
-                    {tuesday.subjectClassroom}
+                    ผู้สอน: {item.subjectTeacher} | ห้องเรียน :{' '}
+                    {item.subjectClassroom}
                   </Text>
                 </LinearGradient>
-              ))}
+              )}
+              keyExtractor={(item, index) => index.toString()}
+            />
 
-              {this.state.wednesday.map((wednesday, index) => (
+            <FlatList
+              showsHorizontalScrollIndicator={false}
+              data={this.state.wednesday}
+              renderItem={({item}) => (
                 <LinearGradient
                   start={{x: 0, y: 1}}
                   end={{x: 1, y: 0}}
@@ -167,19 +180,24 @@ export default class TimeTableScreen extends React.Component {
                     elevation: 8,
                     alignSelf: 'center',
                   }}>
-                  <Text style={styles.Day}>วัน{wednesday.subjectTime}</Text>
+                  <Text style={styles.Day}>วัน{item.subjectTime}</Text>
 
                   <Text style={styles.subjectName}>
-                    {wednesday.subjectCode} {wednesday.subjectName}
+                    {item.subjectCode} {item.subjectName}
                   </Text>
                   <Text style={styles.subjectName}>
-                    ผู้สอน: {wednesday.subjectTeacher} | ห้องเรียน :{' '}
-                    {wednesday.subjectClassroom}
+                    ผู้สอน: {item.subjectTeacher} | ห้องเรียน :{' '}
+                    {item.subjectClassroom}
                   </Text>
                 </LinearGradient>
-              ))}
+              )}
+              keyExtractor={(item, index) => index.toString()}
+            />
 
-              {this.state.thursday.map((thursday, index) => (
+            <FlatList
+              showsHorizontalScrollIndicator={false}
+              data={this.state.thursday}
+              renderItem={({item}) => (
                 <LinearGradient
                   start={{x: 0, y: 1}}
                   end={{x: 1, y: 0}}
@@ -193,18 +211,24 @@ export default class TimeTableScreen extends React.Component {
                     elevation: 8,
                     alignSelf: 'center',
                   }}>
-                  <Text style={styles.Day}>วัน{thursday.subjectTime}</Text>
+                  <Text style={styles.Day}>วัน{item.subjectTime}</Text>
+
                   <Text style={styles.subjectName}>
-                    {thursday.subjectCode} {thursday.subjectName}
+                    {item.subjectCode} {item.subjectName}
                   </Text>
                   <Text style={styles.subjectName}>
-                    ผู้สอน: {thursday.subjectTeacher} | ห้องเรียน :{' '}
-                    {thursday.subjectClassroom}
+                    ผู้สอน: {item.subjectTeacher} | ห้องเรียน :{' '}
+                    {item.subjectClassroom}
                   </Text>
                 </LinearGradient>
-              ))}
+              )}
+              keyExtractor={(item, index) => index.toString()}
+            />
 
-              {this.state.friday.map((friday, index) => (
+            <FlatList
+              showsHorizontalScrollIndicator={false}
+              data={this.state.friday}
+              renderItem={({item}) => (
                 <LinearGradient
                   start={{x: 0, y: 1}}
                   end={{x: 1, y: 0}}
@@ -218,21 +242,22 @@ export default class TimeTableScreen extends React.Component {
                     elevation: 8,
                     alignSelf: 'center',
                   }}>
-                  <Text style={styles.Day}>วัน{friday.subjectTime}</Text>
+                  <Text style={styles.Day}>วัน{item.subjectTime}</Text>
 
                   <Text style={styles.subjectName}>
-                    {friday.subjectCode} {friday.subjectName}
+                    {item.subjectCode} {item.subjectName}
                   </Text>
                   <Text style={styles.subjectName}>
-                    ผู้สอน: {friday.subjectTeacher} | ห้องเรียน :{' '}
-                    {friday.subjectClassroom}
+                    ผู้สอน: {item.subjectTeacher} | ห้องเรียน :{' '}
+                    {item.subjectClassroom}
                   </Text>
                 </LinearGradient>
-              ))}
-            </View>
-          </ScrollView>
-        </SafeAreaView>
-
+              )}
+              keyExtractor={(item, index) => index.toString()}
+            />
+          </View>
+        </ScrollView>
+      </SafeAreaView>
     );
   }
 }

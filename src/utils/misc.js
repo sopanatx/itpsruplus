@@ -55,4 +55,6 @@ function convertDate(date) {
   }
   return `${day} ${monthText} ${year}`;
 }
+
+function regexStudentId(studentId) {}
 export {getDay, convertDate};

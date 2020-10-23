@@ -140,7 +140,11 @@ export default class MainUserScreen extends React.Component {
             <LinearGradient
               start={{x: 0, y: 1}}
               end={{x: 1, y: 0}}
-              colors={[THEME.WINTER_GECARD1, THEME.WINTER_GECARD2]}
+              colors={[
+                THEME.WINTER_GECARD1,
+                THEME.WINTER_GECARD2,
+                THEME.WINTER_GECARD3,
+              ]}
               style={{
                 shadowColor: 'rgba(245, 44, 80, 0.38)',
                 width: wp('90%'),
@@ -258,7 +262,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: '100%',
     width: '100%',
-    backgroundColor: THEME.DEFAULT_DARK_MODE1,
+    // backgroundColor: THEME.DEFAULT_DARK_MODE1,
   },
 
   header: {
@@ -288,7 +292,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginHorizontal: 10,
     textAlign: 'left',
-    color: '#f6f6f6',
+    //  color: '#f6f6f6',
   },
   MenuText1: {
     fontFamily: 'DBHelvethaicaX-Bd',
