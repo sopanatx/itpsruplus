@@ -143,7 +143,7 @@ export default class MainUserScreen extends React.Component {
               colors={[
                 THEME.WINTER_GECARD1,
                 THEME.WINTER_GECARD2,
-                THEME.WINTER_GECARD3,
+                //THEME.WINTER_GECARD3,
               ]}
               style={{
                 shadowColor: 'rgba(245, 44, 80, 0.38)',

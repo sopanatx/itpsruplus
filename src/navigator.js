@@ -13,7 +13,7 @@ import {isAuthen} from './api/authen';
 import AsyncStorage from '@react-native-community/async-storage';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import RegisterScreen from './screen/RegisterScreen';
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
 const Navigator = () => {
@@ -120,6 +120,11 @@ const Navigator = () => {
           <Stack.Screen
             name="Login"
             component={LoginScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Register"
+            component={RegisterScreen}
             options={{headerShown: false}}
           />
           <Stack.Screen

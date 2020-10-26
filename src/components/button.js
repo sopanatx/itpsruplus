@@ -74,7 +74,7 @@ export const RegisterButton = ({
         color: 'black',
         ...titleStyle,
       }}
-      disabled={true}
+      //  disabled={true}
       onPress={onPress}
     />
   );
