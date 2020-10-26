@@ -14,6 +14,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import RegisterScreen from './screen/RegisterScreen';
+import TOSScreen from './screen/TOSScreen';
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
 const Navigator = () => {
@@ -120,6 +121,11 @@ const Navigator = () => {
           <Stack.Screen
             name="Login"
             component={LoginScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="TOS"
+            component={TOSScreen}
             options={{headerShown: false}}
           />
           <Stack.Screen

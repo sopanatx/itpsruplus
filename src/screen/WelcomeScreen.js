@@ -39,7 +39,7 @@ export default class WelcomeScreen extends Component {
               style={{width: '80%'}}
               containerStyle={{width: '100%'}}
               title={'ลงทะเบียน'}
-              onPress={() => this.props.navigation.navigate('Register')}
+              onPress={() => this.props.navigation.navigate('TOS')}
             />
           </View>
         </ScrollView>
