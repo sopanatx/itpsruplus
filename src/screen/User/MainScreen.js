@@ -23,7 +23,7 @@ import {
 } from 'react-native-responsive-screen';
 import {TEST_API_URL} from '../../constant/API';
 import apiUserData from '../../api/UserApi';
-import getMyGrade from '../../api/StudentGradeApi';
+import {getMyGrade} from '../../api/StudentGradeApi';
 
 import {getDay, convertDate} from '../../utils/misc';
 async function getCalendar() {

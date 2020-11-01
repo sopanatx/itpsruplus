@@ -7,11 +7,13 @@ import {
   ScrollView,
   Alert,
   ImageBackground,
+  FlatList,
 } from 'react-native';
 import {Button} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
-
+import {getAllGrade} from '../../api/StudentGradeApi';
+import {convertGrade} from '../../utils/misc';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -32,42 +34,79 @@ async function regexClassID() {
 export default class StudentRecordScreen extends React.Component {
   state = {
     studentID: '',
+    studentGrade: [],
   };
   async componentDidMount() {
-    this.setState({studentID: await regexClassID()});
+    this.setState({
+      studentID: await regexClassID,
+      studentGrade: await getAllGrade(await regexClassID()),
+    });
+    console.log(this.state.studentGrade[1]);
   }
   render() {
     return (
       <SafeAreaView>
-        <View style={styles.header}>
-          <LinearGradient
-            start={{x: 1, y: 0}}
-            end={{x: 0, y: 1}}
-            colors={[THEME.WINTER_HEADER_1, THEME.WINTER_HEADER_2]}
-            style={{
-              shadowColor: 'rgba(245, 44, 80, 0.38)',
-              width: 480,
-              height: 165,
-              alignSelf: 'center',
-            }}>
-            <Image
-              style={styles.Logo}
-              source={require('../../assets/images/WhiteLogo_4x.png')}
-            />
-            <Text
+        <ScrollView>
+          <View style={styles.header}>
+            <LinearGradient
+              start={{x: 1, y: 0}}
+              end={{x: 0, y: 1}}
+              colors={[THEME.WINTER_HEADER_1, THEME.WINTER_HEADER_2]}
               style={{
-                color: 'white',
-                fontSize: 30,
-                width: 245,
-                marginHorizontal: 110,
-                margin: 20,
-                fontFamily: 'DBHelvethaicaX-Bd',
+                shadowColor: 'rgba(245, 44, 80, 0.38)',
+                width: 480,
+                height: 165,
+                alignSelf: 'center',
               }}>
-              Infomation Technology {'\n'}PSRU
-            </Text>
-          </LinearGradient>
-        </View>
-        <View style={{alignItems: 'center'}}></View>
+              <Image
+                style={styles.Logo}
+                source={require('../../assets/images/WhiteLogo_4x.png')}
+              />
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 30,
+                  width: 245,
+                  marginHorizontal: 110,
+                  margin: 20,
+                  fontFamily: 'DBHelvethaicaX-Bd',
+                }}>
+                Infomation Technology {'\n'}PSRU
+              </Text>
+            </LinearGradient>
+          </View>
+          <View style={{alignItems: 'center', width: wp('100%')}}>
+            <FlatList
+              showsHorizontalScrollIndicator={false}
+              showsVerticalScrollIndicator={false}
+              data={this.state.studentGrade}
+              renderItem={({item}) => (
+                <LinearGradient
+                  start={{x: 0, y: 1}}
+                  end={{x: 1, y: 0}}
+                  colors={['#fc6076', '#ff9a44']}
+                  style={{
+                    shadowColor: 'rgba(245, 44, 80, 0.38)',
+                    width: 337,
+                    height: 120,
+                    borderRadius: 9,
+                    marginVertical: 5,
+                    elevation: 2,
+                    alignSelf: 'center',
+                  }}>
+                  <Text style={styles.SubjectText}>เทอม: {item.term}</Text>
+                  <Text style={styles.SubjectText}>
+                    ชื่อวิชา: {item.subjectName}
+                  </Text>
+                  <Text style={styles.SubjectText}>
+                    ผลการเรียน: {convertGrade(item.studentGrade)}
+                  </Text>
+                </LinearGradient>
+              )}
+              keyExtractor={(item, index) => index.toString()}
+            />
+          </View>
+        </ScrollView>
       </SafeAreaView>
     );
   }
@@ -98,37 +137,13 @@ const styles = StyleSheet.create({
     margin: 20,
     color: '#4C4C4C',
   },
-  classRoom: {
+
+  SubjectText: {
     fontFamily: FONT_BOLD,
-    fontSize: 24,
-    marginHorizontal: 10,
-    margin: 2,
-    color: 'white',
-  },
-  subjectName: {
-    fontFamily: FONT_BOLD,
-    fontSize: 17,
-    marginHorizontal: 10,
-    margin: 2,
-    color: 'white',
-  },
-  subjectTeacher: {
-    fontFamily: FONT_BOLD,
-    fontSize: 16,
-    marginHorizontal: 10,
-    color: 'white',
-  },
-  Day: {
-    fontFamily: FONT_BOLD,
-    fontSize: 25,
-    marginHorizontal: 10,
-    margin: 2,
-    color: 'white',
-  },
-  DebugText: {
-    fontFamily: FONT_BOLD,
-    fontSize: 12,
-    textAlign: 'center',
-    color: 'red',
+    fontSize: 20,
+    textAlign: 'left',
+    color: '#F2F2F2',
+    paddingHorizontal: 20,
+    // paddingVertical: 10,
   },
 });

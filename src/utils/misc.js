@@ -57,4 +57,11 @@ function convertDate(date) {
 }
 
 function regexStudentId(studentId) {}
-export {getDay, convertDate};
+function convertGrade(grade) {
+  if (grade == '--') {
+    return '** ยังไม่ประกาศผลการเรียน **';
+  } else {
+    return grade;
+  }
+}
+export {getDay, convertDate, convertGrade};
