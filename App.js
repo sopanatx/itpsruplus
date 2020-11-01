@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, Alert} from 'react-native';
 import messaging from '@react-native-firebase/messaging';
+import analytics from '@react-native-firebase/analytics';
 import Navigator from './src/navigator';
 import {
   getUniqueId,
@@ -9,17 +10,23 @@ import {
   getDeviceName,
 } from 'react-native-device-info';
 import RNLocation from 'react-native-location';
+
+import * as Sentry from '@sentry/react-native';
+Sentry.init({
+  dsn:
+    'https://d426d2cc424e4a1e88180fe4b61b629d@o449610.ingest.sentry.io/5432874',
+  enableNative: false,
+});
 messaging().setBackgroundMessageHandler(async (remoteMessage) => {
   console.log('Message handled in the background!', remoteMessage);
 });
 
 export default class App extends React.Component {
   async componentDidMount() {
+    const DeviceID = await getUniqueId();
+    const DeviceManufacturer = await getManufacturer();
+    const DeviceName = await getDeviceName();
     await this.initNotification();
-    console.info(`Device UniqueID: ${await getUniqueId()}`);
-    console.info(`Device Manufacturer: ${await getManufacturer()}`);
-    console.info(`Application Name: ${await getApplicationName()}`);
-    console.info(`Device: ${await getDeviceName()}`);
     await RNLocation.requestPermission({
       ios: 'whenInUse', // or 'always'
       android: {
@@ -55,6 +62,10 @@ export default class App extends React.Component {
 
     RNLocation.getLatestLocation({timeout: 60000}).then((latestLocation) => {
       console.log(latestLocation);
+    });
+    await analytics().logScreenView({
+      screen_name: 'MainScreen',
+      screen_class: 'AppClass',
     });
   }
   initNotification = async () => {

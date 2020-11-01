@@ -16,6 +16,8 @@ target 'itpsruplus' do
 
   pod 'react-native-location', :path => '../node_modules/react-native-location'
 
+  pod 'RNSentry', :path => '../node_modules/@sentry/react-native'
+
   target 'itpsruplusTests' do
     inherit! :complete
     # Pods for testing

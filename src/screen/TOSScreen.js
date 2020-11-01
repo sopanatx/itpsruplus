@@ -1,7 +1,14 @@
 import React, {constructor, useContext, useState} from 'react';
 import {Component} from 'react';
 import {PrimaryButton, RegisterButton} from '../components/button';
-import {View, StyleSheet, Text, SafeAreaView, ScrollView} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  ScrollView,
+  Alert,
+} from 'react-native';
 import {FONT_FAMILY, FONT_BOLD, THEME} from '../styles';
 export default class TOSScreen extends Component {
   render() {
@@ -67,7 +74,12 @@ export default class TOSScreen extends Component {
               containerStyle={{width: '100%'}}
               //style={{paddingTop: 20}}
               title={'ยอมรับ'}
-              onPress={() => this.props.navigation.navigate('Register')}
+              onPress={() =>
+                Alert.alert(
+                  'Error',
+                  'เวอร์ชั่นของท่าน ไม่รองรับการกระทำดังกล่าว โปรดอัพเดทเป็นเวอร์ชั่นล่่าสุด',
+                )
+              }
             />
           </View>
         </View>

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import io.sentry.react.RNSentryPackage;
 import com.github.reactnativecommunity.location.RNLocationPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
