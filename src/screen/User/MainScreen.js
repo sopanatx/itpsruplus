@@ -23,7 +23,7 @@ import {
 } from 'react-native-responsive-screen';
 import {TEST_API_URL} from '../../constant/API';
 import apiUserData from '../../api/UserApi';
-import getMyGrade from '../../api/myGradeAPI';
+import getMyGrade from '../../api/StudentGradeApi';
 
 import {getDay, convertDate} from '../../utils/misc';
 async function getCalendar() {
@@ -249,6 +249,7 @@ export default class MainUserScreen extends React.Component {
                 disabled={true}
               />
             </LinearGradient>
+            <View style={{margin: 10}}></View>
           </ScrollView>
         </SafeAreaView>
       </>

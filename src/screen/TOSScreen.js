@@ -1,15 +1,7 @@
 import React, {constructor, useContext, useState} from 'react';
 import {Component} from 'react';
 import {PrimaryButton, RegisterButton} from '../components/button';
-import {
-  View,
-  StyleSheet,
-  Image,
-  Alert,
-  Text,
-  SafeAreaView,
-  ScrollView,
-} from 'react-native';
+import {View, StyleSheet, Text, SafeAreaView, ScrollView} from 'react-native';
 import {FONT_FAMILY, FONT_BOLD, THEME} from '../styles';
 export default class TOSScreen extends Component {
   render() {
@@ -38,7 +30,7 @@ export default class TOSScreen extends Component {
                 คำอธิบายเกี่ยวกับระบบ และข้อตกลงในการใช้งาน
                 {'\n'} {'\n'}
                 1.แอพลิเคชั่นนี้เป็นโปรเจคในการอำนวยความสะดวกให้แก่นักศึกษา
-                สาขาวิชาเทคโนโลยีสารสนเทศเท่านั้น
+                สาขาวิชาเทคโนโลยีสารสนเทศเท่านั้น {'\n'} (รหัสนักศึกษา 60 - 64)
                 {'\n'}
                 2.แอพลิเคชั่นจะมีการเก็บ Log หากตรวจพบการกระทำที่ผิดปกติ
                 {'\n'}
@@ -67,6 +59,16 @@ export default class TOSScreen extends Component {
                 ท่ี่กล่าวมาข้างต้นทุกประการ
               </Text>
             </ScrollView>
+          </View>
+          <View style={{paddingTop: 20}}>
+            <PrimaryButton
+              style={{width: '100%'}}
+              titleStyle={{fontSize: 25}}
+              containerStyle={{width: '100%'}}
+              //style={{paddingTop: 20}}
+              title={'ยอมรับ'}
+              onPress={() => this.props.navigation.navigate('Register')}
+            />
           </View>
         </View>
       </SafeAreaView>

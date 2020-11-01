@@ -15,18 +15,9 @@ export default class RegisterScreen extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <ScrollView>
-          <View style={styles.mainView}>
-            <Image
-              style={styles.Logo}
-              source={require('../assets/images/IconPlus.png')}
-            />
-            <Text style={styles.Title}>ระบบลงทะเบียน {'\n'} ITPSRU+</Text>
-          </View>
-          <View style={styles.subView}>
-            <Text style={styles.TextInfo}>MESSAGE_01</Text>
-          </View>
-        </ScrollView>
+        <View style={styles.mainView}>
+          <Text>X</Text>
+        </View>
       </SafeAreaView>
     );
   }
@@ -48,6 +39,7 @@ const styles = StyleSheet.create({
     fontFamily: FONT_BOLD,
     textAlign: 'center',
     color: '#F2F2F2',
+    margin: 20,
   },
   subView: {
     backgroundColor: THEME.DEFAULT_DARK_MODE1,

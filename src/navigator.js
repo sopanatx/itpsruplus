@@ -26,7 +26,7 @@ const Navigator = () => {
       if (token != null) {
         setIsLoggedIn(true);
       }
-      console.log({token, isLoggedIn});
+      //console.log({token, isLoggedIn});
     } catch (e) {
       console.log('Error_TOKEN:', e);
     }

@@ -18,7 +18,7 @@ export const PrimaryButton = ({
       end={{x: 1, y: 0}}
       colors={['#F87E4D', '#FF6A73']}
       style={{
-        borderRadius: 9,
+        borderRadius: 5,
         shadowColor: 'rgba(245, 44, 80, 0.38)',
         alignSelf: 'center',
       }}>

@@ -12,6 +12,10 @@ target 'itpsruplus' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
+
+  pod 'react-native-location', :path => '../node_modules/react-native-location'
+
   target 'itpsruplusTests' do
     inherit! :complete
     # Pods for testing

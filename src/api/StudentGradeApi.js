@@ -7,7 +7,7 @@ export default async function getMyGrade(studentID) {
   } catch (e) {
     return {
       error: 500,
-      message: `can't get grade from api gateway`,
+      message: `Can't get grade from api gateway`,
     };
   }
 }
