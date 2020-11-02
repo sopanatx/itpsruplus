@@ -27,42 +27,7 @@ export default class App extends React.Component {
     const DeviceManufacturer = await getManufacturer();
     const DeviceName = await getDeviceName();
     await this.initNotification();
-    await RNLocation.requestPermission({
-      ios: 'whenInUse', // or 'always'
-      android: {
-        detail: 'fine', // or 'fine'
-        rationale: {
-          title: 'We need to access your location',
-          message:
-            'เราต้องขอสิทธิ์ในการเข้าถึงข้อมูลตำแหน่งเพื่อยืนยันว่าท่านเป็นนักศึกษาไอที มรพส จริงหรือไม่',
-          buttonPositive: 'OK',
-          buttonNegative: 'Cancel',
-        },
-      },
-    });
-    RNLocation.configure({
-      distanceFilter: 100, // Meters
-      desiredAccuracy: {
-        ios: 'best',
-        android: 'balancedPowerAccuracy',
-      },
-      // Android only
-      androidProvider: 'auto',
-      interval: 5000, // Milliseconds
-      fastestInterval: 10000, // Milliseconds
-      maxWaitTime: 5000, // Milliseconds
-      // iOS Only
-      activityType: 'other',
-      allowsBackgroundLocationUpdates: false,
-      headingFilter: 1, // Degrees
-      headingOrientation: 'portrait',
-      pausesLocationUpdatesAutomatically: false,
-      showsBackgroundLocationIndicator: false,
-    });
 
-    RNLocation.getLatestLocation({timeout: 60000}).then((latestLocation) => {
-      console.log(latestLocation);
-    });
     await analytics().logScreenView({
       screen_name: 'MainScreen',
       screen_class: 'AppClass',
