@@ -52,7 +52,7 @@ export default class TimeTableScreen extends React.Component {
   async componentDidMount() {
     this.setState({classID: await regexClassID()});
     const subject = await axios.get(
-      `https://gazw5fi7d2.execute-api.ap-southeast-1.amazonaws.com/production/api/class/${this.state.classID}`,
+      `https://app.itpsru.in.th/api/class/${this.state.classID}`,
     );
     this.setState({
       monday: subject.data.monday,
