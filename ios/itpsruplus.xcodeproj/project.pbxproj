@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* itpsruplusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* itpsruplusTests.m */; };
 		00FE1CCFB86D4E1BB337B1FB /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 55A26DC9E2B948209BC0BBE1 /* Entypo.ttf */; };
@@ -57,6 +58,13 @@
 		E8AFE86AE8ED4FFA827464A4 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9FAB847F0369489E8410F147 /* FontAwesome.ttf */; };
 		F5737D896FA739EDFC9F8E63 /* libPods-itpsruplus-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC1D783C15AD92E43CD9779 /* libPods-itpsruplus-tvOS.a */; };
 		F950087AB37A482187E39E49 /* DBHelvethaicaX-UlLiExt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89B937CE599542FF96C7AD79 /* DBHelvethaicaX-UlLiExt.ttf */; };
+		E9A9A6FF5F7D48A3BD8CE91D /* Anuphan-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 03FED43C797E4A0BBC7E40A5 /* Anuphan-Bold.otf */; };
+		72E99F967A3A4FA38541DE0C /* Anuphan-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 277ED11C168D436EB7A68201 /* Anuphan-ExtraLight.otf */; };
+		50FC0C3E19EA4CAB96F55419 /* Anuphan-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = F8DA2450F3024A9EB5D772E8 /* Anuphan-Light.otf */; };
+		A7DCD1B8213E45B28E7B5459 /* Anuphan-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 892A52032EAB42DEAA1E6DFC /* Anuphan-Medium.otf */; };
+		C355B6F4992349E5862031EC /* Anuphan-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 464178FF1B7E447FA57C849A /* Anuphan-Regular.otf */; };
+		EC93572A794F432A9C76F30C /* Anuphan-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 768724B1281B4B9DAACF514E /* Anuphan-SemiBold.otf */; };
+		F472FFDEC8BD4FAD880CE747 /* Anuphan-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = C46BBDC440D64798BBA23AEA /* Anuphan-Thin.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +151,13 @@
 		EEAC8E56D50640BB96257572 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		EF229A6C161DA358F2DBAA3F /* Pods-itpsruplus-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-itpsruplus-tvOS.release.xcconfig"; path = "Target Support Files/Pods-itpsruplus-tvOS/Pods-itpsruplus-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		F61AA04A7B634498EAA44D31 /* Pods-itpsruplus-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-itpsruplus-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-itpsruplus-tvOS/Pods-itpsruplus-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		03FED43C797E4A0BBC7E40A5 /* Anuphan-Bold.otf */ = {isa = PBXFileReference; name = "Anuphan-Bold.otf"; path = "../src/assets/fonts/Anuphan-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		277ED11C168D436EB7A68201 /* Anuphan-ExtraLight.otf */ = {isa = PBXFileReference; name = "Anuphan-ExtraLight.otf"; path = "../src/assets/fonts/Anuphan-ExtraLight.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F8DA2450F3024A9EB5D772E8 /* Anuphan-Light.otf */ = {isa = PBXFileReference; name = "Anuphan-Light.otf"; path = "../src/assets/fonts/Anuphan-Light.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		892A52032EAB42DEAA1E6DFC /* Anuphan-Medium.otf */ = {isa = PBXFileReference; name = "Anuphan-Medium.otf"; path = "../src/assets/fonts/Anuphan-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		464178FF1B7E447FA57C849A /* Anuphan-Regular.otf */ = {isa = PBXFileReference; name = "Anuphan-Regular.otf"; path = "../src/assets/fonts/Anuphan-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		768724B1281B4B9DAACF514E /* Anuphan-SemiBold.otf */ = {isa = PBXFileReference; name = "Anuphan-SemiBold.otf"; path = "../src/assets/fonts/Anuphan-SemiBold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C46BBDC440D64798BBA23AEA /* Anuphan-Thin.otf */ = {isa = PBXFileReference; name = "Anuphan-Thin.otf"; path = "../src/assets/fonts/Anuphan-Thin.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +254,13 @@
 				AE09095171A24B3881D143D7 /* Octicons.ttf */,
 				D1DF7F562F1F4985B582A039 /* SimpleLineIcons.ttf */,
 				6BB36F29B5E84D738ED2C2AB /* Zocial.ttf */,
+				03FED43C797E4A0BBC7E40A5 /* Anuphan-Bold.otf */,
+				277ED11C168D436EB7A68201 /* Anuphan-ExtraLight.otf */,
+				F8DA2450F3024A9EB5D772E8 /* Anuphan-Light.otf */,
+				892A52032EAB42DEAA1E6DFC /* Anuphan-Medium.otf */,
+				464178FF1B7E447FA57C849A /* Anuphan-Regular.otf */,
+				768724B1281B4B9DAACF514E /* Anuphan-SemiBold.otf */,
+				C46BBDC440D64798BBA23AEA /* Anuphan-Thin.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -511,6 +533,13 @@
 				7B2DAD5E3A914A468CF3C22B /* Octicons.ttf in Resources */,
 				11DF5AEC9EC44137B1D1730F /* SimpleLineIcons.ttf in Resources */,
 				D626C1B4D9FB414BA647914B /* Zocial.ttf in Resources */,
+				E9A9A6FF5F7D48A3BD8CE91D /* Anuphan-Bold.otf in Resources */,
+				72E99F967A3A4FA38541DE0C /* Anuphan-ExtraLight.otf in Resources */,
+				50FC0C3E19EA4CAB96F55419 /* Anuphan-Light.otf in Resources */,
+				A7DCD1B8213E45B28E7B5459 /* Anuphan-Medium.otf in Resources */,
+				C355B6F4992349E5862031EC /* Anuphan-Regular.otf in Resources */,
+				EC93572A794F432A9C76F30C /* Anuphan-SemiBold.otf in Resources */,
+				F472FFDEC8BD4FAD880CE747 /* Anuphan-Thin.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
