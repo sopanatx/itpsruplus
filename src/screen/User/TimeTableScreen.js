@@ -98,10 +98,119 @@ export default class TimeTableScreen extends React.Component {
 
           <View>
             <Text style={styles.HeaderText}>
-              ตารางเรียน {'\n'}ภาคเรียนที่ 1 / 2563
+              กิจกรรมการเรียนการสอนเทอมนี้ 1 / 2563
             </Text>
+            {this.state.monday.map((item) => (
+              <View
+                style={{
+                  width: wp('90%'),
+                  height: 120,
+                  backgroundColor: '#f2f2f2',
+                  alignSelf: 'center',
+                  borderRadius: 9,
+                  elevation: 4,
+                  marginVertical: 5,
+                }}>
+                <Text style={styles.Day}>{item.subjectTime}</Text>
+                <Text style={styles.subjectName}>
+                  {item.subjectCode} {item.subjectName}
+                </Text>
+                <Text style={styles.subjectName}>
+                  ผู้สอน: {item.subjectTeacher} | ห้องเรียน :{' '}
+                  {item.subjectClassroom}
+                </Text>
+              </View>
+            ))}
 
-            <FlatList
+            {this.state.tuesday.map((item) => (
+              <View
+                style={{
+                  width: wp('90%'),
+                  height: 120,
+                  backgroundColor: '#f2f2f2',
+                  alignSelf: 'center',
+                  borderRadius: 9,
+                  elevation: 4,
+                  marginVertical: 5,
+                }}>
+                <Text style={styles.Day}>{item.subjectTime}</Text>
+                <Text style={styles.subjectName}>
+                  {item.subjectCode} {item.subjectName}
+                </Text>
+                <Text style={styles.subjectName}>
+                  ผู้สอน: {item.subjectTeacher} | ห้องเรียน :{' '}
+                  {item.subjectClassroom}
+                </Text>
+              </View>
+            ))}
+
+            {this.state.wednesday.map((item) => (
+              <View
+                style={{
+                  width: wp('90%'),
+                  height: 120,
+                  backgroundColor: '#f2f2f2',
+                  alignSelf: 'center',
+                  borderRadius: 9,
+                  elevation: 4,
+                  marginVertical: 5,
+                }}>
+                <Text style={styles.Day}>{item.subjectTime}</Text>
+                <Text style={styles.subjectName}>
+                  {item.subjectCode} {item.subjectName}
+                </Text>
+                <Text style={styles.subjectName}>
+                  ผู้สอน: {item.subjectTeacher} | ห้องเรียน :{' '}
+                  {item.subjectClassroom}
+                </Text>
+              </View>
+            ))}
+
+            {this.state.thursday.map((item) => (
+              <View
+                style={{
+                  width: wp('90%'),
+                  height: 120,
+                  backgroundColor: '#f2f2f2',
+                  alignSelf: 'center',
+                  borderRadius: 9,
+                  elevation: 4,
+                  marginVertical: 5,
+                }}>
+                <Text style={styles.Day}>{item.subjectTime}</Text>
+                <Text style={styles.subjectName}>
+                  {item.subjectCode} {item.subjectName}
+                </Text>
+                <Text style={styles.subjectName}>
+                  ผู้สอน: {item.subjectTeacher} | ห้องเรียน :{' '}
+                  {item.subjectClassroom}
+                </Text>
+              </View>
+            ))}
+
+            {this.state.friday.map((item) => (
+              <View
+                style={{
+                  width: wp('90%'),
+                  height: 120,
+                  backgroundColor: '#f2f2f2',
+                  alignSelf: 'center',
+                  borderRadius: 9,
+                  elevation: 4,
+                  marginVertical: 5,
+                }}>
+                <Text style={styles.Day}>{item.subjectTime}</Text>
+                <Text style={styles.subjectName}>
+                  {item.subjectCode} {item.subjectName}
+                </Text>
+                <Text style={styles.subjectName}>
+                  ผู้สอน: {item.subjectTeacher} | ห้องเรียน :{' '}
+                  {item.subjectClassroom}
+                </Text>
+              </View>
+            ))}
+
+            {/* <FlatList
               showsHorizontalScrollIndicator={false}
               data={this.state.monday}
               renderItem={({item}) => (
@@ -254,7 +363,7 @@ export default class TimeTableScreen extends React.Component {
                 </LinearGradient>
               )}
               keyExtractor={(item, index) => index.toString()}
-            />
+            /> */}
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -281,37 +390,37 @@ const styles = StyleSheet.create({
   },
   HeadImage: {width: 424, height: 165, shadowOpacity: 10},
   HeaderText: {
-    fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: 30,
-    textAlign: 'center',
-    margin: 20,
+    fontFamily: 'Anuphan-Bold',
+    fontSize: 18,
+    textAlign: 'left',
+    // margin: 20,
+    padding: 20,
   },
   classRoom: {
-    fontFamily: FONT_BOLD,
-    fontSize: 24,
+    fontFamily: 'Anuphan-Bold',
+    fontSize: 16,
     marginHorizontal: 10,
     margin: 2,
     color: 'white',
   },
   subjectName: {
-    fontFamily: FONT_BOLD,
-    fontSize: 17,
+    fontFamily: 'Anuphan-Medium',
+    fontSize: 14,
     marginHorizontal: 10,
     margin: 2,
-    color: 'white',
   },
   subjectTeacher: {
-    fontFamily: FONT_BOLD,
+    fontFamily: 'Anuphan-Bold',
     fontSize: 16,
     marginHorizontal: 10,
     color: 'white',
   },
   Day: {
-    fontFamily: FONT_BOLD,
-    fontSize: 25,
+    fontFamily: 'Anuphan-Bold',
+    fontSize: 16,
     marginHorizontal: 10,
     margin: 2,
-    color: 'white',
+    color: 'black',
   },
   DebugText: {
     fontFamily: FONT_BOLD,

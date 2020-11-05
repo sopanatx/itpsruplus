@@ -5,6 +5,5 @@ export const TEST_API_URL = {
   calendar: `${TEST_URL}/student/calendar`,
 };
 export const PUBLIC_API = {
-  grade:
-    'https://gazw5fi7d2.execute-api.ap-southeast-1.amazonaws.com/production/api/grade',
+  grade: 'https://app.itpsru.in.th/api/grade',
 };
