@@ -64,4 +64,19 @@ function convertGrade(grade) {
     return grade;
   }
 }
-export {getDay, convertDate, convertGrade};
+function dayPeriodConvert(data) {
+  if (data == 'CLASS_MORNING') {
+    return 'ภาคเช้า';
+  } else if (data == 'CLASS_AFTERNOON') {
+    return 'ภาคบ่าย';
+  }
+}
+function stylePeriodBadge(data) {
+  if (data == 'CLASS_MORNING') {
+    return 'error';
+  } else if (data == 'CLASS_AFTERNOON') {
+    return 'success';
+  }
+}
+
+export {getDay, convertDate, convertGrade, dayPeriodConvert, stylePeriodBadge};
