@@ -14,9 +14,11 @@ export const PrimaryButton = ({
 }) => {
   return (
     <LinearGradient
+      start={{x: 0, y: 0}}
+      end={{x: 1, y: 0}}
       colors={['#F87E4D', '#FF6A73']}
       style={{
-        borderRadius: 9,
+        borderRadius: 5,
         shadowColor: 'rgba(245, 44, 80, 0.38)',
         alignSelf: 'center',
       }}>
@@ -72,7 +74,7 @@ export const RegisterButton = ({
         color: 'black',
         ...titleStyle,
       }}
-      disabled={true}
+      //  disabled={true}
       onPress={onPress}
     />
   );

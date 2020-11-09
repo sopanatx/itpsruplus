@@ -10,9 +10,13 @@ target 'itpsruplus' do
 
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
 
-  pod 'RNFirebase', :path => '../node_modules/react-native-firebase'
-
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
+  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
+
+  pod 'react-native-location', :path => '../node_modules/react-native-location'
+
+  pod 'RNSentry', :path => '../node_modules/@sentry/react-native'
 
   target 'itpsruplusTests' do
     inherit! :complete

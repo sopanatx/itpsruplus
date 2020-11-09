@@ -1,322 +1,269 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   View,
   StyleSheet,
   Text,
   Image,
   ScrollView,
-  Alert,
   ImageBackground,
+  FlatList,
+  StatusBar,
 } from 'react-native';
 import {Button} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-community/async-storage';
 import jwt_decode from 'jwt-decode';
 import LinearGradient from 'react-native-linear-gradient';
-
+import {FONT_FAMILY, FONT_BOLD, THEME} from '../../styles';
+import axios from 'axios';
+import dayjs from 'dayjs';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {getStudentName} from '../../api/UserApi';
-const MainUserScreen = (props) => {
-  const [studentName, setStudentName] = useState('');
-  const [studentId, setstudentId] = useState('');
+import {TEST_API_URL} from '../../constant/API';
+import apiUserData from '../../api/UserApi';
+import {getMyGrade} from '../../api/StudentGradeApi';
 
-  const showStudentData = async (props) => {
-    const jwtToken = await AsyncStorage.getItem('token');
-    const decodeJWT = await jwt_decode(jwtToken);
-    setStudentName(decodeJWT.studentName);
-    setstudentId(decodeJWT.username);
+import {getDay, convertDate} from '../../utils/misc';
+async function getCalendar() {
+  const calendar = await axios.get(TEST_API_URL.calendar);
+  return calendar.data;
+}
+let studentData = [];
+let studentGrade = [];
+export default class MainUserScreen extends React.Component {
+  state = {
+    activityCalendar: [],
+    userdata: [],
+    studentTitileName: '',
+    studentFirstName: 'Loading',
+    studentLastName: '...',
+    studentId: '0 0 0 0 0 0 0 0 0 0',
+    studentProfileImage:
+      'https://www2.guidestar.org/App_Themes/MainSite/images/loading.gif',
+    studentGrade: [],
   };
-  showStudentData();
-  return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <LinearGradient
-          colors={['#F5872C', '#FF6996']}
-          style={{
-            shadowColor: 'rgba(245, 44, 80, 0.38)',
-            width: 480,
-            height: 165,
-            alignSelf: 'center',
-          }}>
-          <Image
-            style={styles.Logo}
-            source={require('../../assets/images/WhiteLogo_4x.png')}
-          />
-          <Text
-            style={{
-              color: 'white',
-              fontSize: 30,
-              width: 245,
-              marginHorizontal: 110,
-              margin: 20,
-              fontFamily: 'DBHelvethaicaX-Bd',
-            }}>
-            Infomation Technology {'\n'}PSRU
-          </Text>
-        </LinearGradient>
-      </View>
-      <ImageBackground
-        source={require('../../assets/images/HeadImage_2x.png')}
-        style={{width: wp('100%'), height: 189}}>
-        <View
-          style={{
-            backgroundColor: 'rgba(255, 255, 255, 0.79)',
-            width: wp('100%'),
-            height: 189,
-          }}>
-          <View
-            style={{
-              margin: 60,
-              marginHorizontal: 50,
-              marginTop: 130,
-            }}>
-            <Text style={styles.HeaderText}>
-              สวัสดี {studentName} {'\n'} {studentId}
-            </Text>
-          </View>
-        </View>
-      </ImageBackground>
+  async componentDidMount() {
+    // StatusBar.setHidden(true);
+    studentData = await apiUserData();
+    console.log(
+      'IMAGE_PROFILE_DATA:',
+      studentData.getAccountInfo.AccountInfo.profileImageUrl,
+    );
+    this.setState({
+      activityCalendar: await getCalendar(),
+      userdata: await apiUserData(),
+      studentFirstName: studentData.getAccountInfo.studentFirstName,
+      studentLastName: studentData.getAccountInfo.studentLastName,
+      studentProfileImage:
+        studentData.getAccountInfo.AccountInfo.profileImageUrl,
+      studentId: studentData.getAccountInfo.studentId,
+    });
+    this.setState({studentGrade: await getMyGrade(this.state.studentId)});
+    this.setState({studentGrade: this.state.studentGrade[0]});
+    console.log(this.state.studentGrade);
+  }
 
-      <ScrollView style={{backgroundColor: 'white'}}>
-        <View
-          style={{
-            backgroundColor: '#FFFFFF',
-            margin: 10,
-            width: 366,
-            height: 480,
-            borderRadius: 16,
-            elevation: 4,
-            shadowColor: '#E9E9E9',
-            alignSelf: 'center',
-            marginBottom: 30,
-          }}>
-          <View
-            style={{
-              backgroundColor: '#FFFFFF',
-              margin: 10,
-              flexDirection: 'row',
-              alignSelf: 'center',
-            }}>
-            <Button
-              buttonStyle={{
-                backgroundColor: 'rgba(250, 121, 88, 0.13)',
-                width: 75,
-                height: 75,
-                borderRadius: 17,
-                marginTop: 10,
-                marginHorizontal: 20,
-                flexDirection: 'row',
-              }}
-              icon={{
-                name: 'work', //A
-                size: 25,
-                color: '#FA7958', //#FA7958
-              }}
-              onPress={() => props.navigation.navigate('Grade')}
-              disabled={false}
-            />
+  render() {
+    return (
+      <>
+        <SafeAreaView style={styles.container}>
+          <ScrollView>
+            <View style={styles.header}>
+              <LinearGradient
+                start={{x: 1, y: 0}}
+                end={{x: 0, y: 1}}
+                colors={[THEME.WINTER_HEADER_1, THEME.WINTER_HEADER_2]}
+                style={{
+                  shadowColor: 'rgba(245, 44, 80, 0.38)',
+                  width: 480,
+                  height: 165,
+                  alignSelf: 'center',
+                }}>
+                <Image
+                  style={styles.Logo}
+                  source={require('../../assets/images/WhiteLogo_4x.png')}
+                />
+                <Text
+                  style={{
+                    color: 'white',
+                    fontSize: 30,
+                    width: 245,
+                    marginHorizontal: 110,
+                    margin: 20,
+                    fontFamily: 'DBHelvethaicaX-Bd',
+                  }}>
+                  Infomation Technology {'\n'}PSRU
+                </Text>
+              </LinearGradient>
+            </View>
 
-            <Button
-              buttonStyle={{
-                backgroundColor: 'rgba(250, 121, 88, 0.13)',
-                width: 75,
-                height: 75,
-                borderRadius: 17,
-                marginTop: 10,
-                marginHorizontal: 20,
-                flexDirection: 'row',
-              }}
-              icon={{
-                name: 'card-membership',
-                size: 25,
-                color: 'white',
-              }}
-              disabled={true}
-            />
-            <Button
-              buttonStyle={{
-                backgroundColor: 'rgba(250, 121, 88, 0.13)',
-                width: 75,
-                height: 75,
-                borderRadius: 17,
-                marginTop: 10,
-                marginHorizontal: 20,
-                flexDirection: 'row',
-              }}
-              icon={{
-                name: 'alarm',
-                size: 25,
-                color: '#FA7958',
-              }}
-              onPress={() =>
-                Alert.alert(
-                  'Info',
-                  'อยู่ในช่วงพัฒนาระบบ โปรดอดใจรอสักนิดนะครับ จะเปิดให้ใช้งานในเร็วๆนี้ครับ',
-                )
-              }
-            />
-          </View>
-          <View
-            style={{
-              backgroundColor: '#FFFFFF',
-              margin: 10,
-              flexDirection: 'row',
-            }}>
-            <Text
-              style={{
-                width: wp('30%'),
-                fontFamily: 'DBHelvethaicaX-Reg',
-                fontSize: 24,
-                textAlign: 'center',
-              }}>
-              ผลการเรียน
-            </Text>
+            <View style={{margin: 10}}>
+              <Text style={styles.MenuText}>กิจกรรมที่กำลังมาถึง</Text>
 
-            <Text
-              style={{
-                width: wp('30%'),
-                fontFamily: 'DBHelvethaicaX-Reg',
-                fontSize: 24,
-                textAlign: 'center',
-                marginHorizontal: -3,
-              }}>
-              กิจกรรม
-            </Text>
-            <Text
-              style={{
-                width: wp('30%'),
-                fontFamily: 'DBHelvethaicaX-Reg',
-                fontSize: 24,
-                textAlign: 'center',
-                marginHorizontal: 1,
-              }}>
-              ตารางเรียน
-            </Text>
-          </View>
-
-          <View
-            style={{
-              backgroundColor: '#FFFFFF',
-              margin: 10,
-              flexDirection: 'row',
-            }}>
-            <Button
-              buttonStyle={{
-                backgroundColor: 'rgba(250, 121, 88, 0.13)',
-                width: 75,
-                height: 75,
-                borderRadius: 17,
-                marginTop: 10,
-                marginHorizontal: 20,
-                flexDirection: 'row',
-                alignSelf: 'flex-start',
-              }}
-              icon={{
-                name: 'card-travel', //A
-                size: 25,
-                color: '#FA7958',
-              }}
-              onPress={() => props.navigation.navigate('StudentCard')}
-            />
-          </View>
-          <View
-            style={{
-              backgroundColor: '#FFFFFF',
-              margin: 10,
-              flexDirection: 'row',
-            }}>
-            <Text
-              style={{
-                width: wp('30%'),
-                fontFamily: 'DBHelvethaicaX-Reg',
-                fontSize: 24,
-                textAlign: 'center',
-              }}>
-              บัตรนักศึกษา
-            </Text>
-          </View>
-          <View style={{alignContent: 'center'}}></View>
-        </View>
-
-        {/* <View style={{}}>
-            <ImageBackground
-              source={image}
-              style={{}}
-              imageStyle={{
-                borderRadius: 10,
-                width: wp("90%"),
-                height: 100,
-                marginHorizontal: 20,
-              }}
-            >
-              <Button
-                title="สอบปลายภาคเรียน"
-                titleStyle={{
-                  color: "black",
-                  alignSelf: "center",
-                }}
-                buttonStyle={{
-                  backgroundColor: "transparent",
-                  alignContent: "center",
-                  width: wp("90%"),
-                  height: 100,
-                  marginHorizontal: 20,
-                }}
+              <FlatList
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                data={this.state.activityCalendar}
+                renderItem={({item}) => (
+                  <ImageBackground
+                    source={{uri: item.activityImage}}
+                    style={{
+                      width: 120,
+                      height: 120,
+                      marginHorizontal: 5,
+                      elevation: 10,
+                    }}
+                    imageStyle={{
+                      borderRadius: 9,
+                    }}>
+                    <View
+                      style={{
+                        width: 120,
+                        height: 120,
+                        borderRadius: 9,
+                        backgroundColor: 'rgba(68, 129, 235, 0.35)',
+                      }}>
+                      <Text style={styles.CalendarDateText}>
+                        {convertDate(item.activityStartDate)}
+                      </Text>
+                      <Text style={styles.CalendarInfoText}>
+                        {item.activityName}
+                      </Text>
+                    </View>
+                  </ImageBackground>
+                )}
               />
-            </ImageBackground>
-            <Button
-              buttonStyle={{
-                backgroundColor: "transparent",
-                width: 75,
-                height: 75,
-                borderRadius: 17,
+            </View>
+
+            <LinearGradient
+              start={{x: 0, y: 1}}
+              end={{x: 1, y: 0}}
+              colors={[
+                THEME.WINTER_GECARD1,
+                THEME.WINTER_GECARD2,
+                //THEME.WINTER_GECARD3,
+              ]}
+              style={{
+                shadowColor: 'rgba(245, 44, 80, 0.38)',
+                width: wp('90%'),
+                height: 180,
+                alignSelf: 'center',
+                borderRadius: 15,
+                elevation: 10,
+              }}>
+              <Text style={styles.StudentName}>
+                {this.state.studentFirstName} {this.state.studentLastName}
+              </Text>
+              <Text style={styles.MajorName}>{this.state.studentId}</Text>
+              <Text style={styles.MajorName}>คณะ วิทยาศาสตร์และเทคโนโลยี</Text>
+              <Text style={styles.MajorName}>สาขาวิชา เทคโนโลยีสารสนเทศ</Text>
+              <Image
+                source={{uri: this.state.studentProfileImage}}
+                style={{
+                  width: 80,
+                  height: 80,
+                  alignSelf: 'flex-end',
+                  borderRadius: 9,
+                  marginTop: -140,
+                  marginHorizontal: 10,
+                }}
+                imageStyle={{}}
+              />
+            </LinearGradient>
+
+            <LinearGradient
+              start={{x: 0, y: 1}}
+              end={{x: 1, y: 0}}
+              colors={[THEME.WINTER_GRADE_CARD1, THEME.WINTER_GRADE_CARD2]}
+              style={{
+                shadowColor: 'rgba(245, 44, 80, 0.38)',
+                width: wp('90%'),
+                height: 220,
+                alignSelf: 'center',
+                borderRadius: 15,
                 marginTop: 10,
-                marginHorizontal: 20,
-                flexDirection: "row",
-              }}
-            />
-          </View> */}
-        <View style={{marginTop: 20, alignContent: 'center'}}>
-          <Text
-            style={{
-              margin: 50,
-              textAlign: 'center',
-              fontFamily: 'DBHelvethaicaX-Bd',
-              fontSize: 25,
-            }}>
-            Application Version: 1.3.6
-            {'\n'}
-            Build: 2020101002
-          </Text>
-        </View>
-      </ScrollView>
-      <View
-        style={{
-          backgroundColor: 'white',
-          marginTop: -10,
-          width: wp('100%'),
-          height: hp('8%'),
-          elevation: 10,
-          borderRadius: 4,
-        }}>
-        <Image
-          source={require('../../assets/components/c_icon_home_enabled_menu.png')}
-          style={{width: 36, height: 36, margin: 10, marginHorizontal: 50}}
-        />
-      </View>
-    </SafeAreaView>
-  );
-};
+              }}>
+              <Text style={styles.studentGradeInfoText}> ระดับผลการเรียน </Text>
+              <ScrollView
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}>
+                <View
+                  style={{
+                    width: 150,
+                    height: 100,
+                    backgroundColor: THEME.DEFAULT_DARK_MODE2,
+                    marginHorizontal: 10,
+                    borderRadius: 5,
+                    elevation: 10,
+                  }}>
+                  <Text style={styles.myGradeText}> ระดับผลการเรียน </Text>
+                  <Text style={styles.myGradeText}>
+                    <Text style={{color: 'green'}}> ดี </Text>
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: 150,
+                    height: 100,
+                    backgroundColor: THEME.DEFAULT_DARK_MODE2,
+                    marginHorizontal: 10,
+                    borderRadius: 5,
+                    elevation: 10,
+                  }}>
+                  <Text style={styles.myGradeText}> เกรดเฉลี่ยรวม </Text>
+                  <Text style={styles.myGradeText}>
+                    {this.state.studentGrade.TotalAverageGrade}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    width: 150,
+                    height: 100,
+                    backgroundColor: THEME.DEFAULT_DARK_MODE2,
+                    marginHorizontal: 10,
+                    borderRadius: 5,
+                    elevation: 10,
+                  }}>
+                  <Text style={styles.myGradeText}> เกรดเฉลี่ยวิิชาเอก </Text>
+                  <Text style={styles.myGradeText}>
+                    {this.state.studentGrade.TotalMainSubjectGrade}
+                  </Text>
+                </View>
+              </ScrollView>
+              <Button
+                title="ข้อมูลเพิ่มเติม"
+                buttonStyle={{
+                  width: 100,
+                  height: 40,
+                  alignSelf: 'center',
+                  marginVertical: 10,
+                  backgroundColor: '#0f3057',
+                  elevation: 10,
+                }}
+                titleStyle={{
+                  fontFamily: FONT_FAMILY,
+                  fontSize: 14,
+                }}
+                disabled={true}
+              />
+            </LinearGradient>
+            <View style={{margin: 10}}></View>
+          </ScrollView>
+        </SafeAreaView>
+      </>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
+    resizeMode: 'cover',
     flex: 1,
-    height: hp('100%'),
-    width: wp('100%'),
-    backgroundColor: 'white',
+    height: '100%',
+    width: '100%',
+    // backgroundColor: THEME.DEFAULT_DARK_MODE1,
   },
 
   header: {
@@ -341,6 +288,67 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginVertical: -60,
   },
+  MenuText: {
+    fontFamily: 'DBHelvethaicaX-Bd',
+    fontSize: 24,
+    marginHorizontal: 10,
+    textAlign: 'left',
+    //  color: '#f6f6f6',
+  },
+  MenuText1: {
+    fontFamily: 'DBHelvethaicaX-Bd',
+    fontSize: 28,
+    marginTop: 10,
+    textAlign: 'center',
+  },
+  CalendarDateText: {
+    fontFamily: 'DBHelvethaicaX-Bd',
+    fontSize: 20,
+    textAlign: 'center',
+    color: 'white',
+    textAlign: 'left',
+    marginTop: 3,
+    margin: 7,
+  },
+  CalendarInfoText: {
+    fontFamily: 'DBHelvethaicaX-Bd',
+    fontSize: 14,
+    textAlign: 'center',
+    color: 'white',
+    textAlign: 'right',
+    paddingTop: 30,
+    paddingEnd: 3,
+  },
+  StudentName: {
+    fontFamily: 'DBHelvethaicaX-Bd',
+    fontSize: 30,
+    textAlign: 'center',
+    color: 'white',
+    textAlign: 'left',
+    marginHorizontal: 25,
+    marginTop: 10,
+  },
+  MajorName: {
+    fontFamily: 'DBHelvethaicaX-Bd',
+    fontSize: 20,
+    textAlign: 'center',
+    color: 'white',
+    textAlign: 'left',
+    marginHorizontal: 25,
+    marginTop: 10,
+  },
+  studentGradeInfoText: {
+    fontFamily: 'DBHelvethaicaX-Bd',
+    fontSize: 30,
+    textAlign: 'center',
+    color: '#f4f4f4',
+    marginTop: 10,
+  },
+  myGradeText: {
+    fontFamily: 'DBHelvethaicaX-Bd',
+    fontSize: 25,
+    textAlign: 'center',
+    color: '#f2f2f2',
+    marginTop: 10,
+  },
 });
-
-export default MainUserScreen;

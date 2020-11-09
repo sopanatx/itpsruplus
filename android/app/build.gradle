@@ -81,6 +81,7 @@ project.ext.react = [
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
+apply from: "../../node_modules/@sentry/react-native/sentry.gradle"
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -129,10 +130,11 @@ android {
     defaultConfig {
         applicationId "th.in.pleum.itpsruplus"
         minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 36
-        versionName '1.3.6'
 
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 54
+        versionName '1.5.4'
+        multiDexEnabled true
     }
     splits {
         abi {
@@ -186,7 +188,7 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation "com.google.android.gms:play-services-base:15.0.0"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
-
+    implementation "androidx.annotation:annotation:1.1.0"
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
       exclude group:'com.facebook.fbjni'
     }

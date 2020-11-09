@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "ITPSRUPLUS-tvOS.app"
-               BlueprintName = "ITPSRUPLUS-tvOS"
-               ReferencedContainer = "container:ITPSRUPLUS.xcodeproj">
+               BuildableName = "itpsruplus-tvOS.app"
+               BlueprintName = "itpsruplus-tvOS"
+               ReferencedContainer = "container:itpsruplus.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,12 +33,14 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "ITPSRUPLUS-tvOSTests.xctest"
-               BlueprintName = "ITPSRUPLUS-tvOSTests"
-               ReferencedContainer = "container:ITPSRUPLUS.xcodeproj">
+               BuildableName = "itpsruplus-tvOSTests.xctest"
+               BlueprintName = "itpsruplus-tvOSTests"
+               ReferencedContainer = "container:itpsruplus.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -55,11 +57,13 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "ITPSRUPLUS-tvOS.app"
-            BlueprintName = "ITPSRUPLUS-tvOS"
-            ReferencedContainer = "container:ITPSRUPLUS.xcodeproj">
+            BuildableName = "itpsruplus-tvOS.app"
+            BlueprintName = "itpsruplus-tvOS"
+            ReferencedContainer = "container:itpsruplus.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -72,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "ITPSRUPLUS-tvOS.app"
-            BlueprintName = "ITPSRUPLUS-tvOS"
-            ReferencedContainer = "container:ITPSRUPLUS.xcodeproj">
+            BuildableName = "itpsruplus-tvOS.app"
+            BlueprintName = "itpsruplus-tvOS"
+            ReferencedContainer = "container:itpsruplus.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -9,8 +9,8 @@ export const authLogin = async (studentId, studentPassword) => {
     studentId: studentId,
     studentPassword: studentPassword,
   });
-  console.log('Authen:', resp.data);
-  console.log('Status:', resp.status);
+  console.log('Authentication:', resp.data);
+  console.log('Login Status:', resp.status);
   const result = resp.status;
   const value = await AsyncStorage.setItem('token', resp.data.accessToken);
   return result;

@@ -4,56 +4,59 @@ import {PrimaryButton, RegisterButton} from '../components/button';
 import {
   View,
   StyleSheet,
-  TouchableWithoutFeedback,
   Image,
-  TouchableOpacity,
   Alert,
-  Button,
   Text,
-  ActivityIndicator,
-  AsyncStorage,
   SafeAreaView,
+  ScrollView,
 } from 'react-native';
-import {FONT_FAMILY, FONT_BOLD} from '../styles';
+import {FONT_FAMILY, FONT_BOLD, THEME} from '../styles';
 export default class WelcomeScreen extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <View style={styles.mainView}>
-          <Image
-            style={styles.Logo}
-            source={require('../assets/images/IconPlus.png')}
-          />
-          <Text style={styles.Title}>Information Technology {'\n'} PSRU</Text>
-        </View>
-        <View style={styles.subView}>
-          <Text style={styles.TextInfo}>
-            แอพลิเคชั่นนี้ อยู่ในระหว่างการพัฒนา {'\n'} อาจมีข้อผิดพลาด
-            หรือไม่ความไม่เสถียรเกิดขึ้น {'\n'} ผู้พัฒนาต้องขออภัยมา ณ
-            ที่นี้ด้วย
-          </Text>
-          <PrimaryButton
-            style={{width: '100%'}}
-            containerStyle={{width: '100%'}}
-            title={'เข้าสู่ระบบ'}
-            onPress={() => this.props.navigation.navigate('Login')}
-          />
-          <RegisterButton
-            style={{width: '80%'}}
-            containerStyle={{width: '100%'}}
-            title={'ลงทะเบียน'}
-            onPress={() =>
-              Alert.alert('Error!', 'ระบบยังไม่เปิดให้ลงทะเบียนในขณะนี้')
-            }
-          />
-        </View>
+        <ScrollView>
+          <View style={styles.mainView}>
+            <Image
+              style={styles.Logo}
+              source={require('../assets/images/IconPlus.png')}
+            />
+            <Text style={styles.Title}>Information Technology {'\n'} PSRU</Text>
+          </View>
+          <View style={styles.subView}>
+            <Text style={styles.TextInfo}>
+              เพื่อการใช้งานได้อย่างสมบูรณ์ {'\n'} จึงจำเป็นต้องเข้าสู่ระบบ
+              ด้วยรหัสนักศึกษา {'\n'} ที่ลงทะเบียนแล้วเท่านั้น
+              {'\n'} (สามารถใช้ได้กับ น.ศ. สารสนเทศ ภาคปกติ 4 ปี เท่านั้น)
+            </Text>
+            <PrimaryButton
+              style={{width: '100%'}}
+              containerStyle={{width: '100%'}}
+              title={'เข้าสู่ระบบ'}
+              onPress={() => this.props.navigation.navigate('Login')}
+            />
+            <RegisterButton
+              style={{width: '80%'}}
+              containerStyle={{width: '100%'}}
+              title={'ลงทะเบียน'}
+              onPress={() => this.props.navigation.navigate('TOS')}
+            />
+          </View>
+        </ScrollView>
       </SafeAreaView>
     );
   }
 }
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: 'white'},
-  mainView: {},
+  container: {
+    flex: 1,
+    backgroundColor: THEME.DEFAULT_DARK_MODE2,
+    resizeMode: 'stretch',
+    resizeMode: 'cover',
+  },
+  mainView: {
+    resizeMode: 'cover',
+  },
   Logo: {
     width: 122,
     height: 122,
@@ -64,15 +67,18 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontFamily: 'ProductSansRegular',
     textAlign: 'center',
+    color: '#F2F2F2',
   },
   subView: {
-    backgroundColor: '#F2F2F2',
+    backgroundColor: THEME.DEFAULT_DARK_MODE1,
     flex: 2,
     marginTop: 30,
+    height: 415,
   },
   TextInfo: {
     fontSize: 20,
     textAlign: 'center',
+    color: 'white',
     fontFamily: FONT_BOLD,
     margin: 30,
     marginVertical: 50,
