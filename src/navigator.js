@@ -11,6 +11,8 @@ import StudentRecordScreen from './screen/User/StudentRecordScreen';
 import SettingScreen from './screen/SettingScreen';
 import {isAuthen} from './api/authen';
 import AsyncStorage from '@react-native-community/async-storage';
+import EncryptedStorage from 'react-native-encrypted-storage';
+
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import RegisterScreen from './screen/RegisterScreen';
@@ -22,7 +24,7 @@ const Navigator = () => {
 
   async function checkToken() {
     try {
-      const token = await AsyncStorage.getItem('token');
+      const token = await EncryptedStorage.getItem('token');
       if (token != null) {
         setIsLoggedIn(true);
       }
