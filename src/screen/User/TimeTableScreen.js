@@ -9,7 +9,7 @@ import {
   ImageBackground,
   FlatList,
 } from 'react-native';
-import {Button} from 'react-native-elements';
+import {Button, Badge} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -21,6 +21,7 @@ import {FONT_FAMILY, FONT_BOLD, THEME} from '../../styles';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import AsyncStorage from '@react-native-community/async-storage';
+import {dayPeriodConvert, stylePeriodBadge} from '../../utils/misc';
 
 let monday = [];
 async function regexClassID() {
@@ -28,7 +29,7 @@ async function regexClassID() {
   const decodeJWT = await jwt_decode(jwtToken);
   const studentID = decodeJWT.username;
   const shortStudentYear = studentID.substr(0, 2);
-  const currentTerm = 1;
+  const currentTerm = 2;
   const currentYear = 2563;
   const studentGroup = 2;
   console.log({shortStudentYear});
@@ -98,7 +99,7 @@ export default class TimeTableScreen extends React.Component {
 
           <View>
             <Text style={styles.HeaderText}>
-              กิจกรรมการเรียนการสอนเทอมนี้ 1 / 2563
+              กิจกรรมการเรียนการสอนเทอมนี้ 2 / 2563
             </Text>
             {this.state.monday.map((item) => (
               <View
@@ -111,12 +112,21 @@ export default class TimeTableScreen extends React.Component {
                   elevation: 4,
                   marginVertical: 5,
                 }}>
-                <Text style={styles.Day}>{item.subjectTime}</Text>
+                <Text style={styles.Day}>
+                  {item.subjectTime}{' '}
+                  <Badge
+                    containerStyle={{paddingHorizontal: 5}}
+                    textStyle={{fontFamily: 'Anuphan-Regular'}}
+                    value={dayPeriodConvert(item.subjectPeriodType)}
+                    status={stylePeriodBadge(item.subjectPeriodType)}
+                  />
+                </Text>
+
                 <Text style={styles.subjectName}>
                   {item.subjectCode} {item.subjectName}
                 </Text>
                 <Text style={styles.subjectName}>
-                  ผู้สอน: {item.subjectTeacher} | ห้องเรียน :{' '}
+                  ผู้สอน: {item.subjectTeacher} {'\n'}ห้องเรียน :{' '}
                   {item.subjectClassroom}
                 </Text>
               </View>
@@ -133,12 +143,20 @@ export default class TimeTableScreen extends React.Component {
                   elevation: 4,
                   marginVertical: 5,
                 }}>
-                <Text style={styles.Day}>{item.subjectTime}</Text>
+                <Text style={styles.Day}>
+                  {item.subjectTime}{' '}
+                  <Badge
+                    containerStyle={{paddingHorizontal: 5}}
+                    textStyle={{fontFamily: 'Anuphan-Regular'}}
+                    value={dayPeriodConvert(item.subjectPeriodType)}
+                    status={stylePeriodBadge(item.subjectPeriodType)}
+                  />
+                </Text>
                 <Text style={styles.subjectName}>
                   {item.subjectCode} {item.subjectName}
                 </Text>
                 <Text style={styles.subjectName}>
-                  ผู้สอน: {item.subjectTeacher} | ห้องเรียน :{' '}
+                  ผู้สอน: {item.subjectTeacher} {'\n'}ห้องเรียน :{' '}
                   {item.subjectClassroom}
                 </Text>
               </View>
@@ -155,12 +173,20 @@ export default class TimeTableScreen extends React.Component {
                   elevation: 4,
                   marginVertical: 5,
                 }}>
-                <Text style={styles.Day}>{item.subjectTime}</Text>
+                <Text style={styles.Day}>
+                  {item.subjectTime}{' '}
+                  <Badge
+                    containerStyle={{paddingHorizontal: 5}}
+                    textStyle={{fontFamily: 'Anuphan-Regular'}}
+                    value={dayPeriodConvert(item.subjectPeriodType)}
+                    status={stylePeriodBadge(item.subjectPeriodType)}
+                  />
+                </Text>
                 <Text style={styles.subjectName}>
                   {item.subjectCode} {item.subjectName}
                 </Text>
                 <Text style={styles.subjectName}>
-                  ผู้สอน: {item.subjectTeacher} | ห้องเรียน :{' '}
+                  ผู้สอน: {item.subjectTeacher} {'\n'}ห้องเรียน :{' '}
                   {item.subjectClassroom}
                 </Text>
               </View>
@@ -177,12 +203,20 @@ export default class TimeTableScreen extends React.Component {
                   elevation: 4,
                   marginVertical: 5,
                 }}>
-                <Text style={styles.Day}>{item.subjectTime}</Text>
+                <Text style={styles.Day}>
+                  {item.subjectTime}{' '}
+                  <Badge
+                    containerStyle={{paddingHorizontal: 5}}
+                    textStyle={{fontFamily: 'Anuphan-Regular'}}
+                    value={dayPeriodConvert(item.subjectPeriodType)}
+                    status={stylePeriodBadge(item.subjectPeriodType)}
+                  />
+                </Text>
                 <Text style={styles.subjectName}>
                   {item.subjectCode} {item.subjectName}
                 </Text>
                 <Text style={styles.subjectName}>
-                  ผู้สอน: {item.subjectTeacher} | ห้องเรียน :{' '}
+                  ผู้สอน: {item.subjectTeacher} {'\n'}ห้องเรียน :{' '}
                   {item.subjectClassroom}
                 </Text>
               </View>
@@ -199,12 +233,20 @@ export default class TimeTableScreen extends React.Component {
                   elevation: 4,
                   marginVertical: 5,
                 }}>
-                <Text style={styles.Day}>{item.subjectTime}</Text>
+                <Text style={styles.Day}>
+                  {item.subjectTime}{' '}
+                  <Badge
+                    containerStyle={{paddingHorizontal: 5}}
+                    textStyle={{fontFamily: 'Anuphan-Regular'}}
+                    value={dayPeriodConvert(item.subjectPeriodType)}
+                    status={stylePeriodBadge(item.subjectPeriodType)}
+                  />
+                </Text>
                 <Text style={styles.subjectName}>
                   {item.subjectCode} {item.subjectName}
                 </Text>
                 <Text style={styles.subjectName}>
-                  ผู้สอน: {item.subjectTeacher} | ห้องเรียน :{' '}
+                  ผู้สอน: {item.subjectTeacher} {'\n'}ห้องเรียน :{' '}
                   {item.subjectClassroom}
                 </Text>
               </View>
@@ -404,7 +446,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   subjectName: {
-    fontFamily: 'Anuphan-Medium',
+    fontFamily: 'Anuphan-Regular',
     fontSize: 14,
     marginHorizontal: 10,
     margin: 2,
@@ -417,7 +459,7 @@ const styles = StyleSheet.create({
   },
   Day: {
     fontFamily: 'Anuphan-Bold',
-    fontSize: 16,
+    fontSize: 18,
     marginHorizontal: 10,
     margin: 2,
     color: 'black',

@@ -46,67 +46,64 @@ export default class StudentRecordScreen extends React.Component {
   render() {
     return (
       <SafeAreaView>
-        <ScrollView>
-          <View style={styles.header}>
-            <LinearGradient
-              start={{x: 1, y: 0}}
-              end={{x: 0, y: 1}}
-              colors={[THEME.WINTER_HEADER_1, THEME.WINTER_HEADER_2]}
-              style={{
-                shadowColor: 'rgba(245, 44, 80, 0.38)',
-                width: 480,
-                height: 165,
-                alignSelf: 'center',
-              }}>
-              <Image
-                style={styles.Logo}
-                source={require('../../assets/images/WhiteLogo_4x.png')}
-              />
-              <Text
-                style={{
-                  color: 'white',
-                  fontSize: 30,
-                  width: 245,
-                  marginHorizontal: 110,
-                  margin: 20,
-                  fontFamily: 'DBHelvethaicaX-Bd',
-                }}>
-                Infomation Technology {'\n'}PSRU
-              </Text>
-            </LinearGradient>
-          </View>
-          <View style={{alignItems: 'center', width: wp('100%')}}>
-            <FlatList
-              showsHorizontalScrollIndicator={false}
-              showsVerticalScrollIndicator={false}
-              data={this.state.studentGrade}
-              renderItem={({item}) => (
-                <LinearGradient
-                  start={{x: 0, y: 1}}
-                  end={{x: 1, y: 0}}
-                  colors={['#fc6076', '#ff9a44']}
-                  style={{
-                    shadowColor: 'rgba(245, 44, 80, 0.38)',
-                    width: 337,
-                    height: 120,
-                    borderRadius: 9,
-                    marginVertical: 5,
-                    elevation: 2,
-                    alignSelf: 'center',
-                  }}>
-                  <Text style={styles.SubjectText}>เทอม: {item.term}</Text>
-                  <Text style={styles.SubjectText}>
-                    ชื่อวิชา: {item.subjectName}
-                  </Text>
-                  <Text style={styles.SubjectText}>
-                    ผลการเรียน: {convertGrade(item.studentGrade)}
-                  </Text>
-                </LinearGradient>
-              )}
-              keyExtractor={(item, index) => index.toString()}
+        <View style={styles.header}>
+          <LinearGradient
+            start={{x: 1, y: 0}}
+            end={{x: 0, y: 1}}
+            colors={[THEME.WINTER_HEADER_1, THEME.WINTER_HEADER_2]}
+            style={{
+              shadowColor: 'rgba(245, 44, 80, 0.38)',
+              width: 480,
+              height: 165,
+              alignSelf: 'center',
+            }}>
+            <Image
+              style={styles.Logo}
+              source={require('../../assets/images/WhiteLogo_4x.png')}
             />
-          </View>
-        </ScrollView>
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 30,
+                width: 245,
+                marginHorizontal: 110,
+                margin: 20,
+                fontFamily: 'DBHelvethaicaX-Bd',
+              }}>
+              Infomation Technology {'\n'}PSRU
+            </Text>
+          </LinearGradient>
+        </View>
+        <View style={{alignItems: 'center', width: wp('100%')}}>
+          <FlatList
+            showsHorizontalScrollIndicator={false}
+            showsVerticalScrollIndicator={false}
+            data={this.state.studentGrade}
+            renderItem={({item}) => (
+              <View
+                style={{
+                  width: wp('90%'),
+                  height: 120,
+                  backgroundColor: '#f2f2f2',
+                  margin: 10,
+                  borderRadius: 8,
+                  elevation: 5,
+                }}>
+                <Text style={styles.SubjectText}>
+                  เทอมที่ : {item.term} {'\n'}
+                  {item.subjectCode} {''}
+                  {item.subjectName}
+                </Text>
+                <Text style={styles.SubjectValue}>
+                  เกรด: {'\n'}
+                  <Text style={{color: 'green'}}>{item.studentGrade}</Text>
+                </Text>
+              </View>
+            )}
+            keyExtractor={(item, index) => index.toString()}
+          />
+          <View style={{height: 100}}></View>
+        </View>
       </SafeAreaView>
     );
   }
@@ -139,11 +136,18 @@ const styles = StyleSheet.create({
   },
 
   SubjectText: {
-    fontFamily: FONT_BOLD,
-    fontSize: 20,
-    textAlign: 'left',
-    color: '#F2F2F2',
-    paddingHorizontal: 20,
+    fontFamily: 'Anuphan-Bold',
+    fontSize: 13,
+    textAlign: 'center',
+    color: 'black',
+    padding: 10,
     // paddingVertical: 10,
+  },
+  SubjectValue: {
+    fontFamily: 'Anuphan-Bold',
+    fontSize: 16,
+    textAlign: 'center',
+    color: 'black',
+    padding: -10,
   },
 });
