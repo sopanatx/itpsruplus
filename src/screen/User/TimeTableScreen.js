@@ -22,6 +22,7 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import AsyncStorage from '@react-native-community/async-storage';
 import {dayPeriodConvert, stylePeriodBadge} from '../../utils/misc';
+import {HeaderBar} from '../../components/headerBar';
 
 let monday = [];
 async function regexClassID() {
@@ -67,36 +68,8 @@ export default class TimeTableScreen extends React.Component {
   render() {
     return (
       <SafeAreaView>
-        <ScrollView>
-          <View style={styles.header}>
-            <LinearGradient
-              start={{x: 1, y: 0}}
-              end={{x: 0, y: 1}}
-              colors={[THEME.WINTER_HEADER_1, THEME.WINTER_HEADER_2]}
-              style={{
-                shadowColor: 'rgba(245, 44, 80, 0.38)',
-                width: 480,
-                height: 165,
-                alignSelf: 'center',
-              }}>
-              <Image
-                style={styles.Logo}
-                source={require('../../assets/images/WhiteLogo_4x.png')}
-              />
-              <Text
-                style={{
-                  color: 'white',
-                  fontSize: 30,
-                  width: 245,
-                  marginHorizontal: 110,
-                  margin: 20,
-                  fontFamily: 'DBHelvethaicaX-Bd',
-                }}>
-                Infomation Technology {'\n'}PSRU
-              </Text>
-            </LinearGradient>
-          </View>
-
+        <HeaderBar />
+        <ScrollView overScrollMode="auto">
           <View>
             <Text style={styles.HeaderText}>
               กิจกรรมการเรียนการสอนเทอมนี้ 2 / 2563
@@ -116,7 +89,7 @@ export default class TimeTableScreen extends React.Component {
                   {item.subjectTime}{' '}
                   <Badge
                     containerStyle={{paddingHorizontal: 5}}
-                    textStyle={{fontFamily: 'Anuphan-Regular'}}
+                    textStyle={{fontFamily: FONT_FAMILY}}
                     value={dayPeriodConvert(item.subjectPeriodType)}
                     status={stylePeriodBadge(item.subjectPeriodType)}
                   />
@@ -147,7 +120,7 @@ export default class TimeTableScreen extends React.Component {
                   {item.subjectTime}{' '}
                   <Badge
                     containerStyle={{paddingHorizontal: 5}}
-                    textStyle={{fontFamily: 'Anuphan-Regular'}}
+                    textStyle={{fontFamily: FONT_FAMILY}}
                     value={dayPeriodConvert(item.subjectPeriodType)}
                     status={stylePeriodBadge(item.subjectPeriodType)}
                   />
@@ -177,7 +150,7 @@ export default class TimeTableScreen extends React.Component {
                   {item.subjectTime}{' '}
                   <Badge
                     containerStyle={{paddingHorizontal: 5}}
-                    textStyle={{fontFamily: 'Anuphan-Regular'}}
+                    textStyle={{fontFamily: FONT_FAMILY}}
                     value={dayPeriodConvert(item.subjectPeriodType)}
                     status={stylePeriodBadge(item.subjectPeriodType)}
                   />
@@ -207,7 +180,7 @@ export default class TimeTableScreen extends React.Component {
                   {item.subjectTime}{' '}
                   <Badge
                     containerStyle={{paddingHorizontal: 5}}
-                    textStyle={{fontFamily: 'Anuphan-Regular'}}
+                    textStyle={{fontFamily: FONT_FAMILY}}
                     value={dayPeriodConvert(item.subjectPeriodType)}
                     status={stylePeriodBadge(item.subjectPeriodType)}
                   />
@@ -237,7 +210,7 @@ export default class TimeTableScreen extends React.Component {
                   {item.subjectTime}{' '}
                   <Badge
                     containerStyle={{paddingHorizontal: 5}}
-                    textStyle={{fontFamily: 'Anuphan-Regular'}}
+                    textStyle={{fontFamily: FONT_FAMILY}}
                     value={dayPeriodConvert(item.subjectPeriodType)}
                     status={stylePeriodBadge(item.subjectPeriodType)}
                   />
@@ -251,162 +224,8 @@ export default class TimeTableScreen extends React.Component {
                 </Text>
               </View>
             ))}
-
-            {/* <FlatList
-              showsHorizontalScrollIndicator={false}
-              data={this.state.monday}
-              renderItem={({item}) => (
-                <LinearGradient
-                  start={{x: 1, y: 0}}
-                  end={{x: 0, y: 2}}
-                  colors={['#FFE29F', '#FFA99F', '#FF719A']}
-                  style={{
-                    shadowColor: 'rgba(245, 44, 80, 0.38)',
-                    width: 337,
-                    height: 120,
-                    borderRadius: 9,
-                    marginVertical: 5,
-                    elevation: 4,
-                    alignSelf: 'center',
-                  }}>
-                  <Text style={styles.Day}>วัน{item.subjectTime}</Text>
-
-                  <Text style={styles.subjectName}>
-                    {item.subjectCode} {item.subjectName}
-                  </Text>
-                  <Text style={styles.subjectName}>
-                    ผู้สอน: {item.subjectTeacher} | ห้องเรียน :{' '}
-                    {item.subjectClassroom}
-                  </Text>
-                </LinearGradient>
-              )}
-              keyExtractor={(item, index) => index.toString()}
-            />
-
-            <FlatList
-              showsHorizontalScrollIndicator={false}
-              data={this.state.tuesday}
-              renderItem={({item}) => (
-                <LinearGradient
-                  start={{x: 0, y: 1}}
-                  end={{x: 1, y: 0}}
-                  colors={['#ff9a9e', '#fecfef']} // Tuesday Color
-                  style={{
-                    shadowColor: 'rgba(245, 44, 80, 0.38)',
-                    width: 337,
-                    height: 120,
-                    borderRadius: 9,
-                    marginVertical: 5,
-                    elevation: 4,
-                    alignSelf: 'center',
-                  }}>
-                  <Text style={styles.Day}>วัน{item.subjectTime}</Text>
-
-                  <Text style={styles.subjectName}>
-                    {item.subjectCode} {item.subjectName}
-                  </Text>
-                  <Text style={styles.subjectName}>
-                    ผู้สอน: {item.subjectTeacher} | ห้องเรียน :{' '}
-                    {item.subjectClassroom}
-                  </Text>
-                </LinearGradient>
-              )}
-              keyExtractor={(item, index) => index.toString()}
-            />
-
-            <FlatList
-              showsHorizontalScrollIndicator={false}
-              data={this.state.wednesday}
-              renderItem={({item}) => (
-                <LinearGradient
-                  start={{x: 0, y: 1}}
-                  end={{x: 1, y: 0}}
-                  colors={['#20E2D7', '#F9FEA5']}
-                  style={{
-                    shadowColor: 'rgba(245, 44, 80, 0.38)',
-                    width: 337,
-                    height: 120,
-                    borderRadius: 9,
-                    marginVertical: 5,
-                    elevation: 8,
-                    alignSelf: 'center',
-                  }}>
-                  <Text style={styles.Day}>วัน{item.subjectTime}</Text>
-
-                  <Text style={styles.subjectName}>
-                    {item.subjectCode} {item.subjectName}
-                  </Text>
-                  <Text style={styles.subjectName}>
-                    ผู้สอน: {item.subjectTeacher} | ห้องเรียน :{' '}
-                    {item.subjectClassroom}
-                  </Text>
-                </LinearGradient>
-              )}
-              keyExtractor={(item, index) => index.toString()}
-            />
-
-            <FlatList
-              showsHorizontalScrollIndicator={false}
-              data={this.state.thursday}
-              renderItem={({item}) => (
-                <LinearGradient
-                  start={{x: 1, y: 0}}
-                  end={{x: 0, y: 1}}
-                  colors={['#fc6076', '#ff9a44']}
-                  style={{
-                    shadowColor: 'rgba(245, 44, 80, 0.38)',
-                    width: 337,
-                    height: 120,
-                    borderRadius: 9,
-                    marginVertical: 5,
-                    elevation: 8,
-                    alignSelf: 'center',
-                  }}>
-                  <Text style={styles.Day}>วัน{item.subjectTime}</Text>
-
-                  <Text style={styles.subjectName}>
-                    {item.subjectCode} {item.subjectName}
-                  </Text>
-                  <Text style={styles.subjectName}>
-                    ผู้สอน: {item.subjectTeacher} | ห้องเรียน :{' '}
-                    {item.subjectClassroom}
-                  </Text>
-                </LinearGradient>
-              )}
-              keyExtractor={(item, index) => index.toString()}
-            />
-
-            <FlatList
-              showsHorizontalScrollIndicator={false}
-              data={this.state.friday}
-              renderItem={({item}) => (
-                <LinearGradient
-                  start={{x: 0, y: 1}}
-                  end={{x: 1, y: 0}}
-                  colors={[THEME.WINTER_ROW_1, THEME.WINTER_ROW_2]}
-                  style={{
-                    shadowColor: 'rgba(245, 44, 80, 0.38)',
-                    width: 337,
-                    height: 120,
-                    borderRadius: 9,
-                    marginVertical: 5,
-                    elevation: 8,
-                    alignSelf: 'center',
-                  }}>
-                  <Text style={styles.Day}>วัน{item.subjectTime}</Text>
-
-                  <Text style={styles.subjectName}>
-                    {item.subjectCode} {item.subjectName}
-                  </Text>
-                  <Text style={styles.subjectName}>
-                    ผู้สอน: {item.subjectTeacher} | ห้องเรียน :{' '}
-                    {item.subjectClassroom}
-                  </Text>
-                </LinearGradient>
-              )}
-              keyExtractor={(item, index) => index.toString()}
-            /> */}
           </View>
+          <View style={{height: 100}}></View>
         </ScrollView>
       </SafeAreaView>
     );
@@ -432,35 +251,35 @@ const styles = StyleSheet.create({
   },
   HeadImage: {width: 424, height: 165, shadowOpacity: 10},
   HeaderText: {
-    fontFamily: 'Anuphan-Bold',
-    fontSize: 18,
+    fontFamily: 'DBHelvethaicaX-Bd',
+    fontSize: 24,
     textAlign: 'left',
     // margin: 20,
     padding: 20,
   },
   classRoom: {
-    fontFamily: 'Anuphan-Bold',
+    fontFamily: 'DBHelvethaicaX-Bd',
     fontSize: 16,
-    marginHorizontal: 10,
+    paddingHorizontal: 10,
     margin: 2,
     color: 'white',
   },
   subjectName: {
-    fontFamily: 'Anuphan-Regular',
-    fontSize: 14,
-    marginHorizontal: 10,
+    fontFamily: 'DBHelvethaicaX-Reg',
+    fontSize: 18,
+    paddingHorizontal: 10,
     margin: 2,
   },
   subjectTeacher: {
-    fontFamily: 'Anuphan-Bold',
+    fontFamily: 'DBHelvethaicaX-Bd',
     fontSize: 16,
-    marginHorizontal: 10,
+    paddingHorizontal: 10,
     color: 'white',
   },
   Day: {
-    fontFamily: 'Anuphan-Bold',
-    fontSize: 18,
-    marginHorizontal: 10,
+    fontFamily: 'DBHelvethaicaX-Bd',
+    fontSize: 20,
+    paddingHorizontal: 10,
     margin: 2,
     color: 'black',
   },

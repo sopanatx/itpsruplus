@@ -74,36 +74,38 @@ export default class StudentRecordScreen extends React.Component {
             </Text>
           </LinearGradient>
         </View>
-        <View style={{alignItems: 'center', width: wp('100%')}}>
-          <FlatList
-            showsHorizontalScrollIndicator={false}
-            showsVerticalScrollIndicator={false}
-            data={this.state.studentGrade}
-            renderItem={({item}) => (
-              <View
-                style={{
-                  width: wp('90%'),
-                  height: 120,
-                  backgroundColor: '#f2f2f2',
-                  margin: 10,
-                  borderRadius: 8,
-                  elevation: 5,
-                }}>
-                <Text style={styles.SubjectText}>
-                  เทอมที่ : {item.term} {'\n'}
-                  {item.subjectCode} {''}
-                  {item.subjectName}
-                </Text>
-                <Text style={styles.SubjectValue}>
-                  เกรด: {'\n'}
-                  <Text style={{color: 'green'}}>{item.studentGrade}</Text>
-                </Text>
-              </View>
-            )}
-            keyExtractor={(item, index) => index.toString()}
-          />
+        <ScrollView>
+          <View style={{alignItems: 'center', width: wp('100%')}}>
+            <FlatList
+              showsHorizontalScrollIndicator={false}
+              showsVerticalScrollIndicator={false}
+              data={this.state.studentGrade}
+              renderItem={({item}) => (
+                <View
+                  style={{
+                    width: wp('90%'),
+                    height: 120,
+                    backgroundColor: '#f2f2f2',
+                    margin: 10,
+                    borderRadius: 8,
+                    elevation: 5,
+                  }}>
+                  <Text style={styles.SubjectText}>
+                    เทอมที่ : {item.term} {'\n'}
+                    {item.subjectCode} {''}
+                    {item.subjectName}
+                  </Text>
+                  <Text style={styles.SubjectValue}>
+                    เกรด: {'\n'}
+                    <Text style={{color: 'green'}}>{item.studentGrade}</Text>
+                  </Text>
+                </View>
+              )}
+              keyExtractor={(item, index) => index.toString()}
+            />
+          </View>
           <View style={{height: 100}}></View>
-        </View>
+        </ScrollView>
       </SafeAreaView>
     );
   }
