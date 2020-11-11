@@ -24,7 +24,7 @@ const Navigator = () => {
 
   async function checkToken() {
     try {
-      const token = await EncryptedStorage.getItem('token');
+      const token = await AsyncStorage.getItem('token');
       if (token != null) {
         setIsLoggedIn(true);
       }
