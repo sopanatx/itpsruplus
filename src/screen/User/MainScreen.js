@@ -112,8 +112,9 @@ export default class MainUserScreen extends React.Component {
             </View>
 
             <LinearGradient
-              start={{x: 0, y: 1}}
-              end={{x: 1, y: 0}}
+              useAngle={true}
+              angle={45}
+              angleCenter={{x: 0.5, y: 0.5}}
               colors={[
                 THEME.WINTER_GECARD1,
                 THEME.WINTER_GECARD2,
@@ -148,8 +149,9 @@ export default class MainUserScreen extends React.Component {
             </LinearGradient>
 
             <LinearGradient
-              start={{x: 0, y: 1}}
-              end={{x: 1, y: 0}}
+              useAngle={true}
+              angle={45}
+              angleCenter={{x: 0.5, y: 0.5}}
               colors={[THEME.WINTER_GRADE_CARD1, THEME.WINTER_GRADE_CARD2]}
               style={{
                 shadowColor: 'rgba(245, 44, 80, 0.38)',
