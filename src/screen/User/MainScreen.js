@@ -71,8 +71,9 @@ export default class MainUserScreen extends React.Component {
     return (
       <>
         <SafeAreaView style={styles.container}>
+          <HeaderBar />
+
           <ScrollView>
-            <HeaderBar />
             <View style={{margin: 10}}>
               <Text style={styles.MenuText}>กิจกรรมที่กำลังมาถึง</Text>
               <FlatList

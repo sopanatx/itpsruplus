@@ -1,5 +1,14 @@
 import React, {useState, useContext} from 'react';
-import {View, StyleSheet, Image, Alert, Text, TextInput} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Image,
+  Alert,
+  Text,
+  TextInput,
+  Modal,
+  ActivityIndicator,
+} from 'react-native';
 import {authLogin} from '../api/authen';
 import {ErrorMessage} from '../constant/Error';
 import {SafeAreaContext, SafeAreaView} from 'react-native-safe-area-context';
@@ -13,6 +22,7 @@ import {FONT_FAMILY, FONT_BOLD, THEME} from '../styles';
 const LoginScreen = (props) => {
   const [studentId, setStudentId] = useState('');
   const [studentPassword, setPassword] = useState('');
+
   const doLogin = async () => {
     try {
       const Login = await authLogin(studentId, studentPassword);
@@ -26,6 +36,7 @@ const LoginScreen = (props) => {
       Alert.alert('Error!', ErrorMessage.LOGIN_FAILED, [{text: 'ตกลง'}]);
     }
   };
+
   return (
     <SafeAreaView style={styles.container}>
       <View>

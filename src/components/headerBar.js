@@ -30,22 +30,23 @@ export const HeaderBar = () => {
           height: 165,
           alignSelf: 'auto',
           borderBottomRightRadius: 100,
-          //  backgroundColor: 'transparent',
+          backgroundColor: 'transparent',
         }}>
         <Image
           style={styles.Logo}
           source={require('../assets/images/WhiteLogo_4x.png')}
         />
-        {/* <Text
+        <Text
           style={{
             color: 'white',
-            fontSize: 30,
-            paddingHorizontal: 90,
-            padding: 20,
+            fontSize: 24,
+            paddingHorizontal: 103,
+            padding: 30,
+            //paddingVertical: -10,
             fontFamily: 'DBHelvethaicaX-Bd',
           }}>
           Infomation Technology {'\n'}PSRU
-        </Text> */}
+        </Text>
       </LinearGradient>
     </View>
   );
@@ -62,7 +63,6 @@ const styles = StyleSheet.create({
   header: {
     width: 464,
     height: 165,
-    backgroundColor: 'transparent',
 
     //  borderBottomRightRadius: 600,
   },
@@ -78,73 +78,13 @@ const styles = StyleSheet.create({
     width: 366,
     height: 468,
   },
-  HeaderText: {
+  HelloText: {
     fontFamily: 'DBHelvethaicaX-Bd',
     fontSize: 30,
-    textAlign: 'center',
-    marginVertical: -60,
-  },
-  MenuText: {
-    fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: 24,
-    marginHorizontal: 10,
     textAlign: 'left',
-    //  color: '#f6f6f6',
-  },
-  MenuText1: {
-    fontFamily: 'Anuphan-Bold',
-    fontSize: 28,
-    marginTop: 10,
-    textAlign: 'center',
-  },
-  CalendarDateText: {
-    fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: 20,
-    textAlign: 'center',
-    color: 'white',
-    textAlign: 'left',
-    marginTop: 3,
-    margin: 7,
-  },
-  CalendarInfoText: {
-    fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: 14,
-    textAlign: 'center',
-    color: 'white',
-    textAlign: 'right',
-    paddingTop: 30,
-    paddingEnd: 3,
-  },
-  StudentName: {
-    fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: 30,
-    textAlign: 'center',
-    color: 'white',
-    textAlign: 'left',
-    marginHorizontal: 25,
-    marginTop: 10,
-  },
-  MajorName: {
-    fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: 20,
-    textAlign: 'center',
-    color: 'white',
-    textAlign: 'left',
-    marginHorizontal: 25,
-    marginTop: 10,
-  },
-  studentGradeInfoText: {
-    fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: 30,
-    textAlign: 'center',
-    color: '#f4f4f4',
-    marginTop: 10,
-  },
-  myGradeText: {
-    fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: 25,
-    textAlign: 'center',
     color: '#f2f2f2',
-    marginTop: 10,
+    paddingVertical: 50,
+    padding: 30,
+    //marginVertical: -60,
   },
 });

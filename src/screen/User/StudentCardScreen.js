@@ -11,7 +11,7 @@ import {
 import {Button} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
-
+import {HeaderBar} from '../../components/headerBar';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -38,34 +38,8 @@ export default class StudentCardScreen extends React.Component {
   render() {
     return (
       <SafeAreaView>
-        <View style={styles.header}>
-          <LinearGradient
-            start={{x: 0, y: 0}}
-            end={{x: 1, y: 0.5}}
-            colors={['#F5872C', '#FF6996']}
-            style={{
-              shadowColor: 'rgba(245, 44, 80, 0.38)',
-              width: 480,
-              height: 165,
-              alignSelf: 'center',
-            }}>
-            <Image
-              style={styles.Logo}
-              source={require('../../assets/images/WhiteLogo_4x.png')}
-            />
-            <Text
-              style={{
-                color: 'white',
-                fontSize: 30,
-                width: 245,
-                marginHorizontal: 110,
-                margin: 20,
-                fontFamily: 'DBHelvethaicaX-Bd',
-              }}>
-              Infomation Technology {'\n'}PSRU
-            </Text>
-          </LinearGradient>
-        </View>
+        <HeaderBar />
+
         <View style={{alignItems: 'center', margin: 50}}></View>
       </SafeAreaView>
     );
