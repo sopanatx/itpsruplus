@@ -12,34 +12,40 @@ import {
 
 import LinearGradient from 'react-native-linear-gradient';
 import {FONT_FAMILY, FONT_BOLD, THEME} from '../styles';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export const HeaderBar = () => {
   return (
     <View style={styles.header}>
       <LinearGradient
-        start={{x: 1, y: 0}}
-        end={{x: 0, y: 1}}
+        start={{x: 0, y: 1.2}}
+        end={{x: 1, y: 0}}
         colors={[THEME.WINTER_HEADER_1, THEME.WINTER_HEADER_2]}
         style={{
           shadowColor: 'rgba(245, 44, 80, 0.38)',
-          width: 480,
+          width: wp('100%'),
           height: 165,
-          alignSelf: 'center',
+          alignSelf: 'auto',
+          borderBottomRightRadius: 100,
+          //  backgroundColor: 'transparent',
         }}>
         <Image
           style={styles.Logo}
           source={require('../assets/images/WhiteLogo_4x.png')}
         />
-        <Text
+        {/* <Text
           style={{
             color: 'white',
             fontSize: 30,
-            marginHorizontal: 90,
+            paddingHorizontal: 90,
             padding: 20,
             fontFamily: 'DBHelvethaicaX-Bd',
           }}>
           Infomation Technology {'\n'}PSRU
-        </Text>
+        </Text> */}
       </LinearGradient>
     </View>
   );
@@ -56,6 +62,9 @@ const styles = StyleSheet.create({
   header: {
     width: 464,
     height: 165,
+    backgroundColor: 'transparent',
+
+    //  borderBottomRightRadius: 600,
   },
   Logo: {
     height: 77,
