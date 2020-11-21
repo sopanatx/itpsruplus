@@ -25,9 +25,8 @@ export default class WelcomeScreen extends Component {
           </View>
           <View style={styles.subView}>
             <Text style={styles.TextInfo}>
-              เพื่อการใช้งานได้อย่างสมบูรณ์ {'\n'} จึงจำเป็นต้องเข้าสู่ระบบ
-              ด้วยรหัสนักศึกษา {'\n'} ที่ลงทะเบียนแล้วเท่านั้น
-              {'\n'} (สามารถใช้ได้กับ น.ศ. สารสนเทศ ภาคปกติ 4 ปี เท่านั้น)
+              ระบบรองรับการใช้งานสำหรับ {'\n'} นักศึกษาเทคโนโลยีสารสนเทศ ภาคปกติ
+              4 ปี เท่านั้น
             </Text>
             <PrimaryButton
               style={{width: '100%'}}
@@ -50,7 +49,7 @@ export default class WelcomeScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: THEME.DEFAULT_DARK_MODE2,
+    backgroundColor: THEME.DEFAULT_LIGHT_MODE2,
     resizeMode: 'stretch',
     resizeMode: 'cover',
   },
@@ -67,10 +66,10 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontFamily: 'ProductSansRegular',
     textAlign: 'center',
-    color: '#F2F2F2',
+    color: 'black',
   },
   subView: {
-    backgroundColor: THEME.DEFAULT_DARK_MODE1,
+    backgroundColor: THEME.DEFAULT_LIGHT_MODE1,
     flex: 2,
     marginTop: 30,
     height: 415,
@@ -78,7 +77,7 @@ const styles = StyleSheet.create({
   TextInfo: {
     fontSize: 20,
     textAlign: 'center',
-    color: 'white',
+    color: 'black',
     fontFamily: FONT_BOLD,
     margin: 30,
     marginVertical: 50,

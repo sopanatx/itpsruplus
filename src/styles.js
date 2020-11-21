@@ -17,6 +17,7 @@ export const THEME = {
   DEFAULT_DARK_MODE1: '#222831',
   DEFAULT_DARK_MODE2: '#393e46',
   DEFAULT_LIGHT_MODE1: '#f2f2f2',
+  DEFAULT_LIGHT_MODE2: '#ffffff',
 };
 
 export const FONT_FAMILY = 'DBHelvethaicaX-Reg';

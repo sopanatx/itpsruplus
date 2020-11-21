@@ -24,16 +24,20 @@ const LoginScreen = (props) => {
   const [studentPassword, setPassword] = useState('');
 
   const doLogin = async () => {
-    try {
-      const Login = await authLogin(studentId, studentPassword);
-      console.log('Login Success');
+    if (studentId == '' || studentPassword == '') {
+      Alert.alert('ข้อผิดพลาด', 'โปรดกรอกข้อมูลการเข้าสู่ระบบให้ครบถ้วน');
+    } else {
+      try {
+        const Login = await authLogin(studentId, studentPassword);
+        console.log('Login Success');
 
-      if (Login == 201) {
-        props.navigation.navigate('Main');
+        if (Login == 201) {
+          props.navigation.navigate('Main');
+        }
+      } catch (err) {
+        console.log(err);
+        Alert.alert('ข้อผิดพลาด', ErrorMessage.LOGIN_FAILED, [{text: 'ตกลง'}]);
       }
-    } catch (err) {
-      console.log(err);
-      Alert.alert('Error!', ErrorMessage.LOGIN_FAILED, [{text: 'ตกลง'}]);
     }
   };
 
@@ -84,7 +88,7 @@ const LoginScreen = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: THEME.DEFAULT_DARK_MODE1,
+    backgroundColor: THEME.DEFAULT_LIGHT_MODE2,
     height: hp('100%'), // 70% of height device screen
     width: wp('100%'), // 80% of width device screen
   },
@@ -92,7 +96,7 @@ const styles = StyleSheet.create({
   mainView: {
     alignContent: 'center',
   },
-  subView: {flex: 2, marginTop: 55, backgroundColor: THEME.DEFAULT_DARK_MODE2},
+  subView: {flex: 2, marginTop: 55, backgroundColor: THEME.DEFAULT_LIGHT_MODE1},
 
   Logo: {
     width: 122,
@@ -105,14 +109,14 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontFamily: 'ProductSansRegular',
     textAlign: 'center',
-    color: 'white',
+    color: 'black',
   },
   SubTitle: {
     fontSize: 20,
     marginTop: 25,
     fontFamily: FONT_FAMILY,
     textAlign: 'center',
-    color: 'white',
+    color: 'black',
   },
   input: {
     margin: 10,
