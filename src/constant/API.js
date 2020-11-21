@@ -1,4 +1,4 @@
-const TEST_URL = `https://test-api.itpsru.in.th`;
+const TEST_URL = `https://api.itpsru.in.th`;
 export const TEST_API_URL = {
   auth: `${TEST_URL}auth/login`,
   register: `${TEST_URL}/auth/login`,

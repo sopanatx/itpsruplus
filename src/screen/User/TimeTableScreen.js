@@ -37,10 +37,6 @@ async function regexClassID() {
   //TST1_12563_61132m11702
   return `TST1_${currentTerm}${currentYear}_${shortStudentYear}132m1170${studentGroup}`;
 }
-const image = {
-  uri:
-    'https://images.unsplash.com/photo-1516035645781-9f126e774e9e?ixlib=rb-1.2.1&w=1000&q=80',
-};
 export default class TimeTableScreen extends React.Component {
   state = {
     monday: [],
