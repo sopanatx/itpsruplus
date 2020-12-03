@@ -8,14 +8,17 @@ import {
   ImageBackground,
   FlatList,
   StatusBar,
+  TextInput,
 } from 'react-native';
 import {Button} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-community/async-storage';
+import {RFPercentage, RFValue} from 'react-native-responsive-fontsize';
 import jwt_decode from 'jwt-decode';
 import LinearGradient from 'react-native-linear-gradient';
 import {FONT_FAMILY, FONT_BOLD, THEME} from '../../styles';
 import {HeaderBar} from '../../components/headerBar';
+import tailwind from 'tailwind-rn';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import {
@@ -28,13 +31,15 @@ import {getMyGrade} from '../../api/StudentGradeApi';
 
 import {getDay, convertDate} from '../../utils/misc';
 
+import {ApplicationProvider, Layout} from '@ui-kitten/components';
+import * as eva from '@eva-design/eva';
 async function getCalendar() {
   const calendar = await axios.get(TEST_API_URL.calendar);
   return calendar.data;
 }
 let studentData = [];
 let studentGrade = [];
-export default class MainUserScreen extends React.Component {
+class MainUserScreen extends React.Component {
   state = {
     activityCalendar: [],
     userdata: [],
@@ -47,6 +52,7 @@ export default class MainUserScreen extends React.Component {
     studentGrade: [],
   };
   async componentDidMount() {
+    console.log(this.props.navigation);
     // StatusBar.setHidden(true);
     studentData = await apiUserData();
     console.log(
@@ -114,7 +120,7 @@ export default class MainUserScreen extends React.Component {
             <LinearGradient
               useAngle={true}
               angle={45}
-              angleCenter={{x: 0.5, y: 0.5}}
+              angleCenter={{x: 0.5, y: 0.1}}
               colors={[
                 THEME.WINTER_GECARD1,
                 THEME.WINTER_GECARD2,
@@ -131,6 +137,7 @@ export default class MainUserScreen extends React.Component {
               <Text style={styles.StudentName}>
                 {this.state.studentFirstName} {this.state.studentLastName}
               </Text>
+
               <Text style={styles.MajorName}>{this.state.studentId}</Text>
               <Text style={styles.MajorName}>คณะ วิทยาศาสตร์และเทคโนโลยี</Text>
               <Text style={styles.MajorName}>สาขาวิชา เทคโนโลยีสารสนเทศ</Text>
@@ -209,7 +216,7 @@ export default class MainUserScreen extends React.Component {
                 </View>
               </ScrollView>
               <Button
-                title="ข้อมูลเพิ่มเติม"
+                title="ดูข้อมูลเพิ่มเติม"
                 buttonStyle={{
                   width: 100,
                   height: 40,
@@ -222,7 +229,7 @@ export default class MainUserScreen extends React.Component {
                   fontFamily: FONT_FAMILY,
                   fontSize: 14,
                 }}
-                disabled={true}
+                onPress={() => navigation.navigate('Record')}
               />
             </LinearGradient>
             <View style={{margin: 10}}></View>
@@ -235,17 +242,14 @@ export default class MainUserScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    resizeMode: 'cover',
+    resizeMode: 'stretch',
     flex: 1,
     height: '100%',
     width: '100%',
+
     // backgroundColor: THEME.DEFAULT_DARK_MODE1,
   },
 
-  header: {
-    width: 464,
-    height: 165,
-  },
   Logo: {
     height: 77,
     width: 77,
@@ -260,15 +264,16 @@ const styles = StyleSheet.create({
   },
   HeaderText: {
     fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: 30,
+    fontSize: RFPercentage(5),
     textAlign: 'center',
     marginVertical: -60,
   },
   MenuText: {
     fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: 24,
+    fontSize: RFPercentage(3),
     marginHorizontal: 10,
     textAlign: 'left',
+
     //  color: '#f6f6f6',
   },
   MenuText1: {
@@ -328,3 +333,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
 });
+export default () => (
+  <ApplicationProvider {...eva} theme={eva.light}>
+    <MainUserScreen />
+  </ApplicationProvider>
+);

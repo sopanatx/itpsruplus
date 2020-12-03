@@ -1,0 +1,8 @@
+[
+  {
+    "menuID": "MENU_PAYMENT_BILL",
+    "menuNameTh": "จ่ายค่าเทอม",
+    "menuAvailable": false,
+    "menuScreen": "PaymentScreen"
+  }
+]

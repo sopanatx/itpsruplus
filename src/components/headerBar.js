@@ -40,8 +40,7 @@ export const HeaderBar = () => {
           style={{
             color: 'white',
             fontSize: 24,
-            paddingHorizontal: 103,
-            padding: 30,
+            textAlign: 'center',
             //paddingVertical: -10,
             fontFamily: 'DBHelvethaicaX-Bd',
           }}>
@@ -57,20 +56,18 @@ const styles = StyleSheet.create({
     flex: 1,
     height: '100%',
     width: '100%',
-    // backgroundColor: THEME.DEFAULT_DARK_MODE1,
   },
 
   header: {
     width: 464,
     height: 165,
-
-    //  borderBottomRightRadius: 600,
   },
   Logo: {
-    height: 77,
-    width: 77,
-    left: 17,
-    top: 82,
+    height: 66,
+    width: 66,
+    alignItems: 'center',
+    alignSelf: 'center',
+    margin: 15,
   },
   HeadImage: {width: 424, height: 165, shadowOpacity: 10},
   Card: {
@@ -85,6 +82,5 @@ const styles = StyleSheet.create({
     color: '#f2f2f2',
     paddingVertical: 50,
     padding: 30,
-    //marginVertical: -60,
   },
 });

@@ -19,6 +19,7 @@ import {
 } from 'react-native-responsive-screen';
 
 import {FONT_FAMILY, FONT_BOLD, THEME} from '../styles';
+import {NativeModules} from 'react-native';
 const LoginScreen = (props) => {
   const [studentId, setStudentId] = useState('');
   const [studentPassword, setPassword] = useState('');
@@ -32,7 +33,7 @@ const LoginScreen = (props) => {
         console.log('Login Success');
 
         if (Login == 201) {
-          props.navigation.navigate('Main');
+          NativeModules.DevSettings.reload();
         }
       } catch (err) {
         console.log(err);
