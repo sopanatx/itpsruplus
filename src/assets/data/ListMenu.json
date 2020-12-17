@@ -1,5 +1,12 @@
 [
   {
+    "menuID": "MENU_HOME_PAGE",
+    "menuNameTh": "หน้าหลัก",
+    "menuAvailable": false,
+    "menuScreen": "MainScreen",
+    "menuImage": ""
+  },
+  {
     "menuID": "MENU_PAYMENT_BILL",
     "menuNameTh": "จ่ายค่าเทอม",
     "menuAvailable": false,
@@ -23,6 +30,13 @@
   {
     "menuID": "MENU_ACTIVITY_CALENDAR",
     "menuNameTh": "กิจกรรม",
+    "menuAvailable": false,
+    "menuScreen": "",
+    "menuImage": ""
+  },
+  {
+    "menuID": "MENU_NEWS_FROM_MAJOR",
+    "menuNameTh": "ข่าวสารจากสาขา",
     "menuAvailable": false,
     "menuScreen": "",
     "menuImage": ""
