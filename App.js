@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, Alert} from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import analytics from '@react-native-firebase/analytics';
-import {MainStackNavigator} from './src/navigator';
+import {ContactStackNavigator, MainStackNavigator} from './src/navigator';
 import {
   getUniqueId,
   getManufacturer,
@@ -17,6 +17,8 @@ import firestore from '@react-native-firebase/firestore';
 import {NavigationContainer} from '@react-navigation/native';
 import BottomTabNavigator from './src/TabNavigator';
 import BottomNavigator from './src/Navigation/ButtomNavigator';
+import AsyncStorage from '@react-native-community/async-storage';
+
 // Sentry.init({
 //   dsn:
 //     'https://d426d2cc424e4a1e88180fe4b61b629d@o449610.ingest.sentry.io/5432874',
@@ -28,44 +30,35 @@ messaging().setBackgroundMessageHandler(async (remoteMessage) => {
 });
 
 export default class App extends React.Component {
+  state = {
+    isSignedIn: false,
+  };
   async componentDidMount() {
+    const token = await AsyncStorage.getItem('token');
+    if (token) {
+      this.setState({
+        isSignedIn: true,
+      });
+    }
+    console.log('Authentication Token:', token);
     const DeviceID = await getUniqueId();
     const DeviceManufacturer = await getManufacturer();
     const DeviceName = await getDeviceName();
-    await this.initNotification();
-
-    await analytics().logScreenView({
-      screen_name: 'MainScreen',
-      screen_class: 'AppClass',
-    });
   }
-  initNotification = async () => {
-    await this.setPermission();
-    const fcmToken = await messaging().getToken();
-    console.log('fcmToken', fcmToken);
-    await messaging().registerDeviceForRemoteMessages();
-    await saveTokenToDatabase(fcmToken);
-    await messaging().onTokenRefresh((fcmToken) => {
-      saveTokenToDatabase(fcmToken);
-    });
-  };
-
-  setPermission = async () => {
-    try {
-      const enabled = await messaging().hasPermission();
-      if (!enabled) {
-        await messaging().requestPermission();
-      }
-    } catch (error) {
-      console.log('error', error);
-    }
-  };
 
   render() {
-    return (
-      <NavigationContainer>
-        <MainStackNavigator />
-      </NavigationContainer>
-    );
+    if (this.state.isSignedIn == false) {
+      return (
+        <NavigationContainer>
+          <ContactStackNavigator />
+        </NavigationContainer>
+      );
+    } else {
+      return (
+        <NavigationContainer>
+          <MainStackNavigator />
+        </NavigationContainer>
+      );
+    }
   }
 }

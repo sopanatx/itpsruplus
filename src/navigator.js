@@ -1,11 +1,14 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
+import WelcomeScreen from './screen/WelcomeScreen';
 import MainUserScreen from './screen/User/MainScreen';
 import TimeTableScreen from './screen/User/TimeTableScreen';
 import SettingScreen from './screen/SettingScreen';
 import StudentRecordScreen from './screen/User/StudentRecordScreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import AsyncStorage from '@react-native-community/async-storage';
+
 const Stack = createStackNavigator();
 const screenOptionStyle = {
   headerStyle: {
@@ -15,13 +18,22 @@ const screenOptionStyle = {
   headerBackTitle: 'Back',
   headerShown: false,
 };
+
 const Tab = createBottomTabNavigator();
 const MainStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
       <Stack.Screen name="Main">
         {() => (
-          <Tab.Navigator>
+          <Tab.Navigator
+            automaticallyAdjustContentInsets={false}
+            tabBarOptions={{
+              activeTintColor: 'orange',
+              style: {
+                borderTopEndRadius: 15,
+                borderTopStartRadius: 15,
+              },
+            }}>
             <Tab.Screen
               name="Home"
               component={MainUserScreen}
@@ -61,7 +73,7 @@ const MainStackNavigator = () => {
 const ContactStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen name="ติดต่อ" component={SettingScreen} />
+      <Stack.Screen name="Welcome" component={WelcomeScreen} />
     </Stack.Navigator>
   );
 };

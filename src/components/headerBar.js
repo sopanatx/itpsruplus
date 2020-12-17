@@ -1,21 +1,9 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-  Image,
-  ScrollView,
-  ImageBackground,
-  FlatList,
-  StatusBar,
-} from 'react-native';
+import {View, StyleSheet, Text, Image} from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
-import {FONT_FAMILY, FONT_BOLD, THEME} from '../styles';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+import {THEME} from '../styles';
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 export const HeaderBar = () => {
   return (
