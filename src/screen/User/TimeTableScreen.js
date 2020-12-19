@@ -65,7 +65,9 @@ export default class TimeTableScreen extends React.Component {
     return (
       <SafeAreaView>
         <HeaderBar />
-        <ScrollView overScrollMode="auto">
+        <ScrollView
+          overScrollMode="always"
+          contentContainerStyle={{paddingBottom: 80}}>
           <View>
             <Text style={styles.HeaderText}>
               กิจกรรมการเรียนการสอนเทอมนี้ 2 / 2563
