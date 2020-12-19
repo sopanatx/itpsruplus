@@ -49,7 +49,7 @@ export default class StudentRecordScreen extends React.Component {
       <SafeAreaView>
         <HeaderBar />
 
-        <ScrollView>
+        <ScrollView contentContainerStyle={{paddingBottom: 80}}>
           <View style={{alignItems: 'center', width: wp('100%')}}>
             <FlatList
               showsHorizontalScrollIndicator={false}
