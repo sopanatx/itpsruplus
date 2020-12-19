@@ -10,20 +10,21 @@ export const HeaderBar = () => {
     <View style={styles.header}>
       <ImageBackground
         source={require('../assets/images/HeadImage_3x.png')}
-        style={styles.image}>
-        <Image
-          style={styles.Logo}
-          source={require('../assets/images/WhiteLogo_4x.png')}
-        />
-        <Text
+        style={styles.image}
+        imageStyle={{borderBottomRightRadius: 250}}>
+        <View
           style={{
-            color: 'white',
-            fontSize: 24,
+            backgroundColor: 'rgba( 0, 0, 0, 0.5 )',
+            borderBottomRightRadius: 250,
+            flex: 1,
+            resizeMode: 'cover',
             justifyContent: 'center',
-            fontFamily: 'DBHelvethaicaX-Bd',
           }}>
-          Infomation Technology {'\n'}PSRU
-        </Text>
+          <Text style={styles.TitleText}>สวัสดีครับ, คุณ โสภณัฐ</Text>
+          <Text style={styles.MajorName}>
+            สาขาวิชา เทคโนโลยีสารสนเทศ กลุ่ม 2
+          </Text>
+        </View>
       </ImageBackground>
     </View>
   );
@@ -48,18 +49,20 @@ const styles = StyleSheet.create({
     margin: 15,
   },
   HeadImage: {width: 424, height: 165, shadowOpacity: 10},
-  Card: {
-    borderRadius: 16,
-    width: 366,
-    height: 468,
-  },
-  HelloText: {
+  TitleText: {
     fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: 30,
+    fontSize: 28,
     textAlign: 'left',
     color: '#f2f2f2',
-    paddingVertical: 50,
-    padding: 30,
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+  },
+  MajorName: {
+    fontFamily: 'DBHelvethaicaX-Bd',
+    fontSize: 18,
+    textAlign: 'left',
+    color: '#f2f2f2',
+    paddingHorizontal: 30,
   },
   image: {
     flex: 1,
