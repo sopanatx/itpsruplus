@@ -4,6 +4,7 @@ import WelcomeScreen from './screen/WelcomeScreen';
 import MainUserScreen from './screen/User/MainScreen';
 import TimeTableScreen from './screen/User/TimeTableScreen';
 import SettingScreen from './screen/SettingScreen';
+import LoginScreen from './screen/LoginScreen';
 import StudentRecordScreen from './screen/User/StudentRecordScreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -74,6 +75,7 @@ const ContactStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
       <Stack.Screen name="Welcome" component={WelcomeScreen} />
+      <Stack.Screen name="Login" component={LoginScreen} />
     </Stack.Navigator>
   );
 };

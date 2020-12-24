@@ -20,7 +20,8 @@ export const HeaderBar = () => {
             resizeMode: 'cover',
             justifyContent: 'center',
           }}>
-          <Text style={styles.TitleText}>สวัสดีครับ, คุณ โสภณัฐ</Text>
+          <Text style={styles.TitleText}>สวัสดี, คุณ โสภณัฐ</Text>
+          <Text style={styles.MajorName}>6 1 1 2 2 2 4 0 6 0</Text>
           <Text style={styles.MajorName}>
             สาขาวิชา เทคโนโลยีสารสนเทศ กลุ่ม 2
           </Text>

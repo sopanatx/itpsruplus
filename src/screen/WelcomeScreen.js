@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     backgroundColor: THEME.DEFAULT_LIGHT_MODE1,
     flex: 2,
     marginTop: 30,
-    height: 415,
+    height: 500,
   },
   TextInfo: {
     fontSize: 20,

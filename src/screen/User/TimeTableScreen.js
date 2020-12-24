@@ -12,6 +12,7 @@ import {
 import {Button, Badge} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
+import tailwind from 'tailwind-rn';
 
 import {
   widthPercentageToDP as wp,
@@ -67,7 +68,8 @@ export default class TimeTableScreen extends React.Component {
         <HeaderBar />
         <ScrollView
           overScrollMode="always"
-          contentContainerStyle={{paddingBottom: 80}}>
+          contentContainerStyle={{paddingBottom: 80}}
+          showsVerticalScrollIndicator={false}>
           <View>
             <Text style={styles.HeaderText}>
               กิจกรรมการเรียนการสอนเทอมนี้ 2 / 2563

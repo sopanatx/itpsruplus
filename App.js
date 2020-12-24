@@ -18,7 +18,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import BottomTabNavigator from './src/TabNavigator';
 import BottomNavigator from './src/Navigation/ButtomNavigator';
 import AsyncStorage from '@react-native-community/async-storage';
-
+import SplashScreen from 'react-native-splash-screen';
 // Sentry.init({
 //   dsn:
 //     'https://d426d2cc424e4a1e88180fe4b61b629d@o449610.ingest.sentry.io/5432874',
@@ -33,6 +33,10 @@ export default class App extends React.Component {
   state = {
     isSignedIn: false,
   };
+  constructor(props) {
+    super(props);
+    this.state = {isLoading: true};
+  }
   async componentDidMount() {
     const token = await AsyncStorage.getItem('token');
     if (token) {
