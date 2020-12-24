@@ -51,16 +51,14 @@ export default class App extends React.Component {
   }
 
   render() {
-    if (this.state.isSignedIn == false) {
+    if (this.state.isLoading == true) {
       return (
         <NavigationContainer>
-          <ContactStackNavigator />
-        </NavigationContainer>
-      );
-    } else {
-      return (
-        <NavigationContainer>
-          <MainStackNavigator />
+          {this.state.isSignedIn ? (
+            <MainStackNavigator />
+          ) : (
+            <ContactStackNavigator />
+          )}
         </NavigationContainer>
       );
     }
