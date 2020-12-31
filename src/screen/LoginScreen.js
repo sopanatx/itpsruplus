@@ -37,7 +37,9 @@ const LoginScreen = (props) => {
         }
       } catch (err) {
         console.log(err);
-        Alert.alert('ข้อผิดพลาด', ErrorMessage.LOGIN_FAILED, [{text: 'ตกลง'}]);
+        Alert.alert('เข้าสู่ระบบล้มเหลว', ErrorMessage.LOGIN_FAILED, [
+          {text: 'ตกลง'},
+        ]);
       }
     }
   };
@@ -54,14 +56,14 @@ const LoginScreen = (props) => {
         </Text>
       </View>
       <View style={styles.subView}>
-        <Text style={styles.SubTitle}>Student ID</Text>
+        <Text style={styles.SubTitle}>รหัสนักศึกษา</Text>
         <TextInput
           style={styles.input}
           onChangeText={(values) => setStudentId(values)}
           maxLength={10}
           keyboardType="numeric"
         />
-        <Text style={styles.SubTitle}>Password</Text>
+        <Text style={styles.SubTitle}>รหัสผ่าน</Text>
         <TextInput
           style={styles.input}
           onChangeText={(values) => setPassword(values)}
@@ -79,8 +81,9 @@ const LoginScreen = (props) => {
           containerStyle={{width: '50%'}}
           title={'ลืมรหัสผ่าน'}
           onPress={() =>
-            Alert.alert('Error!', 'ระบบยังไม่เปิดให้้ใช้งานในขณะนี้')
+            Alert.alert('Error!', 'ระบบยังไม่เปิดให้ช้งานในขณะนี้')
           }
+          disabled={true}
         />
       </View>
     </SafeAreaView>

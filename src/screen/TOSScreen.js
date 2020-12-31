@@ -16,16 +16,18 @@ export default class TOSScreen extends Component {
       <SafeAreaView style={styles.container}>
         <View style={styles.mainView}>
           <Text style={styles.Title}> ข้อตกลงในใช้งาน </Text>
-          <View
-            style={{
-              backgroundColor: 'gray',
-              height: 550,
-              width: 350,
-              borderRadius: 5,
-              alignSelf: 'center',
-              elevation: 5,
-            }}>
-            <ScrollView>
+          <View style={{}}>
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{
+                backgroundColor: 'gray',
+                height: 550,
+                width: 350,
+                borderRadius: 5,
+                alignSelf: 'center',
+                elevation: 5,
+                opacity: 50,
+              }}>
               <Text
                 style={{
                   fontFamily: FONT_FAMILY,
@@ -48,6 +50,7 @@ export default class TOSScreen extends Component {
                 {'\n'}
                 4.ข้อมูลรหัสผ่านของท่านที่เก็บในระบบ ไม่ควรตั้งเป็น
                 วันเดือนปีเกิด เด็ดขาด เนื่องจากเสี่ยงต่อการถูกแฮก / ขโมยข้อมูล
+                {'\n'}
                 5.ข้อมูลรหัสผ่านที่จัดเก็บในฐานข้อมูล
                 จะถูกเข้ารหัสด้วยอัลกอริทึม ที่ไม่สามารถถอดรหัสกลับได้
                 หากลืมรหัสผ่าน ท่านจะต้องรีเซ็ต และ ตั้งรหัสใหม่เท่านั้น
@@ -84,7 +87,7 @@ export default class TOSScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: THEME.DEFAULT_DARK_MODE2,
+    backgroundColor: THEME.DEFAULT_LIGHT_MODE2,
   },
   mainView: {},
   Logo: {
@@ -97,11 +100,11 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontFamily: FONT_BOLD,
     textAlign: 'center',
-    color: '#F2F2F2',
+    color: 'black',
     margin: 20,
   },
   subView: {
-    backgroundColor: THEME.DEFAULT_DARK_MODE1,
+    backgroundColor: THEME.DEFAULT_LIGHT_MODE1,
     marginTop: 30,
     height: 415,
   },

@@ -9,7 +9,8 @@ import StudentRecordScreen from './screen/User/StudentRecordScreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-community/async-storage';
-
+import TOSScreen from './screen/TOSScreen';
+import RegisterScreen from './screen/RegisterScreen';
 const Stack = createStackNavigator();
 const screenOptionStyle = {
   headerStyle: {
@@ -76,6 +77,8 @@ const ContactStackNavigator = () => {
     <Stack.Navigator screenOptions={screenOptionStyle}>
       <Stack.Screen name="Welcome" component={WelcomeScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="TOS" component={TOSScreen} />
+      <Stack.Screen name="Register" component={RegisterScreen} />
     </Stack.Navigator>
   );
 };

@@ -18,29 +18,31 @@ function convertDate(date) {
   const month = date.slice(5, 7);
   const day = date.slice(8, 10);
   let monthText = '';
+  console.log(month);
+
   switch (month) {
-    case '1':
+    case '01':
       monthText = 'ม.ค.';
       break;
-    case '2':
+    case '02':
       monthText = 'ก.พ.';
       break;
-    case '3':
+    case '03':
       monthText = 'มี.ค.';
       break;
-    case '4':
+    case '04':
       monthText = 'เม.ย.';
       break;
-    case '5':
+    case '05':
       monthText = 'พ.ค.';
       break;
-    case '6':
+    case '06':
       monthText = 'มิ.ย.';
       break;
-    case '8':
+    case '08':
       monthText = 'ส.ค.';
       break;
-    case '9':
+    case '09':
       monthText = 'ก.ย.';
       break;
     case '10':
@@ -59,7 +61,7 @@ function convertDate(date) {
 function regexStudentId(studentId) {}
 function convertGrade(grade) {
   if (grade == '--') {
-    return '** ยังไม่ประกาศผลการเรียน **';
+    return 'N/A';
   } else {
     return grade;
   }

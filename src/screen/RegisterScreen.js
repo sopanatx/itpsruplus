@@ -10,140 +10,98 @@ import {
   SafeAreaView,
   ScrollView,
   TextInput,
+  TouchableOpacity,
 } from 'react-native';
 import {FONT_FAMILY, FONT_BOLD, THEME} from '../styles';
 import {Picker} from '@react-native-picker/picker';
+import styles from '../styles/RegisterationStyle';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 export default class RegisterScreen extends Component {
   state = {
-    language: 'java',
+    firstName: '',
+    lastName: '',
+    studentId: '',
+    studentEmail: '',
+    studentPassword: '',
+    nickname: '',
+    educateGroup: '',
+    admissionYear: '',
+    phoneNumber: '',
   };
+
   render() {
+    const onFooterLinkPress = () => {
+      navigation.navigate('Login');
+    };
     return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.mainView}>
-          <Text style={styles.Title}>ลงทะเบียนใช้งาน</Text>
-          <Text style={styles.TextAlert}>
-            กรุณาใช้ ชื่อ-นามสกุลจริง ภาษาไทยเท่านั้น
-            {'\n'} และโปรดตรวจสอบความถูกต้องก่อนกดลงทะเบียน
-          </Text>
-        </View>
-        <View>
+      <View style={styles.container}>
+        <Text style={styles.title}>ลงทะเบียนใช้งาน</Text>
+        <KeyboardAwareScrollView
+          style={{flex: 1, width: '100%'}}
+          keyboardShouldPersistTaps="always">
           <TextInput
-            style={styles.InputName}
-            // onChangeText={(values) => setStudentId(values)}
-            maxLength={255}
-            //    keyboardType="numeric"
+            style={styles.input}
             placeholder="ชื่อ"
+            placeholderTextColor="#aaaaaa"
+            onChangeText={(text) => this.setState({firstName: text})}
+            value={this.state.firstName}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
           />
           <TextInput
-            style={styles.InputLastName}
-            // onChangeText={(values) => setStudentId(values)}
-            maxLength={255}
-            //  keyboardType="numeric"
+            style={styles.input}
             placeholder="สกุล"
+            placeholderTextColor="#aaaaaa"
+            onChangeText={(text) => this.setState({lastName: text})}
+            value={this.state.lastName}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
           />
           <TextInput
-            style={styles.InputLastName}
-            // onChangeText={(values) => setStudentId(values)}
-            maxLength={255}
+            style={styles.input}
+            placeholder="รหัสนักศึกษา"
+            placeholderTextColor="#aaaaaa"
+            onChangeText={(text) => this.setState({studentId: text})}
+            value={this.state.studentId}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
             keyboardType="numeric"
-            placeholder="รหัสนักศึกษา 10 หลัก"
           />
-          <Picker
-            selectedValue={this.state.language}
-            style={styles.InputLastName}
-            itemStyle={{borderRadius: 10}}
-            onValueChange={(itemValue, itemIndex) =>
-              this.setState({language: itemValue})
-            }>
-            <Picker.Item label="กลุ่มเรียน 1" value="1" />
-            <Picker.Item label="กลุ่มเรียน 2" value="2" />
-          </Picker>
-        </View>
-        <Text>
-          [DEBUG_REG_STRING] : {'\n'}
-          NAME: {'\n'}
-          LNAME: {'\n'}
-          STD_ID: {'\n'}
-          SGROUP: {'\n'}
-          SGUADUATION:{'\n'}
-          SEDUCATEYEAR: {'\n'}
-          SPHONENUM: {'\n'}
-          SFACEBOK: {'\n'}
-          SLINE:{'\n'}
-          SADDRESS: {'\n'}
-          SWADDRESS:{'\n'}
-        </Text>
-      </SafeAreaView>
+          <TextInput
+            style={styles.input}
+            placeholder="อีเมล"
+            placeholderTextColor="#aaaaaa"
+            onChangeText={(text) => this.setState({studentEmail: text})}
+            value={this.state.studentEmail}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
+          <TextInput
+            style={styles.passwordinput}
+            placeholderTextColor="#aaaaaa"
+            secureTextEntry
+            placeholder="Password"
+            onChangeText={(text) => this.setState({studentPassword: text})}
+            value={this.state.studentPassword}
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+          />
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => onRegisterPress()}>
+            <Text style={styles.buttonTitle}>Create account</Text>
+          </TouchableOpacity>
+          <View style={styles.footerView}>
+            <Text style={styles.footerText}>
+              Already got an account?{' '}
+              <Text onPress={onFooterLinkPress} style={styles.footerLink}>
+                Log in
+              </Text>
+            </Text>
+          </View>
+        </KeyboardAwareScrollView>
+      </View>
     );
   }
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: THEME.DEFAULT_LIGHT_MODE1,
-  },
-  mainView: {},
-  Logo: {
-    width: 122,
-    height: 122,
-    alignSelf: 'center',
-    marginVertical: 80,
-  },
-  Title: {
-    fontSize: 30,
-    fontFamily: FONT_BOLD,
-    textAlign: 'center',
-    //  color: '#F2F2F2',
-    margin: 20,
-  },
-  subView: {
-    backgroundColor: THEME.DEFAULT_DARK_MODE1,
-    marginTop: 30,
-    height: 415,
-  },
-  TextInfo: {
-    fontSize: 20,
-    textAlign: 'center',
-    //color: 'white',
-    fontFamily: FONT_BOLD,
-    margin: 30,
-    marginVertical: 50,
-  },
-  linearGradient: {
-    flex: 1,
-    paddingLeft: 10,
-    paddingRight: 10,
-    borderRadius: 5,
-  },
-  TextAlert: {
-    fontSize: 14,
-    textAlign: 'center',
-    color: 'red',
-    fontFamily: FONT_BOLD,
-    //margin: 30,
-    //marginVertical: 50,
-  },
-  InputName: {
-    margin: 10,
-    backgroundColor: '#EBE9E9',
-    width: 200,
-    height: 45,
-    alignSelf: 'center',
-    borderRadius: 9,
-    fontFamily: FONT_FAMILY,
-    fontSize: 20,
-    textAlign: 'center',
-  },
-  InputLastName: {
-    margin: 10,
-    backgroundColor: '#EBE9E9',
-    width: 200,
-    // height: 45,
-    alignSelf: 'center',
-    borderRadius: 9,
-    fontFamily: FONT_FAMILY,
-    fontSize: 20,
-    textAlign: 'center',
-  },
-});

@@ -7,3 +7,8 @@ export const TEST_API_URL = {
 export const PUBLIC_API = {
   grade: 'https://app.itpsru.in.th/api/grade',
 };
+export const LOCAL_TEST_API = {
+  auth: `http://192.168.1.120:7000/auth/login`,
+  register: `http://192.168.1.120:7000/auth/login`,
+  calendar: `http://192.168.1.120:7000/student/calendar`,
+};

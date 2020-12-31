@@ -9,6 +9,7 @@ import {
   FlatList,
   StatusBar,
   TextInput,
+  Dimensions,
 } from 'react-native';
 import {Button} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -21,29 +22,63 @@ import {ApplicationProvider, Layout} from '@ui-kitten/components';
 import * as eva from '@eva-design/eva';
 import {HeaderBar} from '../../components/headerBar';
 
+import {getActivityCalender} from '../../api/UserApi';
+import {convertDate} from '../../utils/misc';
 async function getCalendar() {
   const calendar = await axios.get(TEST_API_URL.calendar);
   return calendar.data;
 }
+
 let studentData = [];
 let studentGrade = [];
 class MainUserScreen extends React.Component {
+  state = {
+    studentCalendar: [],
+  };
+  async componentDidMount() {
+    this.setState({studentCalendar: await getActivityCalender()});
+    console.log(this.state.studentCalendar);
+  }
   render() {
     return (
       <>
         <SafeAreaView style={tailwind('h-full')}>
           <HeaderBar />
-
-          <View style={tailwind('pt-12 items-center')}>
-            <View style={tailwind('bg-yellow-300 px-4 py-3 rounded-full')}>
-              <Text
-                style={
-                  (tailwind('text-yellow-800 font-semibold'),
-                  {fontFamily: FONT_BOLD, fontSize: 14})
-                }>
-                สวัสดีครับ คุณโสภณัฐ
-              </Text>
-            </View>
+          <Text style={styles.MenuText}>กิจกรรมที่กำลังมาถึง</Text>
+          <View style={{}}>
+            <FlatList
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              data={this.state.studentCalendar}
+              renderItem={({item}) => (
+                <ImageBackground
+                  source={{uri: item.activityImage}}
+                  style={{
+                    width: Dimensions.get('window').height / 6.5,
+                    height: Dimensions.get('window').height / 6.5,
+                    marginHorizontal: 5,
+                    elevation: 10,
+                  }}
+                  imageStyle={{
+                    borderRadius: 9,
+                  }}>
+                  <View
+                    style={{
+                      width: Dimensions.get('window').height / 6.5,
+                      height: Dimensions.get('window').height / 6.5,
+                      borderRadius: 9,
+                      backgroundColor: 'rgba(68, 129, 235, 0.35)',
+                    }}>
+                    <Text style={styles.CalendarDateText}>
+                      {convertDate(item.activityStartDate)}
+                    </Text>
+                    <Text style={styles.CalendarInfoText}>
+                      {item.activityName}
+                    </Text>
+                  </View>
+                </ImageBackground>
+              )}
+            />
           </View>
         </SafeAreaView>
       </>
@@ -82,10 +117,8 @@ const styles = StyleSheet.create({
   MenuText: {
     fontFamily: 'DBHelvethaicaX-Bd',
     fontSize: RFPercentage(3),
-    marginHorizontal: 10,
+    padding: 20,
     textAlign: 'left',
-
-    //  color: '#f6f6f6',
   },
   MenuText1: {
     fontFamily: 'Anuphan-Bold',
@@ -105,11 +138,11 @@ const styles = StyleSheet.create({
   CalendarInfoText: {
     fontFamily: 'DBHelvethaicaX-Bd',
     fontSize: 14,
-    textAlign: 'center',
     color: 'white',
-    textAlign: 'right',
-    paddingTop: 30,
-    paddingEnd: 3,
+    //textAlign: 'right',
+    alignContent: 'center',
+    position: 'relative', //Here is the trick
+    bottom: 2, //Here is the trick
   },
   StudentName: {
     fontFamily: 'DBHelvethaicaX-Bd',
