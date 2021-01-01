@@ -16,16 +16,18 @@ export default class TOSScreen extends Component {
       <SafeAreaView style={styles.container}>
         <View style={styles.mainView}>
           <Text style={styles.Title}> ข้อตกลงในใช้งาน </Text>
-          <View
-            style={{
-              backgroundColor: 'gray',
-              height: 550,
-              width: 350,
-              borderRadius: 5,
-              alignSelf: 'center',
-              elevation: 5,
-            }}>
-            <ScrollView>
+          <View style={{}}>
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{
+                backgroundColor: 'gray',
+                height: 550,
+                width: 350,
+                borderRadius: 5,
+                alignSelf: 'center',
+                elevation: 5,
+                opacity: 50,
+              }}>
               <Text
                 style={{
                   fontFamily: FONT_FAMILY,
@@ -39,27 +41,27 @@ export default class TOSScreen extends Component {
                 1.แอพลิเคชั่นนี้เป็นโปรเจคในการอำนวยความสะดวกให้แก่นักศึกษา
                 สาขาวิชาเทคโนโลยีสารสนเทศเท่านั้น {'\n'} (รหัสนักศึกษา 60 - 64)
                 {'\n'}
-                2.แอพลิเคชั่นจะมีการเก็บ Log หากตรวจพบการกระทำที่ผิดปกติ
+                2. ข้อมูลที่แสดงผลในแอพลิเคชั่น เป็นข้อมูลที่ได้จากการประมวลผล ณ
+                เวลาปัจจุบัน หากพบว่าข้อมูลไม่ถูกต้อง
+                กรุณาติดต่อผู้ดูแลระบบแอพลิเคชั่น
                 {'\n'}
-                3. แอพลิเคชั่นนี้ใช้การสื่อสารระหว่างฐานข้อมูลด้วย API Server
-                ที่มีการเข้ารหัสด้วย SSL
-                โดยจะทำให้ผู้ใช้มั่นใจได้ว่าจะไม่มีการดักฟัง / อ่านข้อมูลกลางทาง
+                3. ระบบไม่อนุญาตให้นักศึกษานอกเหนือสาขาเทคโนโลยีสารสนเทศใช้งาน
+                เนื่องจากข้อจำกัดในปัจจุบัน
                 {'\n'}
-                4. แอพลิเคชั่นนี้ มีการจัดเก็บข้อมูลรหัสผ่าน
-                ที่มีการเข้ารหัสด้วยอัลกอลิทึมของ Bcrypt และมีการ Salt
-                ทำให้รหัสผ่านของท่านที่เก็บในฐานข้อมูล
-                จะไม่สามารถถูกดูได้โดยผู้ดูแลระบบ
-                และไม่สามารถถอดรหัสได้นอกจากตัวท่านเอง
+                4.ข้อมูลรหัสผ่านของท่านที่เก็บในระบบ ไม่ควรตั้งเป็น
+                วันเดือนปีเกิด เด็ดขาด เนื่องจากเสี่ยงต่อการถูกแฮก / ขโมยข้อมูล
                 {'\n'}
-                5. ผู้พัฒนาแอพลิเคชั่นมีการตรวจสอบการเข้าถึง API อย่างรัดกุม
-                เพื่อให้ข้อมูลส่วนตัวของท่าน จัดเก็บด้วยความปลอดภัย
+                5.ข้อมูลรหัสผ่านที่จัดเก็บในฐานข้อมูล
+                จะถูกเข้ารหัสด้วยอัลกอริทึม ที่ไม่สามารถถอดรหัสกลับได้
+                หากลืมรหัสผ่าน ท่านจะต้องรีเซ็ต และ ตั้งรหัสใหม่เท่านั้น
+                ผู้ดูแลระบบไม่สามารถช่วยเหลือในกรณีกู้รหัสผ่านเดิมได้
                 {'\n'}
-                6. จะไม่มีการเปิดเผยข้อมูลส่วนตัวใดๆของท่านแก่บุคคลใดๆ
-                และไม่นำข้อมูลของท่านไปใช้ประโยชน์ด้านอื่น
+                6.ระบบขอนุญาตส่งการแจ้งเตือนหาท่าน
+                ในกรณีมีข่าวหรือเหตุการณ์ใดๆจากผู้ดูแลระบบ
                 {'\n'}
-                7. ผู้พัฒนาแอพพลิเคชั่น ขอสงวนสิทธิ์ที่จะ ระงับ / ลบบัญชีของท่าน
-                หากพบว่า มีการพยายามโจมตี API Server
-                หรือการพยายามแสวงหาช่องโหว่ของระบบ โดยไม่ได้รับอนุญาต
+                7.หากพบว่าระบบมีข้อผิดพลาด กรุณาส่งอีเมล พร้อมภาพ Screenshot
+                ของข้อผิดพลาดนั้นๆมาที่ อีเมล: work@pleum.in.th
+                พร้อมระบุแพลตฟอร์มเช่น Android / iOS
                 {'\n'}
                 8. เมื่อท่านกด 'ตกลง'
                 ด้านล่างแล้วถือว่าท่านยอมรับเงื่อนไขและข้อตกลง
@@ -74,12 +76,7 @@ export default class TOSScreen extends Component {
               containerStyle={{width: '100%'}}
               //style={{paddingTop: 20}}
               title={'ยอมรับ'}
-              onPress={() =>
-                Alert.alert(
-                  'Error',
-                  'เวอร์ชั่นของท่าน ไม่รองรับการกระทำดังกล่าว โปรดอัพเดทเป็นเวอร์ชั่นล่่าสุด',
-                )
-              }
+              onPress={() => this.props.navigation.navigate('Register')}
             />
           </View>
         </View>
@@ -90,7 +87,7 @@ export default class TOSScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: THEME.DEFAULT_DARK_MODE2,
+    backgroundColor: THEME.DEFAULT_LIGHT_MODE2,
   },
   mainView: {},
   Logo: {
@@ -103,11 +100,11 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontFamily: FONT_BOLD,
     textAlign: 'center',
-    color: '#F2F2F2',
+    color: 'black',
     margin: 20,
   },
   subView: {
-    backgroundColor: THEME.DEFAULT_DARK_MODE1,
+    backgroundColor: THEME.DEFAULT_LIGHT_MODE1,
     marginTop: 30,
     height: 415,
   },

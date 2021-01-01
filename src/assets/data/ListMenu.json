@@ -1,0 +1,44 @@
+[
+  {
+    "menuID": "MENU_HOME_PAGE",
+    "menuNameTh": "หน้าหลัก",
+    "menuAvailable": false,
+    "menuScreen": "MainScreen",
+    "menuImage": ""
+  },
+  {
+    "menuID": "MENU_PAYMENT_BILL",
+    "menuNameTh": "จ่ายค่าเทอม",
+    "menuAvailable": false,
+    "menuScreen": "PaymentScreen",
+    "menuImage": ""
+  },
+  {
+    "menuID": "MENU_RECORD_INFO",
+    "menuNameTh": "ผลการเรียน",
+    "menuAvailable": true,
+    "menuScreen": "RecordScreen",
+    "menuImage": ""
+  },
+  {
+    "menuID": "MENU_TIME_TABLE",
+    "menuNameTh": "ตารางเรียน",
+    "menuAvailable": true,
+    "menuScreen": "TimeTableScreen",
+    "menuImage": ""
+  },
+  {
+    "menuID": "MENU_ACTIVITY_CALENDAR",
+    "menuNameTh": "กิจกรรม",
+    "menuAvailable": false,
+    "menuScreen": "",
+    "menuImage": ""
+  },
+  {
+    "menuID": "MENU_NEWS_FROM_MAJOR",
+    "menuNameTh": "ข่าวสารจากสาขา",
+    "menuAvailable": false,
+    "menuScreen": "",
+    "menuImage": ""
+  }
+]

@@ -3,8 +3,8 @@ export const Color = {
 };
 
 export const THEME = {
-  WINTER_HEADER_1: '#4481eb',
-  WINTER_HEADER_2: '#04befe',
+  WINTER_HEADER_1: '#7ADCCA',
+  WINTER_HEADER_2: '#F4F2B4',
   WINTER_ROW_1: '#209cff',
   WINTER_ROW_2: '#68e0cf',
   WINTER_CALENDAR1: '#13547a',
@@ -17,9 +17,10 @@ export const THEME = {
   DEFAULT_DARK_MODE1: '#222831',
   DEFAULT_DARK_MODE2: '#393e46',
   DEFAULT_LIGHT_MODE1: '#f2f2f2',
+  DEFAULT_LIGHT_MODE2: '#ffffff',
 };
 
-export const FONT_FAMILY = 'Anuphan-Regular';
-export const FONT_BOLD = 'Anuphan-Bold';
+export const FONT_FAMILY = 'DBHelvethaicaX-Reg';
+export const FONT_BOLD = 'DBHelvethaicaX-Bd';
 export const FONT_MED = 'DBHelvethaicaX-Med';
 export const FONT_THIN = 'DBHelvethaicaX-Thin';

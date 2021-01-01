@@ -1,5 +1,14 @@
 import React, {useState, useContext} from 'react';
-import {View, StyleSheet, Image, Alert, Text, TextInput} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Image,
+  Alert,
+  Text,
+  TextInput,
+  Modal,
+  ActivityIndicator,
+} from 'react-native';
 import {authLogin} from '../api/authen';
 import {ErrorMessage} from '../constant/Error';
 import {SafeAreaContext, SafeAreaView} from 'react-native-safe-area-context';
@@ -10,22 +19,31 @@ import {
 } from 'react-native-responsive-screen';
 
 import {FONT_FAMILY, FONT_BOLD, THEME} from '../styles';
+import {NativeModules} from 'react-native';
 const LoginScreen = (props) => {
   const [studentId, setStudentId] = useState('');
   const [studentPassword, setPassword] = useState('');
-  const doLogin = async () => {
-    try {
-      const Login = await authLogin(studentId, studentPassword);
-      console.log('Login Success');
 
-      if (Login == 201) {
-        props.navigation.navigate('Main');
+  const doLogin = async () => {
+    if (studentId == '' || studentPassword == '') {
+      Alert.alert('ข้อผิดพลาด', 'โปรดกรอกข้อมูลการเข้าสู่ระบบให้ครบถ้วน');
+    } else {
+      try {
+        const Login = await authLogin(studentId, studentPassword);
+        console.log('Login Success');
+
+        if (Login == 201) {
+          NativeModules.DevSettings.reload();
+        }
+      } catch (err) {
+        console.log(err);
+        Alert.alert('เข้าสู่ระบบล้มเหลว', ErrorMessage.LOGIN_FAILED, [
+          {text: 'ตกลง'},
+        ]);
       }
-    } catch (err) {
-      console.log(err);
-      Alert.alert('Error!', ErrorMessage.LOGIN_FAILED, [{text: 'ตกลง'}]);
     }
   };
+
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -38,14 +56,14 @@ const LoginScreen = (props) => {
         </Text>
       </View>
       <View style={styles.subView}>
-        <Text style={styles.SubTitle}>Student ID</Text>
+        <Text style={styles.SubTitle}>รหัสนักศึกษา</Text>
         <TextInput
           style={styles.input}
           onChangeText={(values) => setStudentId(values)}
           maxLength={10}
           keyboardType="numeric"
         />
-        <Text style={styles.SubTitle}>Password</Text>
+        <Text style={styles.SubTitle}>รหัสผ่าน</Text>
         <TextInput
           style={styles.input}
           onChangeText={(values) => setPassword(values)}
@@ -63,8 +81,9 @@ const LoginScreen = (props) => {
           containerStyle={{width: '50%'}}
           title={'ลืมรหัสผ่าน'}
           onPress={() =>
-            Alert.alert('Error!', 'ระบบยังไม่เปิดให้้ใช้งานในขณะนี้')
+            Alert.alert('Error!', 'ระบบยังไม่เปิดให้ช้งานในขณะนี้')
           }
+          disabled={true}
         />
       </View>
     </SafeAreaView>
@@ -73,7 +92,7 @@ const LoginScreen = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: THEME.DEFAULT_DARK_MODE1,
+    backgroundColor: THEME.DEFAULT_LIGHT_MODE2,
     height: hp('100%'), // 70% of height device screen
     width: wp('100%'), // 80% of width device screen
   },
@@ -81,7 +100,7 @@ const styles = StyleSheet.create({
   mainView: {
     alignContent: 'center',
   },
-  subView: {flex: 2, marginTop: 55, backgroundColor: THEME.DEFAULT_DARK_MODE2},
+  subView: {flex: 2, marginTop: 55, backgroundColor: THEME.DEFAULT_LIGHT_MODE1},
 
   Logo: {
     width: 122,
@@ -94,14 +113,14 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontFamily: 'ProductSansRegular',
     textAlign: 'center',
-    color: 'white',
+    color: 'black',
   },
   SubTitle: {
     fontSize: 20,
     marginTop: 25,
     fontFamily: FONT_FAMILY,
     textAlign: 'center',
-    color: 'white',
+    color: 'black',
   },
   input: {
     margin: 10,

@@ -132,9 +132,10 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
 
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 54
-        versionName '1.5.4'
+        versionCode 70
+        versionName '1.7.0'
         multiDexEnabled true
+        versionNameSuffix 'Beta'
     }
     splits {
         abi {

@@ -1,11 +1,12 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
+import EncryptedStorage from 'react-native-encrypted-storage';
 export default axios.create({
-  baseURL: 'https://test-api.itpsru.in.th',
+  baseURL: 'https://api.itpsru.in.th',
 });
 
 export const authLogin = async (studentId, studentPassword) => {
-  const resp = await axios.post(`https://test-api.itpsru.in.th/auth/login`, {
+  const resp = await axios.post(`https://api.itpsru.in.th/auth/login`, {
     studentId: studentId,
     studentPassword: studentPassword,
   });

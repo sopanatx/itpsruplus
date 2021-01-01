@@ -1,17 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-  Image,
-  ScrollView,
-  Alert,
-  ImageBackground,
-} from 'react-native';
+import {View, StyleSheet, Text, Alert} from 'react-native';
 import {Button} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
-
+import {HeaderBar} from '../../components/headerBar';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -38,35 +30,46 @@ export default class StudentCardScreen extends React.Component {
   render() {
     return (
       <SafeAreaView>
-        <View style={styles.header}>
-          <LinearGradient
-            start={{x: 0, y: 0}}
-            end={{x: 1, y: 0.5}}
-            colors={['#F5872C', '#FF6996']}
-            style={{
-              shadowColor: 'rgba(245, 44, 80, 0.38)',
-              width: 480,
-              height: 165,
-              alignSelf: 'center',
-            }}>
-            <Image
-              style={styles.Logo}
-              source={require('../../assets/images/WhiteLogo_4x.png')}
-            />
-            <Text
-              style={{
-                color: 'white',
-                fontSize: 30,
-                width: 245,
-                marginHorizontal: 110,
-                margin: 20,
-                fontFamily: 'DBHelvethaicaX-Bd',
-              }}>
-              Infomation Technology {'\n'}PSRU
-            </Text>
-          </LinearGradient>
+        <HeaderBar />
+
+        <View style={{alignItems: 'center', margin: 50}}>
+          <Button
+            buttonStyle={{
+              width: wp('70%'),
+              height: 70,
+              backgroundColor: '#ec5858',
+            }}
+            title="ชำระค่าเทอม"
+            titleStyle={{fontFamily: FONT_FAMILY, fontSize: 24}}
+            onPress={() =>
+              Alert.alert(
+                'ยืนยันการเชื่อมต่อข้อมูล',
+                'ระบบชำระค่าเทอมจำเป็นต้องอ้างอิงข้อมูลจากทะเบียนของมหาวิทยาลัย ท่านจำเป็นต้องกรอกข้อมูล {"\n"} รหัสนักศึกษา และ รหัสผ่านที่่ใช้กับมหาวิทยาลัย',
+              )
+            }
+          />
+          <Button
+            buttonStyle={{
+              width: wp('70%'),
+              height: 70,
+              backgroundColor: '#fd8c04',
+              marginTop: 10,
+            }}
+            title="สแกน QR Code"
+            titleStyle={{fontFamily: FONT_FAMILY, fontSize: 24}}
+            disabled={true}
+          />
+          <Button
+            buttonStyle={{
+              width: wp('70%'),
+              height: 70,
+              backgroundColor: '#f5b461',
+              marginTop: 10,
+            }}
+            title="บัตรนักศึกษา"
+            titleStyle={{fontFamily: FONT_FAMILY, fontSize: 24}}
+          />
         </View>
-        <View style={{alignItems: 'center', margin: 50}}></View>
       </SafeAreaView>
     );
   }

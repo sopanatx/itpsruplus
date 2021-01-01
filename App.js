@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, Alert} from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import analytics from '@react-native-firebase/analytics';
-import Navigator from './src/navigator';
+import {ContactStackNavigator, MainStackNavigator} from './src/navigator';
 import {
   getUniqueId,
   getManufacturer,
@@ -14,78 +14,53 @@ import {
 import RNLocation from 'react-native-location';
 import * as Sentry from '@sentry/react-native';
 import firestore from '@react-native-firebase/firestore';
-Sentry.init({
-  dsn:
-    'https://d426d2cc424e4a1e88180fe4b61b629d@o449610.ingest.sentry.io/5432874',
-  enableNative: false,
-});
-
-async function saveTokenToDatabase(token) {
-  // Assume user is already signed in
-  const userId = await getAndroidId();
-
-  // Add the token to the users datastore
-  try {
-    await firestore()
-      .collection('Users')
-      .doc(userId)
-      .update({
-        tokens: firestore.FieldValue.arrayUnion(token),
-        userId: userId,
-      });
-  } catch {
-    firestore()
-      .collection('Users')
-      .doc(userId)
-      .set({
-        tokens: firestore.FieldValue.arrayUnion(token),
-        userId: userId,
-      })
-      .then(() => {
-        console.log('Firestore Device Registered!');
-      });
-  }
-}
+import {NavigationContainer} from '@react-navigation/native';
+import BottomTabNavigator from './src/TabNavigator';
+import BottomNavigator from './src/Navigation/ButtomNavigator';
+import AsyncStorage from '@react-native-community/async-storage';
+import SplashScreen from 'react-native-splash-screen';
+// Sentry.init({
+//   dsn:
+//     'https://d426d2cc424e4a1e88180fe4b61b629d@o449610.ingest.sentry.io/5432874',
+//   enableNative: false,
+// });
 
 messaging().setBackgroundMessageHandler(async (remoteMessage) => {
   console.log('Message handled in the background!', remoteMessage);
 });
 
 export default class App extends React.Component {
+  state = {
+    isSignedIn: false,
+  };
+  constructor(props) {
+    super(props);
+    this.state = {isLoading: true};
+  }
   async componentDidMount() {
+    const token = await AsyncStorage.getItem('token');
+    if (token) {
+      this.setState({
+        isSignedIn: true,
+      });
+    }
+    console.log('Authentication Token:', token);
     const DeviceID = await getUniqueId();
     const DeviceManufacturer = await getManufacturer();
     const DeviceName = await getDeviceName();
-    await this.initNotification();
-
-    await analytics().logScreenView({
-      screen_name: 'MainScreen',
-      screen_class: 'AppClass',
-    });
   }
-  initNotification = async () => {
-    await this.setPermission();
-    const fcmToken = await messaging().getToken();
-    console.log('fcmToken', fcmToken);
-    await messaging().registerDeviceForRemoteMessages();
-    await saveTokenToDatabase(fcmToken);
-    await messaging().onTokenRefresh((fcmToken) => {
-      saveTokenToDatabase(fcmToken);
-    });
-  };
-
-  setPermission = async () => {
-    try {
-      const enabled = await messaging().hasPermission();
-      if (!enabled) {
-        await messaging().requestPermission();
-      }
-    } catch (error) {
-      console.log('error', error);
-    }
-  };
 
   render() {
-    return <Navigator />;
+    if (this.state.isLoading == true) {
+      return (
+        <NavigationContainer>
+          {this.state.isSignedIn ? (
+            <MainStackNavigator />
+          ) : (
+            <ContactStackNavigator />
+          )}
+        </NavigationContainer>
+      );
+    }
   }
 }

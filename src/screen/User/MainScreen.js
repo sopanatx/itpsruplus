@@ -8,249 +8,105 @@ import {
   ImageBackground,
   FlatList,
   StatusBar,
+  TextInput,
+  Dimensions,
+  TouchableOpacity,
 } from 'react-native';
 import {Button} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import AsyncStorage from '@react-native-community/async-storage';
-import jwt_decode from 'jwt-decode';
-import LinearGradient from 'react-native-linear-gradient';
+import {RFPercentage, RFValue} from 'react-native-responsive-fontsize';
 import {FONT_FAMILY, FONT_BOLD, THEME} from '../../styles';
+import tailwind from 'tailwind-rn';
 import axios from 'axios';
-import dayjs from 'dayjs';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
 import {TEST_API_URL} from '../../constant/API';
-import apiUserData from '../../api/UserApi';
-import {getMyGrade} from '../../api/StudentGradeApi';
+import {ApplicationProvider, Layout} from '@ui-kitten/components';
+import * as eva from '@eva-design/eva';
+import {HeaderBar} from '../../components/headerBar';
 
-import {getDay, convertDate} from '../../utils/misc';
+import {getActivityCalender} from '../../api/UserApi';
+import {convertDate} from '../../utils/misc';
 async function getCalendar() {
   const calendar = await axios.get(TEST_API_URL.calendar);
   return calendar.data;
 }
+
 let studentData = [];
 let studentGrade = [];
-export default class MainUserScreen extends React.Component {
+class MainUserScreen extends React.Component {
   state = {
-    activityCalendar: [],
-    userdata: [],
-    studentTitileName: '',
-    studentFirstName: 'Loading',
-    studentLastName: '...',
-    studentId: '0 0 0 0 0 0 0 0 0 0',
-    studentProfileImage:
-      'https://www2.guidestar.org/App_Themes/MainSite/images/loading.gif',
-    studentGrade: [],
+    studentCalendar: [],
   };
   async componentDidMount() {
-    // StatusBar.setHidden(true);
-    studentData = await apiUserData();
-    console.log(
-      'IMAGE_PROFILE_DATA:',
-      studentData.getAccountInfo.AccountInfo.profileImageUrl,
-    );
-    this.setState({
-      activityCalendar: await getCalendar(),
-      userdata: await apiUserData(),
-      studentFirstName: studentData.getAccountInfo.studentFirstName,
-      studentLastName: studentData.getAccountInfo.studentLastName,
-      studentProfileImage:
-        studentData.getAccountInfo.AccountInfo.profileImageUrl,
-      studentId: studentData.getAccountInfo.studentId,
-    });
-    this.setState({studentGrade: await getMyGrade(this.state.studentId)});
-    this.setState({studentGrade: this.state.studentGrade[0]});
-    console.log(this.state.studentGrade);
+    this.setState({studentCalendar: await getActivityCalender()});
+    console.log(this.state.studentCalendar);
   }
-
   render() {
     return (
       <>
-        <SafeAreaView style={styles.container}>
-          <ScrollView>
-            <View style={styles.header}>
-              <LinearGradient
-                start={{x: 1, y: 0}}
-                end={{x: 0, y: 1}}
-                colors={[THEME.WINTER_HEADER_1, THEME.WINTER_HEADER_2]}
-                style={{
-                  shadowColor: 'rgba(245, 44, 80, 0.38)',
-                  width: 480,
-                  height: 165,
-                  alignSelf: 'center',
-                }}>
-                <Image
-                  style={styles.Logo}
-                  source={require('../../assets/images/WhiteLogo_4x.png')}
-                />
-                <Text
+        <SafeAreaView style={tailwind('h-full')}>
+          <HeaderBar />
+          <Text style={styles.MenuText}>กิจกรรมที่กำลังมาถึง</Text>
+          <View style={{}}>
+            <FlatList
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              data={this.state.studentCalendar}
+              renderItem={({item}) => (
+                <ImageBackground
+                  source={{uri: item.activityImage}}
                   style={{
-                    color: 'white',
-                    fontSize: 30,
-                    width: 245,
-                    marginHorizontal: 110,
-                    margin: 20,
-                    fontFamily: 'DBHelvethaicaX-Bd',
+                    width: Dimensions.get('window').height / 6.5,
+                    height: Dimensions.get('window').height / 6.5,
+                    marginHorizontal: 5,
+                    elevation: 10,
+                  }}
+                  imageStyle={{
+                    borderRadius: 9,
                   }}>
-                  Infomation Technology {'\n'}PSRU
-                </Text>
-              </LinearGradient>
-            </View>
-
-            <View style={{margin: 10}}>
-              <Text style={styles.MenuText}>กิจกรรมที่กำลังมาถึง</Text>
-
-              <FlatList
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                data={this.state.activityCalendar}
-                renderItem={({item}) => (
-                  <ImageBackground
-                    source={{uri: item.activityImage}}
+                  <View
                     style={{
-                      width: 120,
-                      height: 120,
-                      marginHorizontal: 5,
-                      elevation: 10,
-                    }}
-                    imageStyle={{
+                      width: Dimensions.get('window').height / 6.5,
+                      height: Dimensions.get('window').height / 6.5,
                       borderRadius: 9,
+                      backgroundColor: 'rgba(68, 129, 235, 0.35)',
                     }}>
-                    <View
-                      style={{
-                        width: 120,
-                        height: 120,
-                        borderRadius: 9,
-                        backgroundColor: 'rgba(68, 129, 235, 0.35)',
-                      }}>
-                      <Text style={styles.CalendarDateText}>
-                        {convertDate(item.activityStartDate)}
-                      </Text>
-                      <Text style={styles.CalendarInfoText}>
-                        {item.activityName}
-                      </Text>
-                    </View>
-                  </ImageBackground>
-                )}
-              />
-            </View>
+                    <Text style={styles.CalendarDateText}>
+                      {convertDate(item.activityStartDate)}
+                    </Text>
+                    <Text style={styles.CalendarInfoText}>
+                      {item.activityName}
+                    </Text>
+                  </View>
+                </ImageBackground>
+              )}
+            />
+          </View>
 
-            <LinearGradient
-              start={{x: 0, y: 1}}
-              end={{x: 1, y: 0}}
-              colors={[
-                THEME.WINTER_GECARD1,
-                THEME.WINTER_GECARD2,
-                //THEME.WINTER_GECARD3,
-              ]}
+          <View>
+            <Text style={styles.MenuText}> เมนูอำนวยความสะดวก </Text>
+          </View>
+          <TouchableOpacity>
+            <ImageBackground
               style={{
-                shadowColor: 'rgba(245, 44, 80, 0.38)',
-                width: wp('90%'),
-                height: 180,
+                width: 300,
+                height: 100,
                 alignSelf: 'center',
-                borderRadius: 15,
-                elevation: 10,
-              }}>
-              <Text style={styles.StudentName}>
-                {this.state.studentFirstName} {this.state.studentLastName}
-              </Text>
-              <Text style={styles.MajorName}>{this.state.studentId}</Text>
-              <Text style={styles.MajorName}>คณะ วิทยาศาสตร์และเทคโนโลยี</Text>
-              <Text style={styles.MajorName}>สาขาวิชา เทคโนโลยีสารสนเทศ</Text>
-              <Image
-                source={{uri: this.state.studentProfileImage}}
+              }}
+              imageStyle={{
+                borderRadius: 20,
+                backgroundColor: 'rgba(0,0,0,.6)',
+              }}
+              source={{uri: 'https://wallpaperaccess.com/full/1385324.jpg'}}>
+              <Text
                 style={{
-                  width: 80,
-                  height: 80,
-                  alignSelf: 'flex-end',
-                  borderRadius: 9,
-                  marginTop: -140,
-                  marginHorizontal: 10,
-                }}
-                imageStyle={{}}
-              />
-            </LinearGradient>
-
-            <LinearGradient
-              start={{x: 0, y: 1}}
-              end={{x: 1, y: 0}}
-              colors={[THEME.WINTER_GRADE_CARD1, THEME.WINTER_GRADE_CARD2]}
-              style={{
-                shadowColor: 'rgba(245, 44, 80, 0.38)',
-                width: wp('90%'),
-                height: 220,
-                alignSelf: 'center',
-                borderRadius: 15,
-                marginTop: 10,
-              }}>
-              <Text style={styles.studentGradeInfoText}> ระดับผลการเรียน </Text>
-              <ScrollView
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}>
-                <View
-                  style={{
-                    width: 150,
-                    height: 100,
-                    backgroundColor: THEME.DEFAULT_DARK_MODE2,
-                    marginHorizontal: 10,
-                    borderRadius: 5,
-                    elevation: 10,
-                  }}>
-                  <Text style={styles.myGradeText}> ระดับผลการเรียน </Text>
-                  <Text style={styles.myGradeText}>
-                    <Text style={{color: 'green'}}> ดี </Text>
-                  </Text>
-                </View>
-                <View
-                  style={{
-                    width: 150,
-                    height: 100,
-                    backgroundColor: THEME.DEFAULT_DARK_MODE2,
-                    marginHorizontal: 10,
-                    borderRadius: 5,
-                    elevation: 10,
-                  }}>
-                  <Text style={styles.myGradeText}> เกรดเฉลี่ยรวม </Text>
-                  <Text style={styles.myGradeText}>
-                    {this.state.studentGrade.TotalAverageGrade}
-                  </Text>
-                </View>
-                <View
-                  style={{
-                    width: 150,
-                    height: 100,
-                    backgroundColor: THEME.DEFAULT_DARK_MODE2,
-                    marginHorizontal: 10,
-                    borderRadius: 5,
-                    elevation: 10,
-                  }}>
-                  <Text style={styles.myGradeText}> เกรดเฉลี่ยวิิชาเอก </Text>
-                  <Text style={styles.myGradeText}>
-                    {this.state.studentGrade.TotalMainSubjectGrade}
-                  </Text>
-                </View>
-              </ScrollView>
-              <Button
-                title="ข้อมูลเพิ่มเติม"
-                buttonStyle={{
-                  width: 100,
-                  height: 40,
-                  alignSelf: 'center',
-                  marginVertical: 10,
-                  backgroundColor: '#0f3057',
-                  elevation: 10,
-                }}
-                titleStyle={{
-                  fontFamily: FONT_FAMILY,
-                  fontSize: 14,
-                }}
-                disabled={true}
-              />
-            </LinearGradient>
-            <View style={{margin: 10}}></View>
-          </ScrollView>
+                  textAlign: 'center',
+                  alignItems: 'center',
+                  color: 'white',
+                }}>
+                test
+              </Text>
+            </ImageBackground>
+          </TouchableOpacity>
         </SafeAreaView>
       </>
     );
@@ -259,17 +115,14 @@ export default class MainUserScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    resizeMode: 'cover',
+    resizeMode: 'stretch',
     flex: 1,
     height: '100%',
     width: '100%',
+
     // backgroundColor: THEME.DEFAULT_DARK_MODE1,
   },
 
-  header: {
-    width: 464,
-    height: 165,
-  },
   Logo: {
     height: 77,
     width: 77,
@@ -284,19 +137,18 @@ const styles = StyleSheet.create({
   },
   HeaderText: {
     fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: 30,
+    fontSize: RFPercentage(5),
     textAlign: 'center',
     marginVertical: -60,
   },
   MenuText: {
     fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: 24,
-    marginHorizontal: 10,
+    fontSize: RFPercentage(3),
+    padding: 20,
     textAlign: 'left',
-    //  color: '#f6f6f6',
   },
   MenuText1: {
-    fontFamily: 'DBHelvethaicaX-Bd',
+    fontFamily: 'Anuphan-Bold',
     fontSize: 28,
     marginTop: 10,
     textAlign: 'center',
@@ -304,20 +156,24 @@ const styles = StyleSheet.create({
   CalendarDateText: {
     fontFamily: 'DBHelvethaicaX-Bd',
     fontSize: 20,
-    textAlign: 'center',
     color: 'white',
     textAlign: 'left',
     marginTop: 3,
     margin: 7,
   },
   CalendarInfoText: {
-    fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: 14,
-    textAlign: 'center',
-    color: 'white',
+    width: '100%',
+    height: 30,
+    //   backgroundColor: '#EE5407',
     textAlign: 'right',
-    paddingTop: 30,
-    paddingEnd: 3,
+    fontFamily: FONT_BOLD,
+    color: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute', //Here is the trick
+    bottom: 0, //Here is the trick
+    paddingRight: 5,
+    fontSize: 15,
   },
   StudentName: {
     fontFamily: 'DBHelvethaicaX-Bd',
@@ -352,3 +208,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
 });
+export default () => (
+  <ApplicationProvider {...eva} theme={eva.light}>
+    <MainUserScreen />
+  </ApplicationProvider>
+);
