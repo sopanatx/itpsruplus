@@ -10,6 +10,7 @@ import {
   StatusBar,
   TextInput,
   Dimensions,
+  TouchableOpacity,
 } from 'react-native';
 import {Button} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -80,6 +81,32 @@ class MainUserScreen extends React.Component {
               )}
             />
           </View>
+
+          <View>
+            <Text style={styles.MenuText}> เมนูอำนวยความสะดวก </Text>
+          </View>
+          <TouchableOpacity>
+            <ImageBackground
+              style={{
+                width: 300,
+                height: 100,
+                alignSelf: 'center',
+              }}
+              imageStyle={{
+                borderRadius: 20,
+                backgroundColor: 'rgba(0,0,0,.6)',
+              }}
+              source={{uri: 'https://wallpaperaccess.com/full/1385324.jpg'}}>
+              <Text
+                style={{
+                  textAlign: 'center',
+                  alignItems: 'center',
+                  color: 'white',
+                }}>
+                test
+              </Text>
+            </ImageBackground>
+          </TouchableOpacity>
         </SafeAreaView>
       </>
     );
@@ -129,20 +156,24 @@ const styles = StyleSheet.create({
   CalendarDateText: {
     fontFamily: 'DBHelvethaicaX-Bd',
     fontSize: 20,
-    textAlign: 'center',
     color: 'white',
     textAlign: 'left',
     marginTop: 3,
     margin: 7,
   },
   CalendarInfoText: {
-    fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: 14,
+    width: '100%',
+    height: 30,
+    //   backgroundColor: '#EE5407',
+    textAlign: 'right',
+    fontFamily: FONT_BOLD,
     color: 'white',
-    //textAlign: 'right',
-    alignContent: 'center',
-    position: 'relative', //Here is the trick
-    bottom: 2, //Here is the trick
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute', //Here is the trick
+    bottom: 0, //Here is the trick
+    paddingRight: 5,
+    fontSize: 15,
   },
   StudentName: {
     fontFamily: 'DBHelvethaicaX-Bd',

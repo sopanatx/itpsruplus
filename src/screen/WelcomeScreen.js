@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: THEME.DEFAULT_LIGHT_MODE2,
-    resizeMode: 'stretch',
+    //   resizeMode: 'stretch',
     resizeMode: 'cover',
   },
   mainView: {

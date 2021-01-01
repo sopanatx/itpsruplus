@@ -87,17 +87,13 @@ export default class RegisterScreen extends Component {
             autoCapitalize="none"
           />
 
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => onRegisterPress()}>
-            <Text style={styles.buttonTitle}>Create account</Text>
+          <TouchableOpacity style={styles.button} disabled={true}>
+            <Text style={styles.buttonTitle}>ลงทะเบียน</Text>
           </TouchableOpacity>
           <View style={styles.footerView}>
             <Text style={styles.footerText}>
               Already got an account?{' '}
-              <Text onPress={onFooterLinkPress} style={styles.footerLink}>
-                Log in
-              </Text>
+              <Text style={styles.footerLink}>Log in</Text>
             </Text>
           </View>
         </KeyboardAwareScrollView>

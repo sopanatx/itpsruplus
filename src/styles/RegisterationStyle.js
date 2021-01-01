@@ -43,7 +43,7 @@ export default StyleSheet.create({
     paddingLeft: 16,
   },
   button: {
-    backgroundColor: '#788eec',
+    backgroundColor: 'orange',
     marginLeft: 30,
     marginRight: 30,
     marginTop: 20,
