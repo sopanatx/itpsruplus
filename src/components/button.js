@@ -59,7 +59,7 @@ export const RegisterButton = ({
         borderRadius: 36,
         margin: 10,
         shadowColor: '#E9E9E9',
-        shadowOffset: 1,
+        //shadowOffset: 1,
         shadowOpacity: 1,
         backgroundColor: Color.WHITE,
         alignSelf: 'center',
