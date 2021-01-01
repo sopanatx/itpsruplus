@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   Title: {
     margin: -50,
     fontSize: 26,
-    fontFamily: 'ProductSansRegular',
+    fontFamily:FONT_FAMILY,
     textAlign: 'center',
     color: 'black',
   },
