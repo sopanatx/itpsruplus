@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Alert} from 'react-native';
+import {View, Text, Alert,AppRegistry} from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import analytics from '@react-native-firebase/analytics';
 import {ContactStackNavigator, MainStackNavigator} from './src/navigator';
@@ -19,15 +19,13 @@ import BottomTabNavigator from './src/TabNavigator';
 import BottomNavigator from './src/Navigation/ButtomNavigator';
 import AsyncStorage from '@react-native-community/async-storage';
 import SplashScreen from 'react-native-splash-screen';
+import { name as appName } from "./app.json";  
+AppRegistry.registerComponent(appName, () => App);
 // Sentry.init({
 //   dsn:
 //     'https://d426d2cc424e4a1e88180fe4b61b629d@o449610.ingest.sentry.io/5432874',
 //   enableNative: false,
 // });
-
-messaging().setBackgroundMessageHandler(async (remoteMessage) => {
-  console.log('Message handled in the background!', remoteMessage);
-});
 
 export default class App extends React.Component {
   state = {

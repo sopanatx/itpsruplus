@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   },
   Title: {
     fontSize: 26,
-    fontFamily: 'ProductSansRegular',
+    fontFamily: FONT_FAMILY,
     textAlign: 'center',
     color: 'black',
   },
