@@ -11,6 +11,7 @@ import {
   ScrollView,
 } from 'react-native';
 import {FONT_FAMILY, FONT_BOLD, THEME} from '../styles';
+import tailwind from 'tailwind-rn';
 export default class WelcomeScreen extends Component {
   render() {
     return (
@@ -22,11 +23,33 @@ export default class WelcomeScreen extends Component {
           />
           <Text style={styles.Title}>Information Technology {'\n'} PSRU</Text>
         </View>
+
         <View style={styles.subView}>
-          <Text style={styles.TextInfo}>
-            ระบบรองรับการใช้งานสำหรับ {'\n'} นักศึกษาเทคโนโลยีสารสนเทศ ภาคปกติ 4
-            ปี เท่านั้น
-          </Text>
+          <View
+            style={
+              (tailwind('pt-12 items-center'),
+              {
+                paddingBottom: 30,
+                paddingTop: 30,
+                paddingLeft: 30,
+                paddingRight: 30,
+              })
+            }>
+            <View style={tailwind('bg-blue-200 px-3 py-1 rounded-full')}>
+              <Text
+                style={
+                  (tailwind('text-blue-800 font-semibold'),
+                  {textAlign: 'center', fontFamily: FONT_BOLD})
+                }>
+                นักศึกษาที่ยังไม่เคยลงทะเบียน
+                {'\n'}
+                จำเป็นต้องลงทะเบียนก่อนการใช้งาน {'\n'}
+                *ข้อมูลการเข้าสู่ระบบกับมหาวิทยาลัย
+                ไม่สามารถใช้งานกับระบบนี้ได้*
+              </Text>
+            </View>
+          </View>
+
           <PrimaryButton
             style={{width: '100%'}}
             containerStyle={{width: '100%'}}

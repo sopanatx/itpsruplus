@@ -37,7 +37,7 @@ export const PrimaryButton = ({
           fontFamily: FONT_BOLD,
           ...titleStyle,
         }}
-        disabled={false}
+        disabled={disabled}
         onPress={onPress}
       />
     </LinearGradient>
@@ -74,7 +74,7 @@ export const RegisterButton = ({
         color: 'black',
         ...titleStyle,
       }}
-      //  disabled={true}
+      disabled={disabled}
       onPress={onPress}
     />
   );

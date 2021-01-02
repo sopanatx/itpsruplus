@@ -50,13 +50,14 @@ export default class TOSScreen extends Component {
             onPress={() => {
               navigation.pop();
             }}
+            disabled={true}
           />
         </View>
       </SafeAreaView>
     );
   }
 }
-
+const padding = normalize(16);
 const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: 'white'},
   header: {
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   agreement: {
-    fontSize: 18,
+    fontSize: 16,
     lineHeight: 24,
     color: COLORS.GRAY_4,
     marginBottom: 16,

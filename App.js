@@ -16,8 +16,6 @@ import BottomTabNavigator from './src/TabNavigator';
 import BottomNavigator from './src/Navigation/ButtomNavigator';
 import AsyncStorage from '@react-native-community/async-storage';
 import SplashScreen from 'react-native-splash-screen';
-import {name as appName} from './app.json';
-AppRegistry.registerComponent(appName, () => App);
 
 Sentry.init({
   dsn:
