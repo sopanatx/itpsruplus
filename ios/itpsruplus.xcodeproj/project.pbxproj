@@ -94,7 +94,7 @@
 		066B4018B0B34517A46B92D7 /* DBHelvethaicaX-LiIt.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DBHelvethaicaX-LiIt.ttf"; path = "../src/assets/fonts/DBHelvethaicaX-LiIt.ttf"; sourceTree = "<group>"; };
 		0A80881761F14096AC7AF310 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		0FBE02DC911B495E8609BC02 /* DBHelvethaicaX-Med.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DBHelvethaicaX-Med.ttf"; path = "../src/assets/fonts/DBHelvethaicaX-Med.ttf"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* itpsruplus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = itpsruplus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* ITPSRU+.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ITPSRU+.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = itpsruplus/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = itpsruplus/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = itpsruplus/Images.xcassets; sourceTree = "<group>"; };
@@ -334,7 +334,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* itpsruplus.app */,
+				13B07F961A680F5B00A75B9A /* ITPSRU+.app */,
 				00E356EE1AD99517003FC87E /* itpsruplusTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* itpsruplus-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* itpsruplus-tvOSTests.xctest */,
@@ -384,7 +384,7 @@
 			);
 			name = itpsruplus;
 			productName = itpsruplus;
-			productReference = 13B07F961A680F5B00A75B9A /* itpsruplus.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* ITPSRU+.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2D02E47A1E0B4A5D006451C7 /* itpsruplus-tvOS */ = {
@@ -911,7 +911,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = th.in.pleum.itpsruplus;
-				PRODUCT_NAME = itpsruplus;
+				PRODUCT_NAME = "ITPSRU+";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -937,7 +937,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = th.in.pleum.itpsruplus;
-				PRODUCT_NAME = itpsruplus;
+				PRODUCT_NAME = "ITPSRU+";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

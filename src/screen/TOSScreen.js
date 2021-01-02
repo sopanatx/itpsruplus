@@ -8,118 +8,102 @@ import {
   SafeAreaView,
   ScrollView,
   Alert,
+  StatusBar,
 } from 'react-native';
-import {FONT_FAMILY, FONT_BOLD, THEME} from '../styles';
+import {FONT_FAMILY, FONT_BOLD, THEME, COLORS} from '../styles';
+import {normalize} from 'react-native-elements';
+import {getPolicyText} from '../constant/Text';
 export default class TOSScreen extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <View style={styles.mainView}>
-          <Text style={styles.Title}> ข้อตกลงในใช้งาน </Text>
-          <View style={{}}>
-            <ScrollView
-              showsVerticalScrollIndicator={false}
-              contentContainerStyle={{
-                backgroundColor: 'gray',
-                height: 550,
-                width: 350,
-                borderRadius: 5,
-                alignSelf: 'center',
-                elevation: 5,
-                opacity: 50,
-              }}>
-              <Text
-                style={{
-                  fontFamily: FONT_FAMILY,
-                  color: 'white',
-                  textAlign: 'center',
-                  fontSize: 20,
-                  padding: 10,
-                }}>
-                คำอธิบายเกี่ยวกับระบบ และข้อตกลงในการใช้งาน
-                {'\n'} {'\n'}
-                1.แอพลิเคชั่นนี้เป็นโปรเจคในการอำนวยความสะดวกให้แก่นักศึกษา
-                สาขาวิชาเทคโนโลยีสารสนเทศเท่านั้น {'\n'} (รหัสนักศึกษา 60 - 64)
-                {'\n'}
-                2. ข้อมูลที่แสดงผลในแอพลิเคชั่น เป็นข้อมูลที่ได้จากการประมวลผล ณ
-                เวลาปัจจุบัน หากพบว่าข้อมูลไม่ถูกต้อง
-                กรุณาติดต่อผู้ดูแลระบบแอพลิเคชั่น
-                {'\n'}
-                3. ระบบไม่อนุญาตให้นักศึกษานอกเหนือสาขาเทคโนโลยีสารสนเทศใช้งาน
-                เนื่องจากข้อจำกัดในปัจจุบัน
-                {'\n'}
-                4.ข้อมูลรหัสผ่านของท่านที่เก็บในระบบ ไม่ควรตั้งเป็น
-                วันเดือนปีเกิด เด็ดขาด เนื่องจากเสี่ยงต่อการถูกแฮก / ขโมยข้อมูล
-                {'\n'}
-                5.ข้อมูลรหัสผ่านที่จัดเก็บในฐานข้อมูล
-                จะถูกเข้ารหัสด้วยอัลกอริทึม ที่ไม่สามารถถอดรหัสกลับได้
-                หากลืมรหัสผ่าน ท่านจะต้องรีเซ็ต และ ตั้งรหัสใหม่เท่านั้น
-                ผู้ดูแลระบบไม่สามารถช่วยเหลือในกรณีกู้รหัสผ่านเดิมได้
-                {'\n'}
-                6.ระบบขอนุญาตส่งการแจ้งเตือนหาท่าน
-                ในกรณีมีข่าวหรือเหตุการณ์ใดๆจากผู้ดูแลระบบ
-                {'\n'}
-                7.หากพบว่าระบบมีข้อผิดพลาด กรุณาส่งอีเมล พร้อมภาพ Screenshot
-                ของข้อผิดพลาดนั้นๆมาที่ อีเมล: work@pleum.in.th
-                พร้อมระบุแพลตฟอร์มเช่น Android / iOS
-                {'\n'}
-                8. เมื่อท่านกด 'ตกลง'
-                ด้านล่างแล้วถือว่าท่านยอมรับเงื่อนไขและข้อตกลง
-                ท่ี่กล่าวมาข้างต้นทุกประการ
-              </Text>
-            </ScrollView>
-          </View>
-          <View style={{paddingTop: 20}}>
-            <PrimaryButton
-              style={{width: '100%'}}
-              titleStyle={{fontSize: 25}}
-              containerStyle={{width: '100%'}}
-              //style={{paddingTop: 20}}
-              title={'ยอมรับ'}
-              onPress={() => this.props.navigation.navigate('Register')}
-            />
-          </View>
+        <StatusBar backgroundColor={'white'} barStyle="dark-content" />
+
+        <View style={styles.header}>
+          <Text style={styles.title}>ลงทะเบียน </Text>
+          <Text style={styles.subtitle}>
+            โปรดอ่านคำอธิบายและข้อตกลงเพื่อทำความเข้าใจก่อนการใช้งาน
+          </Text>
+        </View>
+
+        <View style={styles.content}>
+          <ScrollView
+            contentContainerStyle={{
+              flexGrow: 1,
+              backgroundColor: 'white',
+            }}
+            style={{
+              borderColor: COLORS.GRAY_2,
+              borderWidth: 1,
+              borderRadius: 4,
+            }}>
+            <View style={{padding: 16}}>
+              <Text style={styles.agreement}>{getPolicyText()} </Text>
+            </View>
+          </ScrollView>
+        </View>
+        <View style={styles.footer}>
+          <PrimaryButton
+            title="ยอมรับ"
+            style={{width: '100%'}}
+            containerStyle={{width: '100%'}}
+            onPress={() => {
+              navigation.pop();
+            }}
+          />
         </View>
       </SafeAreaView>
     );
   }
 }
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: THEME.DEFAULT_LIGHT_MODE2,
+  container: {flex: 1, backgroundColor: 'white'},
+  header: {
+    alignItems: 'flex-start',
+    marginBottom: 16,
+    marginHorizontal: padding,
   },
-  mainView: {},
-  Logo: {
-    width: 122,
-    height: 122,
-    alignSelf: 'center',
-    marginVertical: 80,
-  },
-  Title: {
-    fontSize: 30,
+
+  title: {
     fontFamily: FONT_BOLD,
+    fontSize: 32,
+    alignItems: 'center',
+    color: COLORS.BLACK_1,
     textAlign: 'center',
-    color: 'black',
-    margin: 20,
   },
-  subView: {
-    backgroundColor: THEME.DEFAULT_LIGHT_MODE1,
-    marginTop: 30,
-    height: 415,
-  },
-  TextInfo: {
-    fontSize: 20,
+
+  subtitle: {
+    fontFamily: FONT_FAMILY,
+    fontSize: 18,
+    lineHeight: 24,
+    alignItems: 'center',
+    color: COLORS.SECONDARY_DIM,
     textAlign: 'center',
-    color: 'white',
-    fontFamily: FONT_BOLD,
-    margin: 30,
-    marginVertical: 50,
   },
-  linearGradient: {
+  content: {
     flex: 1,
-    paddingLeft: 10,
-    paddingRight: 10,
-    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: COLORS.LIGHT_BLUE,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderStyle: 'solid',
+    borderColor: COLORS.BORDER_LIGHT_BLUE,
+
+    paddingHorizontal: padding,
+    marginBottom: 16,
+  },
+  agreement: {
+    fontSize: 18,
+    lineHeight: 24,
+    color: COLORS.GRAY_4,
+    marginBottom: 16,
+    // textAlign: 'justify'
+  },
+  footer: {
+    alignItems: 'center',
+    paddingHorizontal: padding,
+    marginBottom: 16,
   },
 });

@@ -1,0 +1,2 @@
+json_key_file("/Users/pleumkungz/Documents/itpsru-plus.jks") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
+package_name("th.in.pleum.itpsruplus") # e.g. com.krausefx.app

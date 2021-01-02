@@ -1,15 +1,12 @@
 import React from 'react';
-import {View, Text, Alert,AppRegistry} from 'react-native';
+import {View, Text, Alert, AppRegistry} from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import analytics from '@react-native-firebase/analytics';
 import {ContactStackNavigator, MainStackNavigator} from './src/navigator';
 import {
   getUniqueId,
   getManufacturer,
-  getApplicationName,
   getDeviceName,
-  getAndroidId,
-  getLastUpdateTime,
 } from 'react-native-device-info';
 import RNLocation from 'react-native-location';
 import * as Sentry from '@sentry/react-native';
@@ -19,18 +16,20 @@ import BottomTabNavigator from './src/TabNavigator';
 import BottomNavigator from './src/Navigation/ButtomNavigator';
 import AsyncStorage from '@react-native-community/async-storage';
 import SplashScreen from 'react-native-splash-screen';
-import { name as appName } from "./app.json";  
+import {name as appName} from './app.json';
 AppRegistry.registerComponent(appName, () => App);
-// Sentry.init({
-//   dsn:
-//     'https://d426d2cc424e4a1e88180fe4b61b629d@o449610.ingest.sentry.io/5432874',
-//   enableNative: false,
-// });
+
+Sentry.init({
+  dsn:
+    'https://d426d2cc424e4a1e88180fe4b61b629d@o449610.ingest.sentry.io/5432874',
+  enableNative: false,
+});
 
 export default class App extends React.Component {
   state = {
     isSignedIn: false,
   };
+
   constructor(props) {
     super(props);
     this.state = {isLoading: true};
