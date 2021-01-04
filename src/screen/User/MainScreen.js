@@ -25,6 +25,10 @@ import {HeaderBar} from '../../components/headerBar';
 
 import {getActivityCalender} from '../../api/UserApi';
 import {convertDate} from '../../utils/misc';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 async function getCalendar() {
   const calendar = await axios.get(TEST_API_URL.calendar);
   return calendar.data;
@@ -117,8 +121,8 @@ const styles = StyleSheet.create({
   container: {
     resizeMode: 'stretch',
     flex: 1,
-    height: '100%',
-    width: '100%',
+    height: hp('100%'),
+    width: wp('100%'),
 
     // backgroundColor: THEME.DEFAULT_DARK_MODE1,
   },

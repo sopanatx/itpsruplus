@@ -24,9 +24,15 @@ const apiGrade = async () => {
 };
 
 const getActivityCalender = async () => {
-  const calendar = await Axios.get('https://api.itpsru.in.th/student/calendar');
-
-  return calendar.data;
+  const token = await AsyncStorage.getItem('token');
+  const calendar = await fetch('https://api.itpsru.in.th/student/calendar', {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  //console.log(awaitcalendar.json());
+  return await calendar.json();
 };
 
 export default async function apiUserData() {

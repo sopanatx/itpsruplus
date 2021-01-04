@@ -1,4 +1,4 @@
-const ErrorMessage = {
+export const ErrorMessage = {
   TITLE_LOGIN_FAILED: 'เข้าสู่ระบบล้มเหลว',
   LOGIN_FAILED:
     'รหัสนักศึกษา หรือ รหัสผ่านไม่ถูกต้อง \nโปรดตรวจสอบข้อมูลแล้วลองใหม่อีกครั้ง.',
@@ -12,5 +12,3 @@ const ErrorMessage = {
   APP_SERVER_ERROR:
     'ไม่สามารถดึงข้อมูลจาก Server ได้ \n โปรดตรวจสอบการเชื่อมต่ออินเตอร์เน็ตของท่านอีกครั้ง',
 };
-
-export {ErrorMessage};
