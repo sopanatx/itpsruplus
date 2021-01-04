@@ -64,6 +64,8 @@ export default class StudentRecordScreen extends React.Component {
                     margin: 10,
                     borderRadius: 8,
                     elevation: 5,
+                    shadowColor: '#000',
+                    shadowOpacity: 0.2,
                   }}>
                   <Text style={styles.SubjectText}>
                     เทอมที่ : {item.term} {'\n'}
@@ -71,8 +73,7 @@ export default class StudentRecordScreen extends React.Component {
                     {item.subjectName}
                   </Text>
                   <Text style={styles.SubjectValue}>
-                    เกรด: {'\n'}
-                    <Text style={{color: 'green'}}>{item.studentGrade}</Text>
+                    <Text style={{color: 'orange'}}>{item.studentGrade}</Text>
                   </Text>
                 </View>
               )}
@@ -115,16 +116,16 @@ const styles = StyleSheet.create({
   SubjectText: {
     fontFamily: 'Anuphan-Bold',
     fontSize: 13,
-    textAlign: 'center',
+    textAlign: 'left',
     color: 'black',
     padding: 10,
     // paddingVertical: 10,
   },
   SubjectValue: {
     fontFamily: 'Anuphan-Bold',
-    fontSize: 16,
-    textAlign: 'center',
+    fontSize: 30,
+    textAlign: 'right',
     color: 'black',
-    padding: -10,
+    paddingRight: 10,
   },
 });

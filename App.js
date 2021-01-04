@@ -16,7 +16,7 @@ import BottomTabNavigator from './src/TabNavigator';
 import BottomNavigator from './src/Navigation/ButtomNavigator';
 import AsyncStorage from '@react-native-community/async-storage';
 import SplashScreen from 'react-native-splash-screen';
-
+import {getVersion} from './src/api/appinfo';
 Sentry.init({
   dsn:
     'https://d426d2cc424e4a1e88180fe4b61b629d@o449610.ingest.sentry.io/5432874',
@@ -33,6 +33,14 @@ export default class App extends React.Component {
     this.state = {isLoading: true};
   }
   async componentDidMount() {
+    const response = await getVersion();
+    if (!response.ok) {
+      Alert.alert(
+        'ไม่สามารถเชื่อมต่อ Server ได้',
+        'แอพลิเคชั่นไม่สามารถเชื่อมต่อ Server ได้  โปรดตรวจสอบว่ามีการเข้าถึง Internet แล้ว.',
+      );
+    }
+
     const token = await AsyncStorage.getItem('token');
     if (token) {
       this.setState({
