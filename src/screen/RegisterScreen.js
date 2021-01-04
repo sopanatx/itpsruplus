@@ -14,6 +14,7 @@ import {
 import {FONT_FAMILY, FONT_BOLD, THEME, COLORS} from '../styles';
 import {normalize} from 'react-native-elements';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+
 export default class TOSScreen extends Component {
   state = {
     firstName: '',
@@ -28,10 +29,26 @@ export default class TOSScreen extends Component {
   };
 
   render() {
+    const register = async () => {
+      await fetch('https://api.itpsru.in.th/auth/register', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          studentId: this.state.studentId,
+          studentFirstName: this.state.firstName,
+          studentLastName: this.state.lastName,
+          studentEmail: this.state.studentEmail,
+          studentPassword: this.state.studentPassword,
+        }),
+      });
+    };
+
     return (
       <SafeAreaView style={styles.container}>
         <StatusBar backgroundColor={'white'} barStyle="dark-content" />
-
         <View style={styles.header}>
           <Text style={styles.title}> ลงทะเบียน </Text>
           <Text style={styles.subtitle}>
