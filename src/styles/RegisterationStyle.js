@@ -1,14 +1,34 @@
 import {StyleSheet} from 'react-native';
-import {FONT_FAMILY, FONT_BOLD} from '../styles';
+import {FONT_FAMILY, FONT_BOLD, COLORS} from '../styles';
+import {normalize} from 'react-native-elements';
+const padding = normalize(16);
+
 export default StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
   },
+  header: {
+    alignItems: 'flex-start',
+    marginBottom: 16,
+    marginTop: 10,
+    marginHorizontal: padding,
+  },
   title: {
-    margin: 30,
-    fontSize: 30,
     fontFamily: FONT_BOLD,
+    fontSize: 32,
+    alignItems: 'center',
+    color: COLORS.BLACK_1,
+    textAlign: 'center',
+  },
+
+  subtitle: {
+    fontFamily: FONT_FAMILY,
+    fontSize: 18,
+    lineHeight: 24,
+    alignItems: 'center',
+    color: COLORS.SECONDARY_DIM,
+    textAlign: 'center',
   },
 
   logo: {

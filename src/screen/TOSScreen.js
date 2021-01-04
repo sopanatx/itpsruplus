@@ -48,9 +48,9 @@ export default class TOSScreen extends Component {
             style={{width: '100%'}}
             containerStyle={{width: '100%'}}
             onPress={() => {
-              navigation.pop();
+              this.props.navigation.navigate('Register');
             }}
-            disabled={true}
+            disabled={false}
           />
         </View>
       </SafeAreaView>
