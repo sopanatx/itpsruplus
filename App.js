@@ -36,8 +36,8 @@ export default class App extends React.Component {
     const response = await getVersion();
     if (!response.ok) {
       Alert.alert(
-        'ไม่สามารถเชื่อมต่อ Server ได้',
-        'แอพลิเคชั่นไม่สามารถเชื่อมต่อ Server ได้  โปรดตรวจสอบว่ามีการเข้าถึง Internet แล้ว.',
+        'ข้อผิดพลาด',
+        'แอพลิเคชั่นไม่สามารถเชื่อมต่อ Server ได้  โปรดตรวจสอบว่ามีการเข้าถึง Internet แล้ว',
       );
     }
 

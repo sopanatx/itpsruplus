@@ -9,7 +9,7 @@ let totalCredit;
 let profileImage;
 let studentID;
 export const getVersion = async () => {
-  const getversion = await fetch('https://api.itpsru.in.th/appversionx');
+  const getversion = await fetch('https://api.itpsru.in.th/appversion');
   //console.log(awaitcalendar.json());
   return await getversion;
 };
