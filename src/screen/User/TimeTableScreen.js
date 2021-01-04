@@ -84,6 +84,8 @@ export default class TimeTableScreen extends React.Component {
                   borderRadius: 9,
                   elevation: 4,
                   marginVertical: 5,
+                  shadowColor: '#000',
+                  shadowOpacity: 0.2,
                 }}>
                 <Text style={styles.Day}>
                   {item.subjectTime}{' '}
@@ -115,6 +117,8 @@ export default class TimeTableScreen extends React.Component {
                   borderRadius: 9,
                   elevation: 4,
                   marginVertical: 5,
+                  shadowColor: '#000',
+                  shadowOpacity: 0.2,
                 }}>
                 <Text style={styles.Day}>
                   {item.subjectTime}{' '}
@@ -175,6 +179,8 @@ export default class TimeTableScreen extends React.Component {
                   borderRadius: 9,
                   elevation: 4,
                   marginVertical: 5,
+                  shadowColor: '#000',
+                  shadowOpacity: 0.2,
                 }}>
                 <Text style={styles.Day}>
                   {item.subjectTime}{' '}
@@ -205,6 +211,8 @@ export default class TimeTableScreen extends React.Component {
                   borderRadius: 9,
                   elevation: 4,
                   marginVertical: 5,
+                  shadowColor: '#000',
+                  shadowOpacity: 0.2,
                 }}>
                 <Text style={styles.Day}>
                   {item.subjectTime}{' '}

@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
     backgroundColor: THEME.DEFAULT_LIGHT_MODE2,
     height: hp('100%'), // 70% of height device screen
     width: wp('100%'), // 80% of width device screen
+    resizeMode: 'cover',
   },
 
   mainView: {
