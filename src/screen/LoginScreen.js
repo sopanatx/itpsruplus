@@ -46,14 +46,15 @@ const LoginScreen = (props) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'flex-start',
+        }}>
         <Image
           style={styles.Logo}
           source={require('../assets/images/IconPlus.png')}
         />
-        <Text style={styles.Title}>
-          Infomation Technology Major {'\n'} <Text> PSRU </Text>
-        </Text>
       </View>
       <View style={styles.subView}>
         <Text style={styles.SubTitle}>รหัสนักศึกษา</Text>

@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   mainView: {
+    flex: 1,
     resizeMode: 'cover',
   },
   Logo: {
@@ -92,8 +93,6 @@ const styles = StyleSheet.create({
   subView: {
     backgroundColor: THEME.DEFAULT_LIGHT_MODE1,
     flex: 2,
-    marginTop: 30,
-    height: 500,
   },
   TextInfo: {
     fontSize: 20,
