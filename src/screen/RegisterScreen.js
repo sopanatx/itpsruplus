@@ -15,6 +15,10 @@ import {FONT_FAMILY, FONT_BOLD, THEME, COLORS} from '../styles';
 import {normalize} from 'react-native-elements';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
+const parseStudentId = (studentId) => {
+  return studentId.substr(0, 2);
+};
+
 export default class TOSScreen extends Component {
   state = {
     firstName: '',
@@ -42,6 +46,9 @@ export default class TOSScreen extends Component {
           studentLastName: this.state.lastName,
           studentEmail: this.state.studentEmail,
           studentPassword: this.state.studentPassword,
+          nickname: this.state.nickname,
+          educateGroup: this.state.studentId,
+          admissionYear: parseStudentId(studentId),
         }),
       });
     };
