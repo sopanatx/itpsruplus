@@ -1,4 +1,6 @@
 export const ErrorMessage = {
+  TITLE_LOGIN_ERROR: 'ข้อผิดพลาด',
+  TITLE_LOGIN_FIELD_NULL: 'โปรดกรอกข้อมูลการเข้าสู่ระบบให้ครบถ้วน',
   TITLE_LOGIN_FAILED: 'เข้าสู่ระบบล้มเหลว',
   TITLE_API_ERROR: 'ไม่สามารถเชื่อมต่อบริการได้',
   LOGIN_FAILED:

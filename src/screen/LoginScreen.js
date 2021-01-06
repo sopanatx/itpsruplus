@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {
   View,
   StyleSheet,
@@ -20,26 +20,44 @@ import {
 
 import {FONT_FAMILY, FONT_BOLD, THEME} from '../styles';
 import {NativeModules} from 'react-native';
+import Spinner from 'react-native-loading-spinner-overlay';
 const LoginScreen = (props) => {
   const [studentId, setStudentId] = useState('');
   const [studentPassword, setPassword] = useState('');
+  const [spinner, setSpinner] = useState(false);
+
+  useEffect(() => {
+    setInterval(() => {
+      setSpinner(false);
+    }, 3000);
+  });
 
   const doLogin = async () => {
+    //setSpinner(true);
     if (studentId == '' || studentPassword == '') {
-      Alert.alert('ข้อผิดพลาด', 'โปรดกรอกข้อมูลการเข้าสู่ระบบให้ครบถ้วน');
+      Alert.alert(
+        ErrorMessage.TITLE_LOGIN_ERROR,
+        ErrorMessage.TITLE_LOGIN_FIELD_NULL,
+        [{text: 'ตกลง'}],
+      );
     } else {
+      setSpinner(true);
       try {
         const Login = await authLogin(studentId, studentPassword);
         console.log('Login Success');
 
         if (Login == 201) {
           NativeModules.DevSettings.reload();
+          setSpinner(false);
         }
       } catch (err) {
+        setSpinner(false);
         console.log(err);
-        Alert.alert('เข้าสู่ระบบล้มเหลว', ErrorMessage.LOGIN_FAILED, [
-          {text: 'ตกลง'},
-        ]);
+        Alert.alert(
+          ErrorMessage.TITLE_LOGIN_FAILED,
+          ErrorMessage.LOGIN_FAILED,
+          [{text: 'ตกลง'}],
+        );
       }
     }
   };
@@ -51,6 +69,14 @@ const LoginScreen = (props) => {
           flex: 1,
           justifyContent: 'flex-start',
         }}>
+        <Spinner
+          visible={spinner}
+          textStyle={{
+            fontFamily: FONT_FAMILY,
+          }}
+          textContent={'กำลังเข้าสู่ระบบ...'}
+          textStyle={styles.spinnerTextStyle}
+        />
         <Image
           style={styles.Logo}
           source={require('../assets/images/IconPlus.png')}
