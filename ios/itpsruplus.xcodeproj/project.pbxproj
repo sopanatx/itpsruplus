@@ -938,7 +938,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = th.in.pleum.itpsruplus;
+				PRODUCT_BUNDLE_IDENTIFIER = th.in.pleum.itpsru;
 				PRODUCT_NAME = "ITPSRU+";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
