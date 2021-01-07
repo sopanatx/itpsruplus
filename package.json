@@ -29,6 +29,7 @@
     "expo-linear-gradient": "^8.3.1",
     "formik": "^2.2.5",
     "jwt-decode": "^3.0.0",
+    "popup-ui": "^1.2.2",
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-device-info": "^7.0.2",

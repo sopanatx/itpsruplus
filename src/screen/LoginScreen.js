@@ -34,6 +34,7 @@ const LoginScreen = (props) => {
 
   const doLogin = async () => {
     //setSpinner(true);
+
     if (studentId == '' || studentPassword == '') {
       Alert.alert(
         ErrorMessage.TITLE_LOGIN_ERROR,
