@@ -29,7 +29,7 @@ const LoginScreen = (props) => {
   useEffect(() => {
     setInterval(() => {
       setSpinner(false);
-    }, 3000);
+    }, 5000);
   });
 
   const doLogin = async () => {
@@ -72,11 +72,10 @@ const LoginScreen = (props) => {
         }}>
         <Spinner
           visible={spinner}
-          textStyle={{
-            fontFamily: FONT_FAMILY,
-          }}
           textContent={'กำลังเข้าสู่ระบบ...'}
-          textStyle={styles.spinnerTextStyle}
+          textStyle={{
+            fontSize: 24,
+          }}
         />
         <Image
           style={styles.Logo}
@@ -101,7 +100,7 @@ const LoginScreen = (props) => {
         <PrimaryButton
           style={{width: '100%'}}
           containerStyle={{width: '80%'}}
-          title={'เข้าสู่ระบบ'}
+          title={'Sign in with ITPSRU ID'}
           onPress={() => doLogin(studentId, studentPassword)}
         />
         <RegisterButton
@@ -129,7 +128,11 @@ const styles = StyleSheet.create({
   mainView: {
     alignContent: 'center',
   },
-  subView: {flex: 2, marginTop: 55, backgroundColor: THEME.DEFAULT_LIGHT_MODE1},
+  subView: {
+    flex: 2,
+    marginTop: 55,
+    backgroundColor: THEME.DEFAULT_LIGHT_MODE1,
+  },
 
   Logo: {
     width: 122,

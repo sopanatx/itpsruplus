@@ -14,6 +14,11 @@ import {
 import {FONT_FAMILY, FONT_BOLD, THEME, COLORS} from '../styles';
 import {normalize} from 'react-native-elements';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {Formik} from 'formik';
+import {Picker} from '@react-native-picker/picker';
+import {ALERT_MESSAGE} from '../constant/Text';
+import Spinner from 'react-native-loading-spinner-overlay';
+import {ErrorMessage} from '../constant/Error';
 
 const parseStudentId = (studentId) => {
   return studentId.substr(0, 2);
@@ -30,11 +35,21 @@ export default class TOSScreen extends Component {
     educateGroup: '',
     admissionYear: '',
     phoneNumber: '',
+    spinner: false,
   };
 
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({
+        spinner: false,
+      });
+    }, 10000);
+  }
   render() {
     const register = async () => {
-      await fetch('https://api.itpsru.in.th/auth/register', {
+      console.log(this.state.educateGroup);
+      this.setState({spinner: true});
+      const doPost = await fetch('https://api.itpsru.in.th/auth/register', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -47,15 +62,46 @@ export default class TOSScreen extends Component {
           studentEmail: this.state.studentEmail,
           studentPassword: this.state.studentPassword,
           nickname: this.state.nickname,
-          educateGroup: this.state.studentId,
-          admissionYear: parseStudentId(studentId),
+          educateGroup: this.state.educateGroup,
+          admissionYear: parseStudentId(this.state.studentId),
+          phoneNumber: this.state.phoneNumber,
         }),
       });
+      switch (doPost.status) {
+        case 400:
+          Alert.alert(
+            ErrorMessage.TITLE_REGISTER_FAILED,
+            ErrorMessage.APP_REGISTER_BAD_REQ +
+              `\nStatus_Code:${doPost.status}`,
+          );
+          break;
+        case 200:
+          this.props.navigation.navigate('Home');
+          this.setState({spinner: false});
+          break;
+        case 201:
+          // this.props.navigation.navigate('Home');
+          this.setState({spinner: false});
+          Alert.alert(
+            'ลงทะเบียนสำเร็จ',
+            'โปรดลงชื่อเข้าใช้ด้วยข้อมูลที่ท่านลงทะเบียนอีกครั้ง' +
+              `\nStatus_Code: ${doPost.status}`,
+          );
+          break;
+      }
+
+      console.log(doPost.status);
+      console.log(await doPost.json());
     };
 
     return (
       <SafeAreaView style={styles.container}>
         <StatusBar backgroundColor={'white'} barStyle="dark-content" />
+        <Spinner
+          visible={this.state.spinner}
+          textContent={'กำลังดำเนินการ...'}
+          textStyle={styles.spinnerTextStyle}
+        />
         <View style={styles.header}>
           <Text style={styles.title}> ลงทะเบียน </Text>
           <Text style={styles.subtitle}>
@@ -95,6 +141,15 @@ export default class TOSScreen extends Component {
               autoCapitalize="none"
               keyboardType="numeric"
             />
+            <Picker
+              selectedValue={this.state.educateGroup}
+              style={styles.input}
+              onValueChange={(itemValue, itemIndex) =>
+                this.setState({educateGroup: itemValue})
+              }>
+              <Picker.Item label="กลุ่มเรียน 1" value="1" />
+              <Picker.Item label="กลุ่มเรียน 2" value="2" />
+            </Picker>
             <TextInput
               style={styles.input}
               placeholder="อีเมล"
@@ -113,6 +168,25 @@ export default class TOSScreen extends Component {
               value={this.state.studentPassword}
               underlineColorAndroid="transparent"
               autoCapitalize="none"
+            />
+            <TextInput
+              maxLength={10}
+              ref="mobileNo"
+              style={styles.input}
+              placeholderTextColor="#aaaaaa"
+              placeholder="หมายเลขโทรศัพท์"
+              onChangeText={(text) => this.setState({phoneNumber: text})}
+              value={this.state.phoneNumber}
+              underlineColorAndroid="transparent"
+              autoCapitalize="none"
+              keyboardType="phone-pad"
+            />
+            <PrimaryButton
+              title="ยอมรับ"
+              style={{width: '100%'}}
+              containerStyle={{width: '100%'}}
+              onPress={() => register()}
+              //   disabled={true}
             />
           </KeyboardAwareScrollView>
         </View>
@@ -186,7 +260,7 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     fontFamily: FONT_FAMILY,
     fontSize: 20,
-    elevation: 10,
+    //   elevation: 10,
   },
   passwordinput: {
     height: 48,

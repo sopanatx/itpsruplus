@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   StyleSheet,
@@ -11,6 +11,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import {THEME} from '../styles';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export const HeaderBar = () => {
   return (
@@ -26,13 +27,7 @@ export const HeaderBar = () => {
             flex: 1,
             resizeMode: 'cover',
             justifyContent: 'center',
-          }}>
-          <Text style={styles.TitleText}>สวัสดี, คุณ FIRST_NAME</Text>
-          <Text style={styles.MajorName}>6 1 1 2 2 2 4 0 6 0</Text>
-          <Text style={styles.MajorName}>
-            สาขาวิชา เทคโนโลยีสารสนเทศ กลุ่ม 2
-          </Text>
-        </View>
+          }}></View>
       </ImageBackground>
     </View>
   );

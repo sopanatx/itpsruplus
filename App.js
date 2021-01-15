@@ -18,6 +18,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import SplashScreen from 'react-native-splash-screen';
 import {getVersion} from './src/api/appinfo';
 import {ErrorMessage} from './src/constant/Error';
+import RNBootSplash from 'react-native-bootsplash';
 Sentry.init({
   dsn:
     'https://d426d2cc424e4a1e88180fe4b61b629d@o449610.ingest.sentry.io/5432874',
@@ -53,7 +54,9 @@ export default class App extends React.Component {
   }
 
   render() {
+    //RNBootSplash.show();
     if (this.state.isLoading == true) {
+      RNBootSplash.hide({fade: true}); // fade
       return (
         <NavigationContainer>
           {this.state.isSignedIn ? (

@@ -1,7 +1,7 @@
 package th.in.pleum.itpsruplus;
-
+import android.os.Bundle; // <- add this necessary import
 import com.facebook.react.ReactActivity;
-
+import com.zoontek.rnbootsplash.RNBootSplash;
 public class MainActivity extends ReactActivity {
 
   /**
@@ -12,4 +12,10 @@ public class MainActivity extends ReactActivity {
   protected String getMainComponentName() {
     return "itpsruplus";
   }
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    RNBootSplash.init(R.drawable.bootsplash, MainActivity.this); // <- display the generated bootsplash.xml drawable over our MainActivity
+  }
+  
 }

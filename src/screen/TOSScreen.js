@@ -50,7 +50,7 @@ export default class TOSScreen extends Component {
             onPress={() => {
               this.props.navigation.navigate('Register');
             }}
-            disabled={true}
+            //   disabled={true}
           />
         </View>
       </SafeAreaView>

@@ -29,6 +29,8 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import AsyncStorage from '@react-native-community/async-storage';
+
 async function getCalendar() {
   const calendar = await axios.get(TEST_API_URL.calendar);
   return calendar.data;
@@ -39,17 +41,22 @@ let studentGrade = [];
 class MainUserScreen extends React.Component {
   state = {
     studentCalendar: [],
+    studentName: '0',
+    studentID: '0',
   };
   async componentDidMount() {
-    this.setState({studentCalendar: await getActivityCalender()});
+    this.setState({
+      studentCalendar: await getActivityCalender(),
+    });
     console.log(this.state.studentCalendar);
+    await AsyncStorage.getItem('studentName');
   }
   render() {
     return (
       <>
         <SafeAreaView style={tailwind('h-full')}>
-          <HeaderBar />
-          <Text style={styles.MenuText}>กิจกรรมที่กำลังมาถึง</Text>
+          <HeaderBar props={this.state.studentName} />
+          <Text style={styles.MenuText}>Upcoming Event</Text>
           <View style={{}}>
             <FlatList
               horizontal={true}
@@ -89,11 +96,19 @@ class MainUserScreen extends React.Component {
           <View>
             <Text style={styles.MenuText}> เมนูอำนวยความสะดวก </Text>
           </View>
-          <TouchableOpacity>
+          <Text style={{textAlign: 'center'}}> Menu will available soon!</Text>
+          {/* <TouchableOpacity
+            style={{
+              borderLeftColor: 'orange',
+              borderLeftWidth: 10,
+              borderRadius: 10,
+              width: wp('100%'),
+              margin: 10,
+            }}>
             <ImageBackground
               style={{
-                width: 300,
-                height: 100,
+                width: wp('70%'),
+                height: Dimensions.get('window').height / 6.5,
                 alignSelf: 'center',
               }}
               imageStyle={{
@@ -110,7 +125,7 @@ class MainUserScreen extends React.Component {
                 test
               </Text>
             </ImageBackground>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </SafeAreaView>
       </>
     );

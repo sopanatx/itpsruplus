@@ -19,6 +19,17 @@ const screenOptionStyle = {
   headerTintColor: 'white',
   headerBackTitle: 'Back',
   headerShown: false,
+  options: {
+    animations: {
+      showModal: {
+        alpha: {
+          from: 0,
+          to: 1,
+          duration: 300,
+        },
+      },
+    },
+  },
 };
 
 const Tab = createBottomTabNavigator();
@@ -79,6 +90,50 @@ const ContactStackNavigator = () => {
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="TOS" component={TOSScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
+      <Stack.Screen name="Main">
+        {() => (
+          <Tab.Navigator
+            automaticallyAdjustContentInsets={false}
+            tabBarOptions={{
+              activeTintColor: 'orange',
+              style: {
+                borderTopEndRadius: 15,
+                borderTopStartRadius: 15,
+              },
+            }}>
+            <Tab.Screen
+              name="Home"
+              component={MainUserScreen}
+              options={{
+                tabBarLabel: 'หน้าหลัก',
+                tabBarIcon: ({color, size}) => (
+                  <Ionicons name="home-outline" color={color} size={size} />
+                ),
+              }}
+            />
+            <Tab.Screen
+              name="Time"
+              component={TimeTableScreen}
+              options={{
+                tabBarLabel: 'ตารางเรียน',
+                tabBarIcon: ({color, size}) => (
+                  <Ionicons name="calendar-outline" color={color} size={size} />
+                ),
+              }}
+            />
+            <Tab.Screen
+              name="Record"
+              component={StudentRecordScreen}
+              options={{
+                tabBarLabel: 'ผลการเรียน',
+                tabBarIcon: ({color, size}) => (
+                  <Ionicons name="receipt-outline" color={color} size={size} />
+                ),
+              }}
+            />
+          </Tab.Navigator>
+        )}
+      </Stack.Screen>
     </Stack.Navigator>
   );
 };
