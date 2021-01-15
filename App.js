@@ -19,6 +19,7 @@ import SplashScreen from 'react-native-splash-screen';
 import {getVersion} from './src/api/appinfo';
 import {ErrorMessage} from './src/constant/Error';
 import RNBootSplash from 'react-native-bootsplash';
+import NetInfo from '@react-native-community/netinfo';
 Sentry.init({
   dsn:
     'https://d426d2cc424e4a1e88180fe4b61b629d@o449610.ingest.sentry.io/5432874',
@@ -35,10 +36,24 @@ export default class App extends React.Component {
     this.state = {isLoading: true};
   }
   async componentDidMount() {
+    const getConnection = await NetInfo.fetch();
+    NetInfo.fetch().then((state) => {
+      if (!state.isConnected) {
+        Alert.alert(
+          ErrorMessage.TITLE_API_ERROR,
+          ErrorMessage.APP_CONNECTION_FAILED,
+        );
+        RNBootSplash.show();
+      }
+      console.log('Connection type', state.type);
+      console.log('Is connected?', state.isConnected);
+    });
+
     const response = await getVersion();
     //console.log(response.json());
     if (!response.ok) {
       Alert.alert(ErrorMessage.TITLE_API_ERROR, ErrorMessage.APP_SERVER_ERROR);
+      RNBootSplash.show();
     }
 
     const token = await AsyncStorage.getItem('token');
