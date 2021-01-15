@@ -29,6 +29,7 @@
     "axios": "^0.20.0",
     "expo-linear-gradient": "^8.3.1",
     "formik": "^2.2.5",
+    "jail-monkey": "^2.3.3",
     "jwt-decode": "^3.0.0",
     "popup-ui": "^1.2.2",
     "react": "16.13.1",

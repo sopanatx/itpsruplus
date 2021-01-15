@@ -5063,6 +5063,11 @@ istanbul-reports@^3.0.2:
     html-escaper "^2.0.0"
     istanbul-lib-report "^3.0.0"
 
+jail-monkey@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/jail-monkey/-/jail-monkey-2.3.3.tgz#0595ecc8e5c8aa1bad7d48b30dc930a32ea82671"
+  integrity sha512-c2mP3qESC4YKLnEA01enB8w01FLJ7EDjp9xTCajCuUDyJu8mrAmol63RdD8E5oJ2l0SI27Sn9HmrymFAnOcm9w==
+
 javascript-obfuscator@^0.13.0:
   version "0.13.0"
   resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-0.13.0.tgz#a6dadad98a602f9e0917ab42ec9f6e3f6def1da8"

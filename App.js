@@ -1,25 +1,19 @@
 import React from 'react';
-import {View, Text, Alert, AppRegistry} from 'react-native';
-import messaging from '@react-native-firebase/messaging';
-import analytics from '@react-native-firebase/analytics';
+import {Alert} from 'react-native';
 import {ContactStackNavigator, MainStackNavigator} from './src/navigator';
 import {
   getUniqueId,
   getManufacturer,
   getDeviceName,
 } from 'react-native-device-info';
-import RNLocation from 'react-native-location';
 import * as Sentry from '@sentry/react-native';
-import firestore from '@react-native-firebase/firestore';
 import {NavigationContainer} from '@react-navigation/native';
-import BottomTabNavigator from './src/TabNavigator';
-import BottomNavigator from './src/Navigation/ButtomNavigator';
 import AsyncStorage from '@react-native-community/async-storage';
-import SplashScreen from 'react-native-splash-screen';
 import {getVersion} from './src/api/appinfo';
 import {ErrorMessage} from './src/constant/Error';
 import RNBootSplash from 'react-native-bootsplash';
 import NetInfo from '@react-native-community/netinfo';
+import JailMonkey from 'jail-monkey';
 Sentry.init({
   dsn:
     'https://d426d2cc424e4a1e88180fe4b61b629d@o449610.ingest.sentry.io/5432874',
@@ -49,6 +43,32 @@ export default class App extends React.Component {
       console.log('Is connected?', state.isConnected);
     });
 
+    const isRooted = await JailMonkey.isJailBroken();
+    const isHooked = await JailMonkey.hookDetected();
+
+    if (isRooted) {
+      const alert = () => {
+        Alert.alert(
+          ErrorMessage.TITLE_LOGIN_ERROR,
+          ErrorMessage.APP_ROOT_DETECTED,
+          [{text: 'OK', onPress: () => alert()}],
+        );
+      };
+      alert();
+      RNBootSplash.show();
+    }
+
+    if (isHooked) {
+      const alert = () => {
+        Alert.alert(
+          ErrorMessage.TITLE_LOGIN_ERROR,
+          ErrorMessage.APP_HOOK_DETECTED,
+          [{text: 'OK', onPress: () => alert()}],
+        );
+      };
+      alert();
+      RNBootSplash.show();
+    }
     const response = await getVersion();
     //console.log(response.json());
     if (!response.ok) {
