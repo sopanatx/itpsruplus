@@ -86,16 +86,10 @@ export default class TimeTableScreen extends React.Component {
                   marginVertical: 5,
                   shadowColor: '#000',
                   shadowOpacity: 0.2,
+                  borderLeftColor: '#F87E4D',
+                  borderLeftWidth: 9,
                 }}>
-                <Text style={styles.Day}>
-                  {item.subjectTime}{' '}
-                  <Badge
-                    containerStyle={{paddingHorizontal: 5}}
-                    textStyle={{fontFamily: FONT_FAMILY}}
-                    value={dayPeriodConvert(item.subjectPeriodType)}
-                    status={stylePeriodBadge(item.subjectPeriodType)}
-                  />
-                </Text>
+                <Text style={styles.Day}>{item.subjectTime} </Text>
 
                 <Text style={styles.subjectName}>
                   {item.subjectCode} {item.subjectName}
@@ -119,16 +113,10 @@ export default class TimeTableScreen extends React.Component {
                   marginVertical: 5,
                   shadowColor: '#000',
                   shadowOpacity: 0.2,
+                  borderLeftColor: '#F87E4D',
+                  borderLeftWidth: 9,
                 }}>
-                <Text style={styles.Day}>
-                  {item.subjectTime}{' '}
-                  <Badge
-                    containerStyle={{paddingHorizontal: 5}}
-                    textStyle={{fontFamily: FONT_FAMILY}}
-                    value={dayPeriodConvert(item.subjectPeriodType)}
-                    status={stylePeriodBadge(item.subjectPeriodType)}
-                  />
-                </Text>
+                <Text style={styles.Day}>{item.subjectTime} </Text>
                 <Text style={styles.subjectName}>
                   {item.subjectCode} {item.subjectName}
                 </Text>
@@ -149,16 +137,10 @@ export default class TimeTableScreen extends React.Component {
                   borderRadius: 9,
                   elevation: 4,
                   marginVertical: 5,
+                  borderLeftColor: '#F87E4D',
+                  borderLeftWidth: 9,
                 }}>
-                <Text style={styles.Day}>
-                  {item.subjectTime}{' '}
-                  <Badge
-                    containerStyle={{paddingHorizontal: 5}}
-                    textStyle={{fontFamily: FONT_FAMILY}}
-                    value={dayPeriodConvert(item.subjectPeriodType)}
-                    status={stylePeriodBadge(item.subjectPeriodType)}
-                  />
-                </Text>
+                <Text style={styles.Day}>{item.subjectTime} </Text>
                 <Text style={styles.subjectName}>
                   {item.subjectCode} {item.subjectName}
                 </Text>
@@ -181,16 +163,10 @@ export default class TimeTableScreen extends React.Component {
                   marginVertical: 5,
                   shadowColor: '#000',
                   shadowOpacity: 0.2,
+                  borderLeftColor: '#F87E4D',
+                  borderLeftWidth: 9,
                 }}>
-                <Text style={styles.Day}>
-                  {item.subjectTime}{' '}
-                  <Badge
-                    containerStyle={{paddingHorizontal: 5}}
-                    textStyle={{fontFamily: FONT_FAMILY}}
-                    value={dayPeriodConvert(item.subjectPeriodType)}
-                    status={stylePeriodBadge(item.subjectPeriodType)}
-                  />
-                </Text>
+                <Text style={styles.Day}>{item.subjectTime} </Text>
                 <Text style={styles.subjectName}>
                   {item.subjectCode} {item.subjectName}
                 </Text>
@@ -213,16 +189,10 @@ export default class TimeTableScreen extends React.Component {
                   marginVertical: 5,
                   shadowColor: '#000',
                   shadowOpacity: 0.2,
+                  borderLeftColor: '#F87E4D',
+                  borderLeftWidth: 9,
                 }}>
-                <Text style={styles.Day}>
-                  {item.subjectTime}{' '}
-                  <Badge
-                    containerStyle={{paddingHorizontal: 5}}
-                    textStyle={{fontFamily: FONT_FAMILY}}
-                    value={dayPeriodConvert(item.subjectPeriodType)}
-                    status={stylePeriodBadge(item.subjectPeriodType)}
-                  />
-                </Text>
+                <Text style={styles.Day}>{item.subjectTime} </Text>
                 <Text style={styles.subjectName}>
                   {item.subjectCode} {item.subjectName}
                 </Text>

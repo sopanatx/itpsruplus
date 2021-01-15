@@ -66,6 +66,8 @@ export default class StudentRecordScreen extends React.Component {
                     elevation: 5,
                     shadowColor: '#000',
                     shadowOpacity: 0.2,
+                    borderLeftColor: '#F8804D',
+                    borderLeftWidth: 9,
                   }}>
                   <Text style={styles.SubjectText}>
                     เทอมที่ : {item.term} {'\n'}
@@ -115,7 +117,7 @@ const styles = StyleSheet.create({
 
   SubjectText: {
     fontFamily: 'Anuphan-Bold',
-    fontSize: 13,
+    fontSize: 14,
     textAlign: 'left',
     color: 'black',
     padding: 10,
