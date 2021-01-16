@@ -21,6 +21,7 @@ import {
 import {FONT_FAMILY, FONT_BOLD, THEME} from '../styles';
 import {NativeModules} from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
+import {loginAction} from '../navigator';
 const LoginScreen = (props) => {
   const [studentId, setStudentId] = useState('');
   const [studentPassword, setPassword] = useState('');
@@ -48,8 +49,7 @@ const LoginScreen = (props) => {
         console.log('Login Success');
 
         if (Login == 201) {
-          NativeModules.DevSettings.reload();
-          setSpinner(false);
+          this.props.navigation.dispatch(logoutAction);
         }
       } catch (err) {
         setSpinner(false);

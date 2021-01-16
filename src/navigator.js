@@ -11,6 +11,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-community/async-storage';
 import TOSScreen from './screen/TOSScreen';
 import RegisterScreen from './screen/RegisterScreen';
+import {StackActions, NavigationActions} from 'react-navigation';
 const Stack = createStackNavigator();
 const screenOptionStyle = {
   headerStyle: {
@@ -32,6 +33,10 @@ const screenOptionStyle = {
   },
 };
 
+const loginAction = StackActions.reset({
+  index: 0,
+  actions: [NavigationActions.navigate({routeName: 'Main'})],
+});
 const Tab = createBottomTabNavigator();
 const MainStackNavigator = () => {
   return (

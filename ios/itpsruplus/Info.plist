@@ -38,7 +38,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Anuphan-Bold.otf</string>
@@ -86,6 +86,12 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>SukhumvitSet-Bold.ttf</string>
+		<string>SukhumvitSet-Light.ttf</string>
+		<string>SukhumvitSet-Medium.ttf</string>
+		<string>SukhumvitSet-SemiBold.ttf</string>
+		<string>SukhumvitSet-Text.ttf</string>
+		<string>SukhumvitSet-Thin.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
