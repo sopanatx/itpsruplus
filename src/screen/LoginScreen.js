@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import {authLogin} from '../api/authen';
 import {ErrorMessage} from '../constant/Error';
-import {SafeAreaContext, SafeAreaView} from 'react-native-safe-area-context';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import {PrimaryButton, RegisterButton} from '../components/button';
 import {
   widthPercentageToDP as wp,
@@ -19,103 +19,103 @@ import {
 } from 'react-native-responsive-screen';
 
 import {FONT_FAMILY, FONT_BOLD, THEME} from '../styles';
-import {NativeModules} from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
-import {loginAction} from '../navigator';
-const LoginScreen = (props) => {
-  const [studentId, setStudentId] = useState('');
-  const [studentPassword, setPassword] = useState('');
-  const [spinner, setSpinner] = useState(false);
+import {PRODUCTION_API} from '../constant/API';
+import AsyncStorage from '@react-native-community/async-storage';
+import axios from 'axios';
 
-  useEffect(() => {
-    setInterval(() => {
-      setSpinner(false);
-    }, 5000);
-  });
+export default class LoginScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      studentId: '',
+      studentPassword: '',
+      spinner: false,
+    };
+  }
+  _SignInHandler = async () => {
+    const {studentId, studentPassword} = this.state;
+    const formData = new FormData();
+    formData.append('studentId', studentId);
+    formData.append('studentPassword', studentPassword);
 
-  const doLogin = async () => {
-    //setSpinner(true);
+    this.setState({spinner: true});
 
-    if (studentId == '' || studentPassword == '') {
-      Alert.alert(
-        ErrorMessage.TITLE_LOGIN_ERROR,
-        ErrorMessage.TITLE_LOGIN_FIELD_NULL,
-        [{text: 'ตกลง'}],
-      );
-    } else {
-      setSpinner(true);
-      try {
-        const Login = await authLogin(studentId, studentPassword);
-        console.log('Login Success');
-
-        if (Login == 201) {
-          this.props.navigation.dispatch(logoutAction);
-        }
-      } catch (err) {
-        setSpinner(false);
+    const response = await axios
+      .post(`https://api.itpsru.in.th/auth/login`, {
+        studentId: studentId,
+        studentPassword: studentPassword,
+      })
+      .then((result) => {
+        this.setState({spinner: false});
+        console.log(result.data);
+        return result.data;
+      })
+      .catch((err) => {
         console.log(err);
-        Alert.alert(
-          ErrorMessage.TITLE_LOGIN_FAILED,
-          ErrorMessage.LOGIN_FAILED,
-          [{text: 'ตกลง'}],
-        );
-      }
+        return err;
+      });
+    if (!response.accessToken) {
+      await Alert.alert('Error', response.message);
+    } else {
+      await AsyncStorage.setItem('token', response.accessToken);
+      Alert.alert('แจ้งเตือน', 'เข้าสู่ระบบสำเร็จแล้ว');
+      this.props.navigation.pop('Main');
     }
   };
-
-  return (
-    <SafeAreaView style={styles.container}>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'flex-start',
-        }}>
-        <Spinner
-          visible={spinner}
-          textContent={'กำลังเข้าสู่ระบบ...'}
-          textStyle={{
-            fontSize: 24,
-          }}
-        />
-        <Image
-          style={styles.Logo}
-          source={require('../assets/images/IconPlus.png')}
-        />
-      </View>
-      <View style={styles.subView}>
-        <Text style={styles.SubTitle}>รหัสนักศึกษา</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(values) => setStudentId(values)}
-          maxLength={10}
-          keyboardType="numeric"
-        />
-        <Text style={styles.SubTitle}>รหัสผ่าน</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(values) => setPassword(values)}
-          secureTextEntry={true}
-          maxLength={255}
-        />
-        <PrimaryButton
-          style={{width: '100%'}}
-          containerStyle={{width: '80%'}}
-          title={'Sign in with ITPSRU ID'}
-          onPress={() => doLogin(studentId, studentPassword)}
-        />
-        <RegisterButton
-          style={{width: '50%'}}
-          containerStyle={{width: '50%'}}
-          title={'ลืมรหัสผ่าน'}
-          onPress={() =>
-            Alert.alert('Error!', 'ระบบยังไม่เปิดให้ช้งานในขณะนี้')
-          }
-          disabled={true}
-        />
-      </View>
-    </SafeAreaView>
-  );
-};
+  render() {
+    return (
+      <SafeAreaView style={styles.container}>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'flex-start',
+          }}>
+          <Image
+            style={styles.Logo}
+            source={require('../assets/images/IconPlus.png')}
+          />
+        </View>
+        <View style={styles.subView}>
+          <Text style={styles.SubTitle}>รหัสนักศึกษา</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={(values) => this.setState({studentId: values})}
+            maxLength={10}
+            keyboardType="numeric"
+          />
+          <Text style={styles.SubTitle}>รหัสผ่าน</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={(values) => this.setState({studentPassword: values})}
+            secureTextEntry={true}
+            maxLength={255}
+          />
+          <PrimaryButton
+            style={{width: '100%'}}
+            containerStyle={{width: '80%'}}
+            title={'Sign in with ITPSRU ID'}
+            onPress={() =>
+              this._SignInHandler(
+                this.state.studentId,
+                this.state.studentPassword,
+              )
+            }
+          />
+          <RegisterButton
+            style={{width: '50%'}}
+            containerStyle={{width: '50%'}}
+            title={'ลืมรหัสผ่าน'}
+            onPress={() =>
+              Alert.alert('Error!', 'ระบบยังไม่เปิดให้ช้งานในขณะนี้')
+            }
+            disabled={true}
+          />
+        </View>
+      </SafeAreaView>
+    );
+  }
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -169,4 +169,3 @@ const styles = StyleSheet.create({
     shadowColor: '#FFFFFF',
   },
 });
-export default LoginScreen;

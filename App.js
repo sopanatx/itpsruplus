@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert} from 'react-native';
+import {Alert, BackHandler} from 'react-native';
 import {ContactStackNavigator, MainStackNavigator} from './src/navigator';
 import {
   getUniqueId,
@@ -19,9 +19,14 @@ Sentry.init({
     'https://d426d2cc424e4a1e88180fe4b61b629d@o449610.ingest.sentry.io/5432874',
   enableNative: false,
 });
-
+const RootStackScreen = ({userToken}) => (
+  <NavigationContainer>
+    {userToken ? <MainStackNavigator /> : <ContactStackNavigator />}
+  </NavigationContainer>
+);
 export default class App extends React.Component {
   state = {
+    isLoading: true,
     isSignedIn: false,
   };
 
@@ -29,6 +34,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {isLoading: true};
   }
+
   async componentDidMount() {
     const getConnection = await NetInfo.fetch();
     NetInfo.fetch().then((state) => {
@@ -36,6 +42,7 @@ export default class App extends React.Component {
         Alert.alert(
           ErrorMessage.TITLE_API_ERROR,
           ErrorMessage.APP_CONNECTION_FAILED,
+          [{text: 'OK', onPress: () => BackHandler.exitApp()}],
         );
         RNBootSplash.show();
       }
@@ -76,12 +83,27 @@ export default class App extends React.Component {
       RNBootSplash.show();
     }
 
-    const token = await AsyncStorage.getItem('token');
-    if (token) {
-      this.setState({
-        isSignedIn: true,
+    const token = await AsyncStorage.getItem('token')
+      .then((result) => {
+        console.log({result});
+        if (result != null) {
+          this.setState({
+            isSignedIn: true,
+            isLoading: false,
+          });
+        } else {
+          this.setState({
+            isSignedIn: false,
+            isLoading: false,
+          });
+        }
+      })
+      .catch((err) => {
+        this.setState({
+          isLoading: false,
+        });
       });
-    }
+
     console.log('Authentication Token:', token);
     const DeviceID = await getUniqueId();
     const DeviceManufacturer = await getManufacturer();
@@ -89,18 +111,18 @@ export default class App extends React.Component {
   }
 
   render() {
-    //RNBootSplash.show();
-    if (this.state.isLoading == true) {
+    if (this.state.isLoading) {
+      RNBootSplash.show();
+      return null;
+    } else {
       RNBootSplash.hide({fade: true}); // fade
-      return (
-        <NavigationContainer>
-          {this.state.isSignedIn ? (
-            <MainStackNavigator />
-          ) : (
-            <ContactStackNavigator />
-          )}
-        </NavigationContainer>
-      );
+      return <RootStackScreen userToken={this.state.isSignedIn} />;
     }
+    // if (this.state.isLoading) {
+    //   RNBootSplash.hide({fade: true}); // fade
+    //
+    // } else {
+    //   RNBootSplash.show();
+    // }
   }
 }

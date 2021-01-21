@@ -82,6 +82,17 @@ const MainStackNavigator = () => {
                 ),
               }}
             />
+
+            <Tab.Screen
+              name="Setting"
+              component={SettingScreen}
+              options={{
+                tabBarLabel: 'ตั้งค่าแอพลิเคชั่น',
+                tabBarIcon: ({color, size}) => (
+                  <Ionicons name="settings-outline" color={color} size={size} />
+                ),
+              }}
+            />
           </Tab.Navigator>
         )}
       </Stack.Screen>
