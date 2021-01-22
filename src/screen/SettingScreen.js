@@ -7,6 +7,7 @@ import {
   ScrollView,
   Alert,
   ImageBackground,
+  BackHandler,
 } from 'react-native';
 import {Button} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -28,13 +29,22 @@ async function regexClassID() {
 
   return studentID;
 }
+
 export default class SettingScreen extends React.Component {
+  logout = async () => {
+    await AsyncStorage.removeItem('token');
+    Alert.alert('ออกจากระบบ', 'คุณแน่ใจแล้วว่าจะออกจากระบบ', [
+      {text: 'Cancel'},
+      {text: 'OK', onPress: () => BackHandler.exitApp()},
+    ]);
+  };
   render() {
     return (
       <SafeAreaView>
         <View>
-          <Text>การตั้งค่าแอพลิเคชั่น</Text>
-          <Text>App Version: 1.4.7</Text>
+          <Text>การตั้งค่าแอพลิเคชั่น - BETA</Text>
+          <Text>App Version: 1.8.0</Text>
+          <Button title="ออกจากระบบ" onPress={() => this.logout()} />
         </View>
       </SafeAreaView>
     );

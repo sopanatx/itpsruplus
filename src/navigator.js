@@ -21,6 +21,7 @@ const screenOptionStyle = {
   headerBackTitle: 'Back',
   headerShown: false,
   options: {
+    gesturesEnabled: false,
     animations: {
       showModal: {
         alpha: {
@@ -33,9 +34,15 @@ const screenOptionStyle = {
   },
 };
 
-const loginAction = StackActions.reset({
+const resetAction = StackActions.reset({
   index: 0,
-  actions: [NavigationActions.navigate({routeName: 'Main'})],
+  key: null, // <-- this
+  actions: [
+    NavigationActions.navigate({
+      routeName: 'Main',
+      component: MainStackNavigator,
+    }),
+  ],
 });
 const Tab = createBottomTabNavigator();
 const MainStackNavigator = () => {
@@ -56,6 +63,9 @@ const MainStackNavigator = () => {
               name="Home"
               component={MainUserScreen}
               options={{
+                headerLeft: () => {
+                  return <></>;
+                },
                 tabBarLabel: 'หน้าหลัก',
                 tabBarIcon: ({color, size}) => (
                   <Ionicons name="home-outline" color={color} size={size} />
@@ -106,51 +116,8 @@ const ContactStackNavigator = () => {
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="TOS" component={TOSScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
-      <Stack.Screen name="Main">
-        {() => (
-          <Tab.Navigator
-            automaticallyAdjustContentInsets={false}
-            tabBarOptions={{
-              activeTintColor: 'orange',
-              style: {
-                borderTopEndRadius: 15,
-                borderTopStartRadius: 15,
-              },
-            }}>
-            <Tab.Screen
-              name="Home"
-              component={MainUserScreen}
-              options={{
-                tabBarLabel: 'หน้าหลัก',
-                tabBarIcon: ({color, size}) => (
-                  <Ionicons name="home-outline" color={color} size={size} />
-                ),
-              }}
-            />
-            <Tab.Screen
-              name="Time"
-              component={TimeTableScreen}
-              options={{
-                tabBarLabel: 'ตารางเรียน',
-                tabBarIcon: ({color, size}) => (
-                  <Ionicons name="calendar-outline" color={color} size={size} />
-                ),
-              }}
-            />
-            <Tab.Screen
-              name="Record"
-              component={StudentRecordScreen}
-              options={{
-                tabBarLabel: 'ผลการเรียน',
-                tabBarIcon: ({color, size}) => (
-                  <Ionicons name="receipt-outline" color={color} size={size} />
-                ),
-              }}
-            />
-          </Tab.Navigator>
-        )}
-      </Stack.Screen>
+      <Stack.Screen name="Main" component={MainStackNavigator} />
     </Stack.Navigator>
   );
 };
-export {MainStackNavigator, ContactStackNavigator};
+export {MainStackNavigator, ContactStackNavigator, resetAction};

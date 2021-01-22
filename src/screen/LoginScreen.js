@@ -23,7 +23,8 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import {PRODUCTION_API} from '../constant/API';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
-
+import {resetAction} from '../navigator';
+import {CommonActions} from '@react-navigation/native';
 export default class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -40,27 +41,33 @@ export default class LoginScreen extends React.Component {
     formData.append('studentPassword', studentPassword);
 
     this.setState({spinner: true});
-
-    const response = await axios
-      .post(`https://api.itpsru.in.th/auth/login`, {
-        studentId: studentId,
-        studentPassword: studentPassword,
-      })
-      .then((result) => {
-        this.setState({spinner: false});
-        console.log(result.data);
-        return result.data;
-      })
-      .catch((err) => {
-        console.log(err);
-        return err;
-      });
-    if (!response.accessToken) {
-      await Alert.alert('Error', response.message);
+    if (studentId == '' || studentPassword == '') {
+      Alert.alert('Error', 'โปรดกรอกข้อมูลการเข้าสู่ระบบให้ครบถ้วน');
     } else {
-      await AsyncStorage.setItem('token', response.accessToken);
-      Alert.alert('แจ้งเตือน', 'เข้าสู่ระบบสำเร็จแล้ว');
-      this.props.navigation.pop('Main');
+      const response = await axios
+        .post(`https://api.itpsru.in.th/auth/login`, {
+          studentId: studentId,
+          studentPassword: studentPassword,
+        })
+        .then((result) => {
+          this.setState({spinner: false});
+          console.log(result.data);
+          return result.data;
+        })
+        .catch((err) => {
+          console.log(err);
+          return err;
+        });
+      if (!response.accessToken) {
+        await Alert.alert('Error', response.message);
+      } else {
+        await AsyncStorage.setItem('token', response.accessToken).then(
+          (result) => {
+            Alert.alert('แจ้งเตือน', 'เข้าสู่ระบบสำเร็จแล้ว');
+            this.props.navigation.replace('Main');
+          },
+        );
+      }
     }
   };
   render() {
