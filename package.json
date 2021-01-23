@@ -38,7 +38,7 @@
     "react-native-device-info": "^7.0.2",
     "react-native-eject": "^0.1.2",
     "react-native-elements": "^2.3.2",
-    "react-native-encrypted-storage": "^3.0.0",
+    "react-native-encrypted-storage": "^4.0.1",
     "react-native-formik": "^1.7.8",
     "react-native-gesture-handler": "^1.7.0",
     "react-native-keyboard-aware-scroll-view": "^0.9.3",

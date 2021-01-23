@@ -7480,10 +7480,10 @@ react-native-elements@^2.3.2:
     react-native-ratings "^7.2.0"
     react-native-status-bar-height "^2.5.0"
 
-react-native-encrypted-storage@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-encrypted-storage/-/react-native-encrypted-storage-3.0.0.tgz#b7bdd03ed361959fc777dab0383928954059a7ac"
-  integrity sha512-qH+8uZw10QFf1bpfKyqdku1wH9pRU6ZekDJ4KBiKcXu7RdrO/uw4zSVPu71329n142eFQQprk21JlLbSwg1Mlg==
+react-native-encrypted-storage@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-encrypted-storage/-/react-native-encrypted-storage-4.0.1.tgz#9f36344634e01343c387771923a2ca0228a07fdc"
+  integrity sha512-RQf5lbAWNYhAtUbm5eh3eT1TTdH+kL0Mjpv9zImANLnAEoH6ZtqDmIXF+m/E5uAF5d2DN3J0KMh7i2KNPG0JJQ==
 
 react-native-formik@^1.7.8:
   version "1.7.8"

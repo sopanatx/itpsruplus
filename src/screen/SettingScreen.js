@@ -21,6 +21,7 @@ import {FONT_FAMILY, FONT_BOLD} from '../styles';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import AsyncStorage from '@react-native-community/async-storage';
+import EncryptedStorage from 'react-native-encrypted-storage';
 
 async function regexClassID() {
   const jwtToken = await AsyncStorage.getItem('token');
@@ -32,7 +33,7 @@ async function regexClassID() {
 
 export default class SettingScreen extends React.Component {
   logout = async () => {
-    await AsyncStorage.removeItem('token');
+    await EncryptedStorage.removeItem('accessToken');
     Alert.alert('ออกจากระบบ', 'คุณแน่ใจแล้วว่าจะออกจากระบบ', [
       {text: 'Cancel'},
       {text: 'OK', onPress: () => BackHandler.exitApp()},

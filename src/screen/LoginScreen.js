@@ -19,12 +19,9 @@ import {
 } from 'react-native-responsive-screen';
 
 import {FONT_FAMILY, FONT_BOLD, THEME} from '../styles';
-import Spinner from 'react-native-loading-spinner-overlay';
-import {PRODUCTION_API} from '../constant/API';
-import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
-import {resetAction} from '../navigator';
-import {CommonActions} from '@react-navigation/native';
+import EncryptedStorage from 'react-native-encrypted-storage';
+import {setCredential} from '../api/authen';
 export default class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -39,9 +36,10 @@ export default class LoginScreen extends React.Component {
     const formData = new FormData();
     formData.append('studentId', studentId);
     formData.append('studentPassword', studentPassword);
-
     this.setState({spinner: true});
     if (studentId == '' || studentPassword == '') {
+      this.setState({spinner: false});
+
       Alert.alert('Error', 'โปรดกรอกข้อมูลการเข้าสู่ระบบให้ครบถ้วน');
     } else {
       const response = await axios
@@ -55,18 +53,47 @@ export default class LoginScreen extends React.Component {
           return result.data;
         })
         .catch((err) => {
-          console.log(err);
+          this.setState({spinner: false});
           return err;
         });
       if (!response.accessToken) {
-        await Alert.alert('Error', response.message);
+        this.setState({spinner: false});
+        //console.log('ERR_CODE', response.response.status);
+        switch (response.response.status) {
+          case 400:
+            await Alert.alert(
+              ErrorMessage.TITLE_LOGIN_ERROR,
+              ErrorMessage.TITLE_LOGIN_FAILED,
+            );
+            break;
+          case 401:
+            await Alert.alert(
+              ErrorMessage.TITLE_LOGIN_ERROR,
+              ErrorMessage.LOGIN_FAILED,
+            );
+            break;
+          case 404:
+            await Alert.alert(
+              ErrorMessage.TITLE_LOGIN_ERROR,
+              'ไม่มีบัญชีดังกล่าวในระบบ โปรดตรวจสอบข้อมูลของท่านอีกครั้ง',
+            );
+            break;
+          case 500:
+            await Alert.alert(
+              ErrorMessage.TITLE_LOGIN_ERROR,
+              'เซิร์ฟเวอร์แม่ข่ายไม่สามารถประมวลผลคำขอได้',
+            );
+            break;
+        }
       } else {
-        await AsyncStorage.setItem('token', response.accessToken).then(
-          (result) => {
-            Alert.alert('แจ้งเตือน', 'เข้าสู่ระบบสำเร็จแล้ว');
-            this.props.navigation.replace('Main');
-          },
-        );
+        await setCredential(response.accessToken);
+        const token = await EncryptedStorage.setItem(
+          'accessToken',
+          response.accessToken,
+        ).then((result) => {
+          Alert.alert('แจ้งเตือน', 'เข้าสู่ระบบสำเร็จแล้ว');
+          this.props.navigation.replace('Main');
+        });
       }
     }
   };
@@ -78,6 +105,7 @@ export default class LoginScreen extends React.Component {
             flex: 1,
             justifyContent: 'flex-start',
           }}>
+          {this.state.spinner ? <CustomProgressBar /> : null}
           <Image
             style={styles.Logo}
             source={require('../assets/images/IconPlus.png')}
@@ -176,3 +204,21 @@ const styles = StyleSheet.create({
     shadowColor: '#FFFFFF',
   },
 });
+const CustomProgressBar = ({visible}) => (
+  <Modal onRequestClose={() => null} visible={visible}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: '#dcdcdc',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+      <View style={{borderRadius: 10, backgroundColor: 'white', padding: 25}}>
+        <Text style={{fontSize: 20, fontWeight: '200'}}>
+          กำลังเข้าสู่ระบบ กรุณารอสักครู่...
+        </Text>
+        <ActivityIndicator size="large" color="#FFDE6A" />
+      </View>
+    </View>
+  </Modal>
+);

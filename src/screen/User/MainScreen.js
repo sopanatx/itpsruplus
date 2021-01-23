@@ -30,6 +30,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import AsyncStorage from '@react-native-community/async-storage';
+import EncryptedStorage from 'react-native-encrypted-storage';
 
 async function getCalendar() {
   const calendar = await axios.get(TEST_API_URL.calendar);
@@ -47,15 +48,16 @@ class MainUserScreen extends React.Component {
   async componentDidMount() {
     this.setState({
       studentCalendar: await getActivityCalender(),
+      studentName: await EncryptedStorage.getItem('studentName'),
     });
-    console.log(this.state.studentCalendar);
-    await AsyncStorage.getItem('studentName');
+    const {studentName} = this.state;
+    console.log({studentName});
   }
   render() {
     return (
       <>
         <SafeAreaView style={tailwind('h-full')}>
-          <HeaderBar props={this.state.studentName} />
+          <HeaderBar studentName={this.state.studentName} />
           <Text style={styles.MenuText}>Upcoming Event</Text>
           <View style={{}}>
             <FlatList

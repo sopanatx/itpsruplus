@@ -8,17 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* itpsruplusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* itpsruplusTests.m */; };
+		07081F56576A4CA4A876B157 /* SukhumvitSet-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E3CFAEFDC14F4157B6902773 /* SukhumvitSet-Bold.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		15DA8D1AC7DA40D7BB7F2423 /* SukhumvitSet-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0AEDE5A7EC3E48D5990EBA65 /* SukhumvitSet-Light.ttf */; };
 		1B7DE13949217097F3CDEC7A /* libPods-itpsruplus-itpsruplusTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F50DB28B421FCC03F6B18E /* libPods-itpsruplus-itpsruplusTests.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* itpsruplusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* itpsruplusTests.m */; };
+		31209E19281C4687B0BEB9E7 /* SukhumvitSet-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 42B532ADA2EA442A9C1817E7 /* SukhumvitSet-SemiBold.ttf */; };
+		5C88C517943A4EF5BFDED972 /* SukhumvitSet-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2418A533698943E2A7627EE1 /* SukhumvitSet-Thin.ttf */; };
 		5E09BFE07199184E5AD33FB6 /* libPods-itpsruplus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 519271FA0E1D95A7741FD135 /* libPods-itpsruplus.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		98E8A7F865967AF1D838C75C /* libPods-itpsruplus-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A2EA650E953F865C9E5E22 /* libPods-itpsruplus-tvOS.a */; };
+		B69A665496A042D2B396EA85 /* SukhumvitSet-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 187099B2BDF84F62AACFF190 /* SukhumvitSet-Medium.ttf */; };
+		C7E548BC29154692906E248E /* SukhumvitSet-Text.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB8A395B540B4E70B4245B29 /* SukhumvitSet-Text.ttf */; };
 		DB67A12FBCE408A53DE10CF0 /* libPods-itpsruplus-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B6B886447CA961D9AE7838C /* libPods-itpsruplus-tvOSTests.a */; };
 		E838FCB9259EEDA200FD61AC /* Anuphan-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 708C77A663E14789A9F4FEEE /* Anuphan-Bold.otf */; };
 		E838FCBA259EEDA200FD61AC /* Anuphan-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = BCEBAD4A0A90472ABCAED2F9 /* Anuphan-ExtraLight.otf */; };
@@ -65,12 +71,6 @@
 		E838FCE3259EEDA200FD61AC /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C02B8C13920048E38EF12049 /* Octicons.ttf */; };
 		E838FCE4259EEDA200FD61AC /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6BDDCD01B47845AA99A7C8D8 /* SimpleLineIcons.ttf */; };
 		E838FCE5259EEDA200FD61AC /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EB3F741ED9C4294A56B4011 /* Zocial.ttf */; };
-		07081F56576A4CA4A876B157 /* SukhumvitSet-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E3CFAEFDC14F4157B6902773 /* SukhumvitSet-Bold.ttf */; };
-		15DA8D1AC7DA40D7BB7F2423 /* SukhumvitSet-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0AEDE5A7EC3E48D5990EBA65 /* SukhumvitSet-Light.ttf */; };
-		B69A665496A042D2B396EA85 /* SukhumvitSet-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 187099B2BDF84F62AACFF190 /* SukhumvitSet-Medium.ttf */; };
-		31209E19281C4687B0BEB9E7 /* SukhumvitSet-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 42B532ADA2EA442A9C1817E7 /* SukhumvitSet-SemiBold.ttf */; };
-		C7E548BC29154692906E248E /* SukhumvitSet-Text.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB8A395B540B4E70B4245B29 /* SukhumvitSet-Text.ttf */; };
-		5C88C517943A4EF5BFDED972 /* SukhumvitSet-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2418A533698943E2A7627EE1 /* SukhumvitSet-Thin.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +99,7 @@
 		025620E0DF944600BC82D715 /* DBHelvethaicaX-Blk.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DBHelvethaicaX-Blk.ttf"; path = "../src/assets/fonts/DBHelvethaicaX-Blk.ttf"; sourceTree = "<group>"; };
 		066B4018B0B34517A46B92D7 /* DBHelvethaicaX-LiIt.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DBHelvethaicaX-LiIt.ttf"; path = "../src/assets/fonts/DBHelvethaicaX-LiIt.ttf"; sourceTree = "<group>"; };
 		0A80881761F14096AC7AF310 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
+		0AEDE5A7EC3E48D5990EBA65 /* SukhumvitSet-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SukhumvitSet-Light.ttf"; path = "../src/assets/fonts/SukhumvitSet-Light.ttf"; sourceTree = "<group>"; };
 		0FBE02DC911B495E8609BC02 /* DBHelvethaicaX-Med.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DBHelvethaicaX-Med.ttf"; path = "../src/assets/fonts/DBHelvethaicaX-Med.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* ITPSRU+.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ITPSRU+.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = itpsruplus/AppDelegate.h; sourceTree = "<group>"; };
@@ -107,8 +108,10 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = itpsruplus/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = itpsruplus/main.m; sourceTree = "<group>"; };
 		1831E466A14143FC9C52A15B /* Anuphan-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Anuphan-Regular.otf"; path = "../src/assets/fonts/Anuphan-Regular.otf"; sourceTree = "<group>"; };
+		187099B2BDF84F62AACFF190 /* SukhumvitSet-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SukhumvitSet-Medium.ttf"; path = "../src/assets/fonts/SukhumvitSet-Medium.ttf"; sourceTree = "<group>"; };
 		1A8E5C5859F04AEC86FBE0F5 /* DBHelvethaicaX-It.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DBHelvethaicaX-It.ttf"; path = "../src/assets/fonts/DBHelvethaicaX-It.ttf"; sourceTree = "<group>"; };
 		205BE562B6984644AA9B2592 /* DBHelvethaicaX-UlLiExt.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DBHelvethaicaX-UlLiExt.ttf"; path = "../src/assets/fonts/DBHelvethaicaX-UlLiExt.ttf"; sourceTree = "<group>"; };
+		2418A533698943E2A7627EE1 /* SukhumvitSet-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SukhumvitSet-Thin.ttf"; path = "../src/assets/fonts/SukhumvitSet-Thin.ttf"; sourceTree = "<group>"; };
 		269241EFAD1E4B74B435EEF5 /* Product Sans Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Product Sans Italic.ttf"; path = "../src/assets/fonts/Product Sans Italic.ttf"; sourceTree = "<group>"; };
 		28155BB1173D440FB0C1DC02 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* itpsruplus-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "itpsruplus-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +120,7 @@
 		34D75F7141362869B4A9E5B8 /* Pods-itpsruplus-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-itpsruplus-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-itpsruplus-tvOSTests/Pods-itpsruplus-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		3A364F63CFA84BAA8D80CECB /* RSU.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = RSU.ttf; path = ../src/assets/fonts/RSU.ttf; sourceTree = "<group>"; };
 		3EE0F895804E4F72A2B28434 /* DBHelvethaicaX-Reg.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DBHelvethaicaX-Reg.ttf"; path = "../src/assets/fonts/DBHelvethaicaX-Reg.ttf"; sourceTree = "<group>"; };
+		42B532ADA2EA442A9C1817E7 /* SukhumvitSet-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SukhumvitSet-SemiBold.ttf"; path = "../src/assets/fonts/SukhumvitSet-SemiBold.ttf"; sourceTree = "<group>"; };
 		430B9EDDB2EA4A80A7C69B85 /* DBHelvethaicaX-UlLi.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DBHelvethaicaX-UlLi.ttf"; path = "../src/assets/fonts/DBHelvethaicaX-UlLi.ttf"; sourceTree = "<group>"; };
 		4EB241224A244482AA827810 /* DBHelvethaicaX-Bd.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DBHelvethaicaX-Bd.ttf"; path = "../src/assets/fonts/DBHelvethaicaX-Bd.ttf"; sourceTree = "<group>"; };
 		5021D2F96FF270834E1C8A82 /* Pods-itpsruplus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-itpsruplus.debug.xcconfig"; path = "Target Support Files/Pods-itpsruplus/Pods-itpsruplus.debug.xcconfig"; sourceTree = "<group>"; };
@@ -159,17 +163,13 @@
 		D588782388F8483CB872A444 /* DBHelvethaicaX-MedIt.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DBHelvethaicaX-MedIt.ttf"; path = "../src/assets/fonts/DBHelvethaicaX-MedIt.ttf"; sourceTree = "<group>"; };
 		DDB5EC0A887D40A68FACE05F /* DBHelvethaicaX-BdIt.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DBHelvethaicaX-BdIt.ttf"; path = "../src/assets/fonts/DBHelvethaicaX-BdIt.ttf"; sourceTree = "<group>"; };
 		DEF95224E2EA4A5D87F8F76F /* DBHelvethaicaX-ThinIt.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DBHelvethaicaX-ThinIt.ttf"; path = "../src/assets/fonts/DBHelvethaicaX-ThinIt.ttf"; sourceTree = "<group>"; };
+		E3CFAEFDC14F4157B6902773 /* SukhumvitSet-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SukhumvitSet-Bold.ttf"; path = "../src/assets/fonts/SukhumvitSet-Bold.ttf"; sourceTree = "<group>"; };
 		E44950E3602B45AB9C06E63A /* RSU_BOLD.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = RSU_BOLD.ttf; path = ../src/assets/fonts/RSU_BOLD.ttf; sourceTree = "<group>"; };
 		E838FC62259ED48000FD61AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Users/pleumkungz/Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EB8A395B540B4E70B4245B29 /* SukhumvitSet-Text.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SukhumvitSet-Text.ttf"; path = "../src/assets/fonts/SukhumvitSet-Text.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F40E0A6015C0412BB12C8657 /* DBHelvethaicaX-UlLiIt.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DBHelvethaicaX-UlLiIt.ttf"; path = "../src/assets/fonts/DBHelvethaicaX-UlLiIt.ttf"; sourceTree = "<group>"; };
-		E3CFAEFDC14F4157B6902773 /* SukhumvitSet-Bold.ttf */ = {isa = PBXFileReference; name = "SukhumvitSet-Bold.ttf"; path = "../src/assets/fonts/SukhumvitSet-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		0AEDE5A7EC3E48D5990EBA65 /* SukhumvitSet-Light.ttf */ = {isa = PBXFileReference; name = "SukhumvitSet-Light.ttf"; path = "../src/assets/fonts/SukhumvitSet-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		187099B2BDF84F62AACFF190 /* SukhumvitSet-Medium.ttf */ = {isa = PBXFileReference; name = "SukhumvitSet-Medium.ttf"; path = "../src/assets/fonts/SukhumvitSet-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		42B532ADA2EA442A9C1817E7 /* SukhumvitSet-SemiBold.ttf */ = {isa = PBXFileReference; name = "SukhumvitSet-SemiBold.ttf"; path = "../src/assets/fonts/SukhumvitSet-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		EB8A395B540B4E70B4245B29 /* SukhumvitSet-Text.ttf */ = {isa = PBXFileReference; name = "SukhumvitSet-Text.ttf"; path = "../src/assets/fonts/SukhumvitSet-Text.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		2418A533698943E2A7627EE1 /* SukhumvitSet-Thin.ttf */ = {isa = PBXFileReference; name = "SukhumvitSet-Thin.ttf"; path = "../src/assets/fonts/SukhumvitSet-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -743,7 +743,6 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-itpsruplus/Pods-itpsruplus-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++/gRPCCertificates-Cpp.bundle",
 			);
@@ -751,7 +750,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates-Cpp.bundle",
-				"",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

@@ -14,6 +14,8 @@ import {ErrorMessage} from './src/constant/Error';
 import RNBootSplash from 'react-native-bootsplash';
 import NetInfo from '@react-native-community/netinfo';
 import JailMonkey from 'jail-monkey';
+import EncryptedStorage from 'react-native-encrypted-storage';
+
 Sentry.init({
   dsn:
     'https://d426d2cc424e4a1e88180fe4b61b629d@o449610.ingest.sentry.io/5432874',
@@ -83,7 +85,7 @@ export default class App extends React.Component {
       RNBootSplash.show();
     }
 
-    const token = await AsyncStorage.getItem('token')
+    const token = await EncryptedStorage.getItem('accessToken')
       .then((result) => {
         console.log({result});
         if (result != null) {

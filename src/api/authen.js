@@ -6,18 +6,9 @@ export default axios.create({
   baseURL: 'https://api.itpsru.in.th',
 });
 
-export const authLogin = async (studentId, studentPassword) => {
-  const resp = await axios.post(`https://api.itpsru.in.th/auth/login`, {
-    studentId: studentId,
-    studentPassword: studentPassword,
-  });
-  console.log('Authentication:', resp.data);
-  console.log('Login Status:', resp.status);
-  const result = resp.status;
-  const value = await AsyncStorage.setItem('token', resp.data.accessToken);
-  const decodeJWT = await jwt_decode(resp.data.accessToken);
-  await AsyncStorage.setItem('studentID', decodeJWT.username);
-  await AsyncStorage.setItem('studentName', decodeJWT.studentName);
-
-  return result;
+export const setCredential = async (accessToken) => {
+  const decodeJWT = await jwt_decode(accessToken);
+  console.log({decodeJWT});
+  await EncryptedStorage.setItem('studentID', decodeJWT.username);
+  await EncryptedStorage.setItem('studentName', decodeJWT.studentName);
 };

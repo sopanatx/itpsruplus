@@ -13,7 +13,7 @@ import {THEME} from '../styles';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import AsyncStorage from '@react-native-community/async-storage';
 
-export const HeaderBar = () => {
+export const HeaderBar = ({studentName}) => {
   return (
     <View style={styles.header}>
       <ImageBackground
@@ -27,7 +27,15 @@ export const HeaderBar = () => {
             flex: 1,
             resizeMode: 'cover',
             justifyContent: 'center',
-          }}></View>
+          }}>
+          <Text
+            style={{
+              margin: 20,
+              color: 'white',
+            }}>
+            สวัสดีครับ, : {studentName}
+          </Text>
+        </View>
       </ImageBackground>
     </View>
   );

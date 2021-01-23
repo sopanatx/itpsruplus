@@ -72,7 +72,7 @@ export default class TOSScreen extends Component {
           Alert.alert(
             ErrorMessage.TITLE_REGISTER_FAILED,
             ErrorMessage.APP_REGISTER_BAD_REQ +
-              `\nStatus_Code:${doPost.status}`,
+              `\nStatus_Code: ${doPost.status}`,
           );
           break;
         case 200:
@@ -86,6 +86,12 @@ export default class TOSScreen extends Component {
             'ลงทะเบียนสำเร็จ',
             'โปรดลงชื่อเข้าใช้ด้วยข้อมูลที่ท่านลงทะเบียนอีกครั้ง' +
               `\nStatus_Code: ${doPost.status}`,
+            [
+              {
+                text: 'OK',
+                onPress: () => this.props.navigation.replace('Login'),
+              },
+            ],
           );
           break;
       }
@@ -121,6 +127,7 @@ export default class TOSScreen extends Component {
               value={this.state.firstName}
               underlineColorAndroid="transparent"
               autoCapitalize="none"
+              maxLength={255}
             />
             <TextInput
               style={styles.input}
@@ -130,6 +137,17 @@ export default class TOSScreen extends Component {
               value={this.state.lastName}
               underlineColorAndroid="transparent"
               autoCapitalize="none"
+              maxLength={255}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="ชื่อเล่น"
+              placeholderTextColor="#aaaaaa"
+              onChangeText={(text) => this.setState({nickname: text})}
+              value={this.state.nickname}
+              underlineColorAndroid="transparent"
+              autoCapitalize="none"
+              maxLength={20}
             />
             <TextInput
               style={styles.input}
@@ -140,6 +158,7 @@ export default class TOSScreen extends Component {
               underlineColorAndroid="transparent"
               autoCapitalize="none"
               keyboardType="numeric"
+              maxLength={10}
             />
             <Picker
               selectedValue={this.state.educateGroup}
@@ -158,6 +177,7 @@ export default class TOSScreen extends Component {
               value={this.state.studentEmail}
               underlineColorAndroid="transparent"
               autoCapitalize="none"
+              maxLength={100}
             />
             <TextInput
               style={styles.passwordinput}
@@ -168,6 +188,7 @@ export default class TOSScreen extends Component {
               value={this.state.studentPassword}
               underlineColorAndroid="transparent"
               autoCapitalize="none"
+              maxLength={255}
             />
             <TextInput
               maxLength={10}
