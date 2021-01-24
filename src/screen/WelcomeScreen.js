@@ -39,7 +39,7 @@ export default class WelcomeScreen extends Component {
               <Text
                 style={
                   (tailwind('text-blue-800 font-semibold'),
-                  {textAlign: 'center', fontFamily: FONT_BOLD})
+                  {textAlign: 'center', fontFamily: FONT_BOLD, fontSize: 10})
                 }>
                 นักศึกษาที่ยังไม่เคยลงทะเบียน
                 {'\n'}

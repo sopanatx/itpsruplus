@@ -157,14 +157,14 @@ const styles = StyleSheet.create({
     height: 468,
   },
   HeaderText: {
-    fontFamily: 'DBHelvethaicaX-Bd',
+    fontFamily: 'SukhumvitTadmai-Bold',
     fontSize: RFPercentage(5),
     textAlign: 'center',
     marginVertical: -60,
   },
   MenuText: {
-    fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: RFPercentage(3),
+    fontFamily: 'SukhumvitTadmai-Bold',
+    fontSize: RFPercentage(2),
     padding: 20,
     textAlign: 'left',
   },
@@ -175,8 +175,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   CalendarDateText: {
-    fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: 20,
+    fontFamily: 'SukhumvitTadmai-Bold',
+    fontSize: 14,
     color: 'white',
     textAlign: 'left',
     marginTop: 3,
@@ -194,10 +194,10 @@ const styles = StyleSheet.create({
     position: 'absolute', //Here is the trick
     bottom: 0, //Here is the trick
     paddingRight: 5,
-    fontSize: 15,
+    fontSize: 10,
   },
   StudentName: {
-    fontFamily: 'DBHelvethaicaX-Bd',
+    fontFamily: 'SukhumvitTadmai-Bold',
     fontSize: 30,
     textAlign: 'center',
     color: 'white',
@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   MajorName: {
-    fontFamily: 'DBHelvethaicaX-Bd',
+    fontFamily: 'SukhumvitTadmai-Bold',
     fontSize: 20,
     textAlign: 'center',
     color: 'white',

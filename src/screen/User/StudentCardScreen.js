@@ -40,11 +40,11 @@ export default class StudentCardScreen extends React.Component {
               backgroundColor: '#ec5858',
             }}
             title="ชำระค่าเทอม"
-            titleStyle={{fontFamily: FONT_FAMILY, fontSize: 24}}
+            titleStyle={{fontFamily: FONT_FAMILY, fontSize: 18}}
             onPress={() =>
               Alert.alert(
                 'ยืนยันการเชื่อมต่อข้อมูล',
-                'ระบบชำระค่าเทอมจำเป็นต้องอ้างอิงข้อมูลจากทะเบียนของมหาวิทยาลัย ท่านจำเป็นต้องกรอกข้อมูล {"\n"} รหัสนักศึกษา และ รหัสผ่านที่่ใช้กับมหาวิทยาลัย',
+                'เนื่องจากมีการล็อกอินบนอุปกรณ์ใหม่ ท่านจำเป็นต้องกรอกข้อมูลส่วนตัวใหม่อีกครั้ง \nเนื่องจากระบบชำระค่าเทอมจำเป็นต้องอ้างอิงข้อมูลจากทะเบียนของมหาวิทยาลัย \nท่านจำเป็นต้องกรอกข้อมูล \nรหัสนักศึกษา และ รหัสผ่านที่่ใช้กับมหาวิทยาลัย.',
               )
             }
           />
@@ -56,7 +56,7 @@ export default class StudentCardScreen extends React.Component {
               marginTop: 10,
             }}
             title="สแกน QR Code"
-            titleStyle={{fontFamily: FONT_FAMILY, fontSize: 24}}
+            titleStyle={{fontFamily: FONT_FAMILY, fontSize: 18}}
             disabled={true}
           />
           <Button
@@ -67,7 +67,7 @@ export default class StudentCardScreen extends React.Component {
               marginTop: 10,
             }}
             title="บัตรนักศึกษา"
-            titleStyle={{fontFamily: FONT_FAMILY, fontSize: 24}}
+            titleStyle={{fontFamily: FONT_FAMILY, fontSize: 18}}
           />
         </View>
       </SafeAreaView>

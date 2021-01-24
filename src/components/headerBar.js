@@ -28,12 +28,10 @@ export const HeaderBar = ({studentName}) => {
             resizeMode: 'cover',
             justifyContent: 'center',
           }}>
-          <Text
-            style={{
-              margin: 20,
-              color: 'white',
-            }}>
-            สวัสดีครับ, : {studentName}
+          <Text style={styles.TitleText}>สวัสดี, คุณ {studentName}</Text>
+          <Text style={styles.MajorName}>6 1 1 2 2 2 4 0 6 0</Text>
+          <Text style={styles.MajorName}>
+            สาขาวิชา เทคโนโลยีสารสนเทศ กลุ่ม 2
           </Text>
         </View>
       </ImageBackground>
@@ -61,16 +59,16 @@ const styles = StyleSheet.create({
   },
   HeadImage: {width: 424, height: 165, shadowOpacity: 10},
   TitleText: {
-    fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: 28,
+    fontFamily: 'SukhumvitTadmai-Bold',
+    fontSize: 18,
     textAlign: 'left',
     color: '#f2f2f2',
     paddingVertical: 10,
     paddingHorizontal: 30,
   },
   MajorName: {
-    fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: 18,
+    fontFamily: 'SukhumvitTadmai-Bold',
+    fontSize: 14,
     textAlign: 'left',
     color: '#f2f2f2',
     paddingHorizontal: 30,

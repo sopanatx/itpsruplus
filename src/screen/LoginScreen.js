@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   SubTitle: {
-    fontSize: 22,
+    fontSize: 14,
     marginTop: 25,
     fontFamily: FONT_FAMILY,
     textAlign: 'center',
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 18,
     fontFamily: FONT_FAMILY,
-    fontSize: 20,
+    fontSize: 14,
     textAlign: 'center',
   },
   card: {
@@ -214,10 +214,10 @@ const CustomProgressBar = ({visible}) => (
         justifyContent: 'center',
       }}>
       <View style={{borderRadius: 10, backgroundColor: 'white', padding: 25}}>
+        <ActivityIndicator size="large" color="#FFDE6A" />
         <Text style={{fontSize: 20, fontWeight: '200'}}>
           กำลังเข้าสู่ระบบ กรุณารอสักครู่...
         </Text>
-        <ActivityIndicator size="large" color="#FFDE6A" />
       </View>
     </View>
   </Modal>
