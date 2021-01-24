@@ -24,9 +24,10 @@ import {HeaderBar} from '../../components/headerBar';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import AsyncStorage from '@react-native-community/async-storage';
+import EncryptedStorage from 'react-native-encrypted-storage';
 
 async function regexClassID() {
-  const jwtToken = await AsyncStorage.getItem('token');
+  const jwtToken = await EncryptedStorage.getItem('accessToken');
   const decodeJWT = await jwt_decode(jwtToken);
   const studentID = decodeJWT.username;
 
@@ -108,19 +109,19 @@ const styles = StyleSheet.create({
   },
   HeadImage: {width: 424, height: 165, shadowOpacity: 10},
   HeaderText: {
-    fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: 30,
+    fontFamily: FONT_BOLD,
+    fontSize: 24,
     textAlign: 'center',
     margin: 20,
     color: '#4C4C4C',
   },
 
   SubjectText: {
-    fontFamily: 'Anuphan-Bold',
+    fontFamily: FONT_BOLD,
     fontSize: 14,
     textAlign: 'left',
     color: 'black',
-    padding: 10,
+    padding: 9,
     // paddingVertical: 10,
   },
   SubjectValue: {

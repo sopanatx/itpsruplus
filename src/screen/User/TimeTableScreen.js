@@ -24,10 +24,10 @@ import jwt_decode from 'jwt-decode';
 import AsyncStorage from '@react-native-community/async-storage';
 import {dayPeriodConvert, stylePeriodBadge} from '../../utils/misc';
 import {HeaderBar} from '../../components/headerBar';
-
+import EncryptedStorage from 'react-native-encrypted-storage';
 let monday = [];
 async function regexClassID() {
-  const jwtToken = await AsyncStorage.getItem('token');
+  const jwtToken = await EncryptedStorage.getItem('accessToken');
   const decodeJWT = await jwt_decode(jwtToken);
   const studentID = decodeJWT.username;
   const shortStudentYear = studentID.substr(0, 2);
@@ -229,22 +229,22 @@ const styles = StyleSheet.create({
   },
   HeadImage: {width: 424, height: 165, shadowOpacity: 10},
   HeaderText: {
-    fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: 24,
+    fontFamily: 'SukhumvitTadmai-Bold',
+    fontSize: 18,
     textAlign: 'left',
     // margin: 20,
     padding: 20,
   },
   classRoom: {
-    fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: 16,
+    fontFamily: 'SukhumvitTadmai-Bold',
+    fontSize: 10,
     paddingHorizontal: 10,
     margin: 2,
     color: 'white',
   },
   subjectName: {
-    fontFamily: 'DBHelvethaicaX-Reg',
-    fontSize: 18,
+    fontFamily: 'SukhumvitTadmai-Text',
+    fontSize: 14,
     paddingHorizontal: 10,
     margin: 2,
   },
@@ -255,8 +255,8 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   Day: {
-    fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: 20,
+    fontFamily: FONT_BOLD,
+    fontSize: 14,
     paddingHorizontal: 10,
     margin: 2,
     color: 'black',
