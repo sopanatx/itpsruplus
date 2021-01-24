@@ -38,7 +38,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Anuphan-Bold.otf</string>
@@ -92,6 +92,9 @@
 		<string>SukhumvitSet-SemiBold.ttf</string>
 		<string>SukhumvitSet-Text.ttf</string>
 		<string>SukhumvitSet-Thin.ttf</string>
+		<string>SukhumvitTadmai-Bold.ttf</string>
+		<string>SukhumvitTadmai-SemiBold.ttf</string>
+		<string>SukhumvitTadmai-Text.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

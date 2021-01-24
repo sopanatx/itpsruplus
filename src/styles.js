@@ -44,7 +44,7 @@ export const THEME = {
   DEFAULT_LIGHT_MODE2: '#ffffff',
 };
 
-export const FONT_FAMILY = 'DBHelvethaicaX-Reg';
-export const FONT_BOLD = 'DBHelvethaicaX-Bd';
+export const FONT_FAMILY = 'SukhumvitTadmai-Text';
+export const FONT_BOLD = 'SukhumvitTadmai-Bold';
 export const FONT_MED = 'DBHelvethaicaX-Med';
 export const FONT_THIN = 'DBHelvethaicaX-Thin';

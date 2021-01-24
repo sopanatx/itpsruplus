@@ -14,6 +14,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		15DA8D1AC7DA40D7BB7F2423 /* SukhumvitSet-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0AEDE5A7EC3E48D5990EBA65 /* SukhumvitSet-Light.ttf */; };
 		1B7DE13949217097F3CDEC7A /* libPods-itpsruplus-itpsruplusTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F50DB28B421FCC03F6B18E /* libPods-itpsruplus-itpsruplusTests.a */; };
+		1CEC67D0A9944C3EA76F299A /* SukhumvitTadmai-Text.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F73B90DA23F4F6E86684D38 /* SukhumvitTadmai-Text.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -22,17 +23,11 @@
 		5C88C517943A4EF5BFDED972 /* SukhumvitSet-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2418A533698943E2A7627EE1 /* SukhumvitSet-Thin.ttf */; };
 		5E09BFE07199184E5AD33FB6 /* libPods-itpsruplus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 519271FA0E1D95A7741FD135 /* libPods-itpsruplus.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		91B3BF1D6BDC421F9975617D /* SukhumvitTadmai-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0071B5DC389A41DF9802446D /* SukhumvitTadmai-SemiBold.ttf */; };
 		98E8A7F865967AF1D838C75C /* libPods-itpsruplus-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A2EA650E953F865C9E5E22 /* libPods-itpsruplus-tvOS.a */; };
 		B69A665496A042D2B396EA85 /* SukhumvitSet-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 187099B2BDF84F62AACFF190 /* SukhumvitSet-Medium.ttf */; };
 		C7E548BC29154692906E248E /* SukhumvitSet-Text.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB8A395B540B4E70B4245B29 /* SukhumvitSet-Text.ttf */; };
 		DB67A12FBCE408A53DE10CF0 /* libPods-itpsruplus-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B6B886447CA961D9AE7838C /* libPods-itpsruplus-tvOSTests.a */; };
-		E838FCB9259EEDA200FD61AC /* Anuphan-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 708C77A663E14789A9F4FEEE /* Anuphan-Bold.otf */; };
-		E838FCBA259EEDA200FD61AC /* Anuphan-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = BCEBAD4A0A90472ABCAED2F9 /* Anuphan-ExtraLight.otf */; };
-		E838FCBB259EEDA200FD61AC /* Anuphan-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 91248F65F57C4A05BCB8E1DB /* Anuphan-Light.otf */; };
-		E838FCBC259EEDA200FD61AC /* Anuphan-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5F5D252AB49341D2A735ABBC /* Anuphan-Medium.otf */; };
-		E838FCBD259EEDA200FD61AC /* Anuphan-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1831E466A14143FC9C52A15B /* Anuphan-Regular.otf */; };
-		E838FCBE259EEDA200FD61AC /* Anuphan-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BF6703176EC04F4085486F16 /* Anuphan-SemiBold.otf */; };
-		E838FCBF259EEDA200FD61AC /* Anuphan-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8520EBEC7E5241FC9ED78284 /* Anuphan-Thin.otf */; };
 		E838FCC0259EEDA200FD61AC /* DBHelvethaicaX-Bd.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4EB241224A244482AA827810 /* DBHelvethaicaX-Bd.ttf */; };
 		E838FCC1259EEDA200FD61AC /* DBHelvethaicaX-BdIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDB5EC0A887D40A68FACE05F /* DBHelvethaicaX-BdIt.ttf */; };
 		E838FCC2259EEDA200FD61AC /* DBHelvethaicaX-Blk.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 025620E0DF944600BC82D715 /* DBHelvethaicaX-Blk.ttf */; };
@@ -48,13 +43,6 @@
 		E838FCCC259EEDA200FD61AC /* DBHelvethaicaX-UlLi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 430B9EDDB2EA4A80A7C69B85 /* DBHelvethaicaX-UlLi.ttf */; };
 		E838FCCD259EEDA200FD61AC /* DBHelvethaicaX-UlLiExt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 205BE562B6984644AA9B2592 /* DBHelvethaicaX-UlLiExt.ttf */; };
 		E838FCCE259EEDA200FD61AC /* DBHelvethaicaX-UlLiIt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F40E0A6015C0412BB12C8657 /* DBHelvethaicaX-UlLiIt.ttf */; };
-		E838FCCF259EEDA200FD61AC /* Product Sans Bold Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76A150CF9DA04F3C964DC282 /* Product Sans Bold Italic.ttf */; };
-		E838FCD0259EEDA200FD61AC /* Product Sans Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 269241EFAD1E4B74B435EEF5 /* Product Sans Italic.ttf */; };
-		E838FCD1259EEDA200FD61AC /* ProductSansBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C3EE4126A6E45E8A750A6DE /* ProductSansBold.ttf */; };
-		E838FCD2259EEDA200FD61AC /* ProductSansRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 97AB0C81D5B741F2ACD6CDD3 /* ProductSansRegular.ttf */; };
-		E838FCD3259EEDA200FD61AC /* RSU_BOLD.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E44950E3602B45AB9C06E63A /* RSU_BOLD.ttf */; };
-		E838FCD4259EEDA200FD61AC /* RSU_light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C75B8D54CCF24084BE97E81A /* RSU_light.ttf */; };
-		E838FCD5259EEDA200FD61AC /* RSU.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A364F63CFA84BAA8D80CECB /* RSU.ttf */; };
 		E838FCD6259EEDA200FD61AC /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4B313CCA7784799BFBC05F1 /* AntDesign.ttf */; };
 		E838FCD7259EEDA200FD61AC /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30F2F12C6BAF4CC288872316 /* Entypo.ttf */; };
 		E838FCD8259EEDA200FD61AC /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0DC121A0E554EFE981F3226 /* EvilIcons.ttf */; };
@@ -71,6 +59,7 @@
 		E838FCE3259EEDA200FD61AC /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C02B8C13920048E38EF12049 /* Octicons.ttf */; };
 		E838FCE4259EEDA200FD61AC /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6BDDCD01B47845AA99A7C8D8 /* SimpleLineIcons.ttf */; };
 		E838FCE5259EEDA200FD61AC /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EB3F741ED9C4294A56B4011 /* Zocial.ttf */; };
+		F37037341676446F80C6E4E9 /* SukhumvitTadmai-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CF8C708F83D457B8DA152B0 /* SukhumvitTadmai-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +80,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0071B5DC389A41DF9802446D /* SukhumvitTadmai-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SukhumvitTadmai-SemiBold.ttf"; path = "../src/assets/fonts/SukhumvitTadmai-SemiBold.ttf"; sourceTree = "<group>"; };
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* itpsruplusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = itpsruplusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -131,6 +121,7 @@
 		5EB3F741ED9C4294A56B4011 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		5F5D252AB49341D2A735ABBC /* Anuphan-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Anuphan-Medium.otf"; path = "../src/assets/fonts/Anuphan-Medium.otf"; sourceTree = "<group>"; };
 		6BDDCD01B47845AA99A7C8D8 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		6CF8C708F83D457B8DA152B0 /* SukhumvitTadmai-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SukhumvitTadmai-Bold.ttf"; path = "../src/assets/fonts/SukhumvitTadmai-Bold.ttf"; sourceTree = "<group>"; };
 		708C77A663E14789A9F4FEEE /* Anuphan-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Anuphan-Bold.otf"; path = "../src/assets/fonts/Anuphan-Bold.otf"; sourceTree = "<group>"; };
 		70F3B98457E94835B6D887E4 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		76339B9EEA1E4E428DE16A9B /* DBHelvethaicaX-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DBHelvethaicaX-Thin.ttf"; path = "../src/assets/fonts/DBHelvethaicaX-Thin.ttf"; sourceTree = "<group>"; };
@@ -147,6 +138,7 @@
 		9A8006855C8844B0BA524E6F /* DBHelvethaicaX-BlkIt.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DBHelvethaicaX-BlkIt.ttf"; path = "../src/assets/fonts/DBHelvethaicaX-BlkIt.ttf"; sourceTree = "<group>"; };
 		9AA18ACBEF144EBF98499D98 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		9F450F352B0840F1A000878B /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
+		9F73B90DA23F4F6E86684D38 /* SukhumvitTadmai-Text.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SukhumvitTadmai-Text.ttf"; path = "../src/assets/fonts/SukhumvitTadmai-Text.ttf"; sourceTree = "<group>"; };
 		A009429D160700353A6D0C18 /* Pods-itpsruplus-itpsruplusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-itpsruplus-itpsruplusTests.debug.xcconfig"; path = "Target Support Files/Pods-itpsruplus-itpsruplusTests/Pods-itpsruplus-itpsruplusTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A4B313CCA7784799BFBC05F1 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		A6840D0A1F5848959275CD0A /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
@@ -321,6 +313,9 @@
 				42B532ADA2EA442A9C1817E7 /* SukhumvitSet-SemiBold.ttf */,
 				EB8A395B540B4E70B4245B29 /* SukhumvitSet-Text.ttf */,
 				2418A533698943E2A7627EE1 /* SukhumvitSet-Thin.ttf */,
+				6CF8C708F83D457B8DA152B0 /* SukhumvitTadmai-Bold.ttf */,
+				0071B5DC389A41DF9802446D /* SukhumvitTadmai-SemiBold.ttf */,
+				9F73B90DA23F4F6E86684D38 /* SukhumvitTadmai-Text.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -507,13 +502,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E838FCB9259EEDA200FD61AC /* Anuphan-Bold.otf in Resources */,
-				E838FCBA259EEDA200FD61AC /* Anuphan-ExtraLight.otf in Resources */,
-				E838FCBB259EEDA200FD61AC /* Anuphan-Light.otf in Resources */,
-				E838FCBC259EEDA200FD61AC /* Anuphan-Medium.otf in Resources */,
-				E838FCBD259EEDA200FD61AC /* Anuphan-Regular.otf in Resources */,
-				E838FCBE259EEDA200FD61AC /* Anuphan-SemiBold.otf in Resources */,
-				E838FCBF259EEDA200FD61AC /* Anuphan-Thin.otf in Resources */,
 				E838FCC0259EEDA200FD61AC /* DBHelvethaicaX-Bd.ttf in Resources */,
 				E838FCC1259EEDA200FD61AC /* DBHelvethaicaX-BdIt.ttf in Resources */,
 				E838FCC2259EEDA200FD61AC /* DBHelvethaicaX-Blk.ttf in Resources */,
@@ -529,13 +517,6 @@
 				E838FCCC259EEDA200FD61AC /* DBHelvethaicaX-UlLi.ttf in Resources */,
 				E838FCCD259EEDA200FD61AC /* DBHelvethaicaX-UlLiExt.ttf in Resources */,
 				E838FCCE259EEDA200FD61AC /* DBHelvethaicaX-UlLiIt.ttf in Resources */,
-				E838FCCF259EEDA200FD61AC /* Product Sans Bold Italic.ttf in Resources */,
-				E838FCD0259EEDA200FD61AC /* Product Sans Italic.ttf in Resources */,
-				E838FCD1259EEDA200FD61AC /* ProductSansBold.ttf in Resources */,
-				E838FCD2259EEDA200FD61AC /* ProductSansRegular.ttf in Resources */,
-				E838FCD3259EEDA200FD61AC /* RSU_BOLD.ttf in Resources */,
-				E838FCD4259EEDA200FD61AC /* RSU_light.ttf in Resources */,
-				E838FCD5259EEDA200FD61AC /* RSU.ttf in Resources */,
 				E838FCD6259EEDA200FD61AC /* AntDesign.ttf in Resources */,
 				E838FCD7259EEDA200FD61AC /* Entypo.ttf in Resources */,
 				E838FCD8259EEDA200FD61AC /* EvilIcons.ttf in Resources */,
@@ -560,6 +541,9 @@
 				31209E19281C4687B0BEB9E7 /* SukhumvitSet-SemiBold.ttf in Resources */,
 				C7E548BC29154692906E248E /* SukhumvitSet-Text.ttf in Resources */,
 				5C88C517943A4EF5BFDED972 /* SukhumvitSet-Thin.ttf in Resources */,
+				F37037341676446F80C6E4E9 /* SukhumvitTadmai-Bold.ttf in Resources */,
+				91B3BF1D6BDC421F9975617D /* SukhumvitTadmai-SemiBold.ttf in Resources */,
+				1CEC67D0A9944C3EA76F299A /* SukhumvitTadmai-Text.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

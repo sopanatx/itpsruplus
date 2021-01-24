@@ -12,6 +12,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import TOSScreen from './screen/TOSScreen';
 import RegisterScreen from './screen/RegisterScreen';
 import {StackActions, NavigationActions} from 'react-navigation';
+import StudentCardScreen from './screen/User/StudentCardScreen';
 const Stack = createStackNavigator();
 const screenOptionStyle = {
   headerStyle: {
@@ -58,6 +59,9 @@ const MainStackNavigator = () => {
                 borderTopEndRadius: 15,
                 borderTopStartRadius: 15,
               },
+              labelStyle: {
+                fontFamily: 'SukhumvitTadmai-Bold',
+              },
             }}>
             <Tab.Screen
               name="Home"
@@ -73,20 +77,34 @@ const MainStackNavigator = () => {
               }}
             />
             <Tab.Screen
-              name="Time"
+              name="MyQR"
               component={TimeTableScreen}
               options={{
-                tabBarLabel: 'ตารางเรียน',
+                tabBarLabel: 'QR Code',
                 tabBarIcon: ({color, size}) => (
-                  <Ionicons name="calendar-outline" color={color} size={size} />
+                  <Ionicons name="qr-code-outline" color={color} size={size} />
                 ),
               }}
             />
             <Tab.Screen
-              name="Record"
+              name="MyProfile"
+              component={StudentCardScreen}
+              options={{
+                tabBarLabel: 'My Profile',
+                tabBarIcon: ({color, size}) => (
+                  <Ionicons
+                    name="person-circle-outline"
+                    color={color}
+                    size={size}
+                  />
+                ),
+              }}
+            />
+            <Tab.Screen
+              name="News"
               component={StudentRecordScreen}
               options={{
-                tabBarLabel: 'ผลการเรียน',
+                tabBarLabel: 'ข่าวสาร',
                 tabBarIcon: ({color, size}) => (
                   <Ionicons name="receipt-outline" color={color} size={size} />
                 ),
