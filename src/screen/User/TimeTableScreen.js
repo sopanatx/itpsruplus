@@ -78,7 +78,7 @@ export default class TimeTableScreen extends React.Component {
               <View
                 style={{
                   width: wp('90%'),
-                  height: 120,
+                  height: hp('15%'),
                   backgroundColor: '#f2f2f2',
                   alignSelf: 'center',
                   borderRadius: 9,
@@ -105,7 +105,7 @@ export default class TimeTableScreen extends React.Component {
               <View
                 style={{
                   width: wp('90%'),
-                  height: 120,
+                  height: hp('15%'),
                   backgroundColor: '#f2f2f2',
                   alignSelf: 'center',
                   borderRadius: 9,
@@ -131,7 +131,7 @@ export default class TimeTableScreen extends React.Component {
               <View
                 style={{
                   width: wp('90%'),
-                  height: 120,
+                  height: hp('15%'),
                   backgroundColor: '#f2f2f2',
                   alignSelf: 'center',
                   borderRadius: 9,
@@ -155,7 +155,7 @@ export default class TimeTableScreen extends React.Component {
               <View
                 style={{
                   width: wp('90%'),
-                  height: 120,
+                  height: hp('15%'),
                   backgroundColor: '#f2f2f2',
                   alignSelf: 'center',
                   borderRadius: 9,
@@ -181,7 +181,7 @@ export default class TimeTableScreen extends React.Component {
               <View
                 style={{
                   width: wp('90%'),
-                  height: 120,
+                  height: hp('15%'),
                   backgroundColor: '#f2f2f2',
                   alignSelf: 'center',
                   borderRadius: 9,

@@ -12,8 +12,21 @@ import LinearGradient from 'react-native-linear-gradient';
 import {THEME} from '../styles';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import AsyncStorage from '@react-native-community/async-storage';
-
-export const HeaderBar = ({studentName}) => {
+import EncryptedStorage from 'react-native-encrypted-storage';
+import SkeletonContent from 'react-native-skeleton-content-nonexpo';
+export const HeaderBar = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [username, setUsername] = useState('');
+  const [studentID, setStudentID] = useState('');
+  useEffect(() => {
+    EncryptedStorage.getItem('studentName').then((result) => {
+      setUsername(result);
+    });
+    EncryptedStorage.getItem('studentID').then((result) => {
+      setStudentID(result);
+      setIsLoading(false);
+    });
+  }, []);
   return (
     <View style={styles.header}>
       <ImageBackground
@@ -28,11 +41,42 @@ export const HeaderBar = ({studentName}) => {
             resizeMode: 'cover',
             justifyContent: 'center',
           }}>
-          <Text style={styles.TitleText}>สวัสดี, คุณ {studentName}</Text>
-          <Text style={styles.MajorName}>6 1 1 2 2 2 4 0 6 0</Text>
-          <Text style={styles.MajorName}>
-            สาขาวิชา เทคโนโลยีสารสนเทศ กลุ่ม 2
-          </Text>
+          <SkeletonContent
+            containerStyle={{
+              width: 300,
+              paddingVertical: 10,
+              paddingHorizontal: 30,
+            }}
+            boneColor="#ffffff"
+            animationDirection="horizontalRight"
+            layout={[
+              // long line
+              {
+                width: 220,
+                height: 20,
+                marginBottom: 10,
+                backgroundColor: 'rgba(255, 255, 255, 0.72)',
+              },
+              // short line
+              {
+                width: 180,
+                height: 20,
+                backgroundColor: 'rgba(255, 255, 255, 0.72)',
+                marginBottom: 10,
+              },
+              {
+                width: 180,
+                height: 20,
+                backgroundColor: 'rgba(255, 255, 255, 0.72)',
+                marginBottom: 10,
+              },
+              // ...
+            ]}
+            isLoading={isLoading}>
+            <Text style={styles.TitleText}>สวัสดี, คุณ {username}</Text>
+            <Text style={styles.MajorName}>{studentID}</Text>
+            <Text style={styles.MajorName}>สาขาวิชา เทคโนโลยีสารสนเทศ</Text>
+          </SkeletonContent>
         </View>
       </ImageBackground>
     </View>
@@ -63,15 +107,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'left',
     color: '#f2f2f2',
-    paddingVertical: 10,
-    paddingHorizontal: 30,
   },
   MajorName: {
     fontFamily: 'SukhumvitTadmai-Bold',
     fontSize: 14,
     textAlign: 'left',
     color: '#f2f2f2',
-    paddingHorizontal: 30,
   },
   image: {
     flex: 1,

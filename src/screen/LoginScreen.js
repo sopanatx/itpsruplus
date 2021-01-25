@@ -75,7 +75,7 @@ export default class LoginScreen extends React.Component {
           case 404:
             await Alert.alert(
               ErrorMessage.TITLE_LOGIN_ERROR,
-              'ไม่มีบัญชีดังกล่าวในระบบ โปรดตรวจสอบข้อมูลของท่านอีกครั้ง',
+              ErrorMessage.LOGIN_ACCOUNT_DONOT_EXIST,
             );
             break;
           case 500:
@@ -215,7 +215,8 @@ const CustomProgressBar = ({visible}) => (
       }}>
       <View style={{borderRadius: 10, backgroundColor: 'white', padding: 25}}>
         <ActivityIndicator size="large" color="#FFDE6A" />
-        <Text style={{fontSize: 20, fontWeight: '200'}}>
+        <Text
+          style={{fontSize: 18, fontWeight: '300', fontFamily: FONT_FAMILY}}>
           กำลังเข้าสู่ระบบ กรุณารอสักครู่...
         </Text>
       </View>

@@ -70,7 +70,7 @@ const MainStackNavigator = () => {
                 headerLeft: () => {
                   return <></>;
                 },
-                tabBarLabel: 'หน้าหลัก',
+                tabBarLabel: 'Main',
                 tabBarIcon: ({color, size}) => (
                   <Ionicons name="home-outline" color={color} size={size} />
                 ),
@@ -80,9 +80,9 @@ const MainStackNavigator = () => {
               name="MyQR"
               component={TimeTableScreen}
               options={{
-                tabBarLabel: 'QR Code',
+                tabBarLabel: 'Class',
                 tabBarIcon: ({color, size}) => (
-                  <Ionicons name="qr-code-outline" color={color} size={size} />
+                  <Ionicons name="alarm-outline" color={color} size={size} />
                 ),
               }}
             />
@@ -104,9 +104,9 @@ const MainStackNavigator = () => {
               name="News"
               component={StudentRecordScreen}
               options={{
-                tabBarLabel: 'ข่าวสาร',
+                tabBarLabel: 'Grade',
                 tabBarIcon: ({color, size}) => (
-                  <Ionicons name="receipt-outline" color={color} size={size} />
+                  <Ionicons name="star-outline" color={color} size={size} />
                 ),
               }}
             />
