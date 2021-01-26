@@ -125,8 +125,8 @@ const styles = StyleSheet.create({
     // paddingVertical: 10,
   },
   SubjectValue: {
-    fontFamily: 'Anuphan-Bold',
-    fontSize: 30,
+    fontFamily: FONT_BOLD,
+    fontSize: 24,
     textAlign: 'right',
     color: 'black',
     paddingRight: 10,
