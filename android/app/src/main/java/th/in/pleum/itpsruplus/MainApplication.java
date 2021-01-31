@@ -6,7 +6,6 @@ import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.oblador.vectoricons.VectorIconsPackage;
 import io.sentry.react.RNSentryPackage;
-import com.github.reactnativecommunity.location.RNLocationPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.oblador.vectoricons.VectorIconsPackage;
