@@ -17,11 +17,13 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import {normalize, Overlay} from 'react-native-elements';
 
 import {FONT_FAMILY, FONT_BOLD, THEME} from '../styles';
 import axios from 'axios';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import {setCredential} from '../api/authen';
+
 export default class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -205,21 +207,12 @@ const styles = StyleSheet.create({
   },
 });
 const CustomProgressBar = ({visible}) => (
-  <Modal onRequestClose={() => null} visible={visible}>
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: '#dcdcdc',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
-      <View style={{borderRadius: 10, backgroundColor: 'white', padding: 25}}>
-        <ActivityIndicator size="large" color="#FFDE6A" />
-        <Text
-          style={{fontSize: 18, fontWeight: '300', fontFamily: FONT_FAMILY}}>
-          กำลังเข้าสู่ระบบ กรุณารอสักครู่...
-        </Text>
-      </View>
+  <Overlay isVisible={visible}>
+    <View style={{borderRadius: 10, backgroundColor: 'white', padding: 25}}>
+      <ActivityIndicator size="large" color="#FFDE6A" />
+      <Text style={{fontSize: 18, fontWeight: '300', fontFamily: FONT_FAMILY}}>
+        กำลังเข้าสู่ระบบ กรุณารอสักครู่...
+      </Text>
     </View>
-  </Modal>
+  </Overlay>
 );

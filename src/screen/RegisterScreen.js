@@ -8,11 +8,13 @@ import {
   SafeAreaView,
   ScrollView,
   Alert,
+  Modal,
   StatusBar,
   TextInput,
+  ActivityIndicator,
 } from 'react-native';
 import {FONT_FAMILY, FONT_BOLD, THEME, COLORS} from '../styles';
-import {normalize} from 'react-native-elements';
+import {normalize, Overlay} from 'react-native-elements';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Formik} from 'formik';
 import {Picker} from '@react-native-picker/picker';
@@ -32,82 +34,155 @@ export default class TOSScreen extends Component {
     studentEmail: '',
     studentPassword: '',
     nickname: '',
-    educateGroup: '',
+    educateGroup: 1,
     admissionYear: '',
     phoneNumber: '',
     spinner: false,
+    isDisabledButtton: false,
   };
 
-  componentDidMount() {
-    setInterval(() => {
-      this.setState({
-        spinner: false,
-      });
-    }, 10000);
-  }
-  render() {
-    const register = async () => {
-      console.log(this.state.educateGroup);
-      this.setState({spinner: true});
-      const doPost = await fetch('https://api.itpsru.in.th/auth/register', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          studentId: this.state.studentId,
-          studentFirstName: this.state.firstName,
-          studentLastName: this.state.lastName,
-          studentEmail: this.state.studentEmail,
-          studentPassword: this.state.studentPassword,
-          nickname: this.state.nickname,
-          educateGroup: this.state.educateGroup,
-          admissionYear: parseStudentId(this.state.studentId),
-          phoneNumber: this.state.phoneNumber,
-        }),
-      });
-      switch (doPost.status) {
-        case 400:
-          Alert.alert(
-            ErrorMessage.TITLE_REGISTER_FAILED,
-            ErrorMessage.APP_REGISTER_BAD_REQ +
-              `\nStatus_Code: ${doPost.status}`,
-          );
-          break;
-        case 200:
-          this.props.navigation.navigate('Home');
-          this.setState({spinner: false});
-          break;
-        case 201:
-          // this.props.navigation.navigate('Home');
-          this.setState({spinner: false});
-          Alert.alert(
-            'ลงทะเบียนสำเร็จ',
-            'โปรดลงชื่อเข้าใช้ด้วยข้อมูลที่ท่านลงทะเบียนอีกครั้ง' +
-              `\nStatus_Code: ${doPost.status}`,
-            [
-              {
-                text: 'OK',
-                onPress: () => this.props.navigation.replace('Login'),
-              },
-            ],
-          );
-          break;
-      }
+  componentDidMount() {}
+  _RegisterHandler = async () => {
+    const {
+      firstName,
+      lastName,
+      studentId,
+      studentEmail,
+      studentPassword,
+      nickname,
+      educateGroup,
+      admissionYear,
+      phoneNumber,
+    } = this.state;
 
-      console.log(doPost.status);
+    this.setState({
+      spinner: true,
+      isDisabledButtton: true,
+    });
+
+    const doPost = await fetch('https://api.itpsru.in.th/auth/register', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        studentId: studentId,
+        studentFirstName: firstName,
+        studentLastName: lastName,
+        studentEmail: studentEmail,
+        studentPassword: studentPassword,
+        nickname: nickname,
+        educateGroup: educateGroup,
+        admissionYear: parseStudentId(this.state.studentId),
+        phoneNumber: phoneNumber,
+      }),
+    });
+
+    console.log(doPost.status);
+    if (doPost.status) {
+      this.setState({spinner: false});
       console.log(await doPost.json());
-    };
+    }
+
+    switch (doPost.status) {
+      case 400:
+        Alert.alert(
+          ErrorMessage.TITLE_REGISTER_FAILED,
+          ErrorMessage.APP_REGISTER_BAD_REQ,
+        );
+        this.setState({isDisabledButtton: false});
+        break;
+      case 200:
+        this.props.navigation.navigate('Home');
+        this.setState({spinner: false});
+        this.setState({isDisabledButtton: false});
+        break;
+      case 201:
+        // this.props.navigation.navigate('Home');
+        this.setState({spinner: false});
+        Alert.alert(
+          'ลงทะเบียนสำเร็จ',
+          'โปรดลงชื่อเข้าใช้ด้วยข้อมูลที่ท่านลงทะเบียนอีกครั้ง',
+          [
+            {
+              text: 'OK',
+              onPress: () => this.props.navigation.replace('Login'),
+            },
+          ],
+        );
+        break;
+      case 409:
+        this.setState({spinner: false});
+        Alert.alert('ลงทะเบียนไม่สำเร็จ', ErrorMessage.APP_CONFLICT_USER, [
+          {
+            text: 'OK',
+            onPress: () => this.setState({isDisabledButtton: false}),
+          },
+        ]);
+    }
+  };
+  render() {
+    // const register = async () => {
+    //   console.log(this.state.educateGroup);
+    //   this.setState({spinner: true});
+    //   const doPost = await fetch('https://api.itpsru.in.th/auth/register', {
+    //     method: 'POST',
+    //     headers: {
+    //       Accept: 'application/json',
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //       studentId: this.state.studentId,
+    //       studentFirstName: this.state.firstName,
+    //       studentLastName: this.state.lastName,
+    //       studentEmail: this.state.studentEmail,
+    //       studentPassword: this.state.studentPassword,
+    //       nickname: this.state.nickname,
+    //       educateGroup: this.state.educateGroup,
+    //       admissionYear: parseStudentId(this.state.studentId),
+    //       phoneNumber: this.state.phoneNumber,
+    //     }),
+    //   });
+    //   switch (doPost.status) {
+    //     case 400:
+    //       Alert.alert(
+    //         ErrorMessage.TITLE_REGISTER_FAILED,
+    //         ErrorMessage.APP_REGISTER_BAD_REQ +
+    //           `\nStatus_Code: ${doPost.status}`,
+    //       );
+    //       break;
+    //     case 200:
+    //       this.props.navigation.navigate('Home');
+    //       this.setState({spinner: false});
+    //       break;
+    //     case 201:
+    //       // this.props.navigation.navigate('Home');
+    //       this.setState({spinner: false});
+    //       Alert.alert(
+    //         'ลงทะเบียนสำเร็จ',
+    //         'โปรดลงชื่อเข้าใช้ด้วยข้อมูลที่ท่านลงทะเบียนอีกครั้ง' +
+    //           `\nStatus_Code: ${doPost.status}`,
+    //         [
+    //           {
+    //             text: 'OK',
+    //             onPress: () => this.props.navigation.replace('Login'),
+    //           },
+    //         ],
+    //       );
+    //       break;
+    //   }
+
+    //   console.log(doPost.status);
+    //   console.log(await doPost.json());
+    // };
 
     return (
       <SafeAreaView style={styles.container}>
         <StatusBar backgroundColor={'white'} barStyle="dark-content" />
-        <Spinner
-          visible={this.state.spinner}
-          textContent={'กำลังดำเนินการ...'}
-          textStyle={styles.spinnerTextStyle}
-        />
+
+        {this.state.spinner ? <CustomProgressBar /> : null}
+
         <View style={styles.header}>
           <Text style={styles.title}> ลงทะเบียน </Text>
           <Text style={styles.subtitle}>
@@ -206,8 +281,8 @@ export default class TOSScreen extends Component {
               title="ยอมรับ"
               style={{width: '100%'}}
               containerStyle={{width: '100%'}}
-              onPress={() => register()}
-              //   disabled={true}
+              onPress={() => this._RegisterHandler()}
+              disabled={this.state.isDisabledButtton}
             />
           </KeyboardAwareScrollView>
         </View>
@@ -229,7 +304,7 @@ const styles = StyleSheet.create({
 
   title: {
     fontFamily: FONT_BOLD,
-    fontSize: 32,
+    fontSize: 24,
     alignItems: 'center',
     color: COLORS.BLACK_1,
     textAlign: 'center',
@@ -237,9 +312,9 @@ const styles = StyleSheet.create({
 
   subtitle: {
     fontFamily: FONT_FAMILY,
-    fontSize: 18,
+    fontSize: 14,
     lineHeight: 24,
-    alignItems: 'center',
+    // alignItems: 'center',
     color: COLORS.SECONDARY_DIM,
     textAlign: 'center',
   },
@@ -280,7 +355,7 @@ const styles = StyleSheet.create({
     marginRight: 30,
     paddingLeft: 16,
     fontFamily: FONT_FAMILY,
-    fontSize: 20,
+    fontSize: 14,
     //   elevation: 10,
   },
   passwordinput: {
@@ -324,3 +399,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
+const CustomProgressBar = ({visible}) => (
+  <Overlay isVisible={visible}>
+    <View style={{borderRadius: 10, backgroundColor: 'white', padding: 25}}>
+      <ActivityIndicator size="large" color="#FFDE6A" />
+      <Text style={{fontSize: 18, fontWeight: '300', fontFamily: FONT_FAMILY}}>
+        กำลังประมวลผล กรุณารอสักครู่...
+      </Text>
+    </View>
+  </Overlay>
+);

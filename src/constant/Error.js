@@ -16,6 +16,8 @@ export const ErrorMessage = {
   APP_MAINTENANCE: 'กำลังปิดปรับปรุง Server',
   APP_RESTRICT_USER: 'ผู้ใช้นี้ ไม่ได้รับอนุญาตให้ใช้งานแอพลิเคชั่นนี้',
   APP_LOGIN_BANNED: 'บัญชีนี้ถูกระงับใช้งาน',
+  APP_CONFLICT_USER:
+    'บัญชีนี้มีอยู่แล้วบนฐานข้อมูล โปรดตรวจสอบข้อมูลของท่านอีกครั้ง',
   APP_RESTRICT_STUDENTID:
     'รหัสนักศึกษานี้ ไม่ได้รับอนุญาตให้ใช้งานแอพลิเคชั่นนี้',
   APP_SERVER_ERROR:

@@ -13,6 +13,12 @@
           "package_name": "th.in.pleum.itpsruplus"
         }
       },
+      "client_info": {
+        "mobilesdk_app_id": "1:100704612108:android:61b0aaf96212ff71e1e329",
+        "android_client_info": {
+          "package_name": "th.in.pleum.itpsruplus.debug"
+        }
+      },
       "oauth_client": [
         {
           "client_id": "100704612108-epntibme8pual5e7bd4uig9555bvrju1.apps.googleusercontent.com",

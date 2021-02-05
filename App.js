@@ -30,6 +30,7 @@ export default class App extends React.Component {
   state = {
     isLoading: true,
     isSignedIn: false,
+    isError: false,
   };
 
   constructor(props) {
@@ -39,14 +40,19 @@ export default class App extends React.Component {
 
   async componentDidMount() {
     const getConnection = await NetInfo.fetch();
+
     NetInfo.fetch().then((state) => {
       if (!state.isConnected) {
+        RNBootSplash.show();
+        this.setState({
+          isLoading: true,
+          isError: true,
+        });
         Alert.alert(
           ErrorMessage.TITLE_API_ERROR,
           ErrorMessage.APP_CONNECTION_FAILED,
           [{text: 'OK', onPress: () => BackHandler.exitApp()}],
         );
-        RNBootSplash.show();
       }
       console.log('Connection type', state.type);
       console.log('Is connected?', state.isConnected);
@@ -82,31 +88,31 @@ export default class App extends React.Component {
     //console.log(response.json());
     if (!response.ok) {
       Alert.alert(ErrorMessage.TITLE_API_ERROR, ErrorMessage.APP_SERVER_ERROR);
+
       RNBootSplash.show();
+    } else {
+      const token = await EncryptedStorage.getItem('accessToken')
+        .then((result) => {
+          console.log({result});
+          if (result != null) {
+            this.setState({
+              isSignedIn: true,
+              isLoading: false,
+            });
+          } else {
+            this.setState({
+              isSignedIn: false,
+              isLoading: false,
+            });
+          }
+        })
+        .catch((err) => {
+          this.setState({
+            isLoading: false,
+          });
+        });
     }
 
-    const token = await EncryptedStorage.getItem('accessToken')
-      .then((result) => {
-        console.log({result});
-        if (result != null) {
-          this.setState({
-            isSignedIn: true,
-            isLoading: false,
-          });
-        } else {
-          this.setState({
-            isSignedIn: false,
-            isLoading: false,
-          });
-        }
-      })
-      .catch((err) => {
-        this.setState({
-          isLoading: false,
-        });
-      });
-
-    console.log('Authentication Token:', token);
     const DeviceID = await getUniqueId();
     const DeviceManufacturer = await getManufacturer();
     const DeviceName = await getDeviceName();

@@ -128,12 +128,12 @@ android {
     }
 
     defaultConfig {
-        applicationId "th.in.pleum.itpsruplus"
+        applicationId "th.in.pleum"
         minSdkVersion rootProject.ext.minSdkVersion
 
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 86
-        versionName '1.8.6'
+        versionCode 91
+        versionName '1.9.1'
         multiDexEnabled true
     }
     splits {
@@ -146,19 +146,18 @@ android {
     }
     signingConfigs {
         debug {
-            storeFile file('/Users/pleumkungz/Documents/itpsru-plus.jks')
-            storePassword 'fe702dd1a4e84666af72e069d7bbabd4'
-            keyAlias 'QHNvcGFuYXR4L2l0cHNydS1wbHVz'
-            keyPassword '705a307ea5f64adfa2a029d8ce1f6fe7'
+            
         }
         release {
         }
     }
     buildTypes {
         debug {
+            applicationIdSuffix ".itpsruplus.debug"
             signingConfig signingConfigs.debug
         }
         release {
+            applicationIdSuffix ".itpsruplus"
             zipAlignEnabled true
             minifyEnabled true
             shrinkResources true
