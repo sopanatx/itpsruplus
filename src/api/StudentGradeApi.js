@@ -39,7 +39,7 @@ async function getMyGrade(studentID, semester) {
 
 async function getAllGrade(studentId, semester) {
   const response = await getAvailableSemester(studentId);
-  console.log('SEMESTER', response);
+  console.log('semesterList', response);
   console.log(studentId, semester);
   try {
     const grade = await axios.post(
@@ -51,8 +51,8 @@ async function getAllGrade(studentId, semester) {
         },
       },
     );
-    console.log(grade.data.semesterInfo.availableSemesterData);
-    return grade.data.data;
+    console.log(grade.data);
+    return grade.data;
   } catch (e) {
     return {
       error: 500,

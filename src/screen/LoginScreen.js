@@ -107,7 +107,9 @@ export default class LoginScreen extends React.Component {
             flex: 1,
             justifyContent: 'flex-start',
           }}>
-          {this.state.spinner ? <CustomProgressBar /> : null}
+          {this.state.spinner ? (
+            <CustomProgressBar isVisible={this.state.spinner} />
+          ) : null}
           <Image
             style={styles.Logo}
             source={require('../assets/images/IconPlus.png')}

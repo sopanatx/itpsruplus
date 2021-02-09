@@ -9,7 +9,7 @@ import {
   ImageBackground,
   FlatList,
 } from 'react-native';
-import {Button, Badge} from 'react-native-elements';
+import {Button, Badge, Avatar} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
 import tailwind from 'tailwind-rn';
@@ -25,19 +25,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {dayPeriodConvert, stylePeriodBadge} from '../../utils/misc';
 import {HeaderBar} from '../../components/headerBar';
 import EncryptedStorage from 'react-native-encrypted-storage';
-let monday = [];
-async function regexClassID() {
-  const jwtToken = await EncryptedStorage.getItem('accessToken');
-  const decodeJWT = await jwt_decode(jwtToken);
-  const studentID = decodeJWT.username;
-  const shortStudentYear = studentID.substr(0, 2);
-  const currentTerm = 2;
-  const currentYear = 2563;
-  const studentGroup = 2;
-  console.log({shortStudentYear});
-  //TST1_12563_61132m11702
-  return `TST1_${currentTerm}${currentYear}_${shortStudentYear}132m1170${studentGroup}`;
-}
+import {PUBLIC_API, PUBLIC_API_KEY} from '../../constant/API';
+
 export default class TimeTableScreen extends React.Component {
   state = {
     monday: [],
@@ -49,10 +38,13 @@ export default class TimeTableScreen extends React.Component {
   };
 
   async componentDidMount() {
-    this.setState({classID: await regexClassID()});
-    const subject = await axios.get(
-      `https://app.itpsru.in.th/api/class/${this.state.classID}`,
-    );
+    const jwtToken = await EncryptedStorage.getItem('accessToken');
+    const subject = await axios.get(`https://api.itpsru.in.th/student/class`, {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    });
+    console.log(subject.data);
     this.setState({
       monday: subject.data.monday,
       tuesday: subject.data.tuesday,

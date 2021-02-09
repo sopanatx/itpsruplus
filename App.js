@@ -21,6 +21,7 @@ Sentry.init({
     'https://d426d2cc424e4a1e88180fe4b61b629d@o449610.ingest.sentry.io/5432874',
   enableNative: false,
 });
+
 const RootStackScreen = ({userToken}) => (
   <NavigationContainer>
     {userToken ? <MainStackNavigator /> : <ContactStackNavigator />}

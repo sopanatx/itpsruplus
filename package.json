@@ -31,6 +31,7 @@
     "formik": "^2.2.5",
     "jail-monkey": "^2.3.3",
     "jwt-decode": "^3.0.0",
+    "moment": "^2.29.1",
     "popup-ui": "^1.2.2",
     "react": "16.13.1",
     "react-native": "0.63.4",

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, StyleSheet, Text, Alert} from 'react-native';
-import {Button} from 'react-native-elements';
+import {Button, Avatar} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
 import {HeaderBar} from '../../components/headerBar';
@@ -9,66 +9,75 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {FONT_FAMILY, FONT_BOLD} from '../../styles';
-import axios from 'axios';
-import jwt_decode from 'jwt-decode';
-import AsyncStorage from '@react-native-community/async-storage';
+import EncryptedStorage from 'react-native-encrypted-storage';
 
-async function regexClassID() {
-  const jwtToken = await AsyncStorage.getItem('token');
-  const decodeJWT = await jwt_decode(jwtToken);
-  const studentID = decodeJWT.username;
+import tailwind from 'tailwind-rn';
 
-  return studentID;
-}
 export default class StudentCardScreen extends React.Component {
   state = {
     studentID: '',
+    prorile: '',
+    studentId: '',
+    studentName: '',
   };
   async componentDidMount() {
-    this.setState({studentID: await regexClassID()});
+    const accessToken = await EncryptedStorage.getItem('accessToken');
+
+    const studentName = await EncryptedStorage.getItem('studentName');
+    const studentId = await EncryptedStorage.getItem('studentID');
+    const getUser = await fetch('https://api.itpsru.in.th/user/find', {
+      method: 'GET',
+      headers: new Headers({
+        Authorization: `Bearer ${accessToken}`,
+      }),
+    });
+    const userInfo = await getUser.json();
+
+    console.log(userInfo.getAccountInfo.AccountInfo.profileImageUrl);
+    this.setState({
+      studentName: studentName,
+      studentId: studentId,
+      profile: userInfo.getAccountInfo.AccountInfo.profileImageUrl,
+    });
   }
   render() {
     return (
-      <SafeAreaView>
+      <SafeAreaView style={styles.container}>
         <HeaderBar />
 
         <View style={{alignItems: 'center', margin: 50}}>
-          <Button
-            buttonStyle={{
-              width: wp('70%'),
-              height: 70,
-              backgroundColor: '#ec5858',
+          <Avatar
+            size="xlarge"
+            rounded
+            source={{
+              uri: this.state.profile,
             }}
-            title="ชำระค่าเทอม"
-            titleStyle={{fontFamily: FONT_FAMILY, fontSize: 18}}
-            onPress={() =>
-              Alert.alert(
-                'ยืนยันการเชื่อมต่อข้อมูล',
-                'เนื่องจากมีการล็อกอินบนอุปกรณ์ใหม่ ท่านจำเป็นต้องกรอกข้อมูลส่วนตัวใหม่อีกครั้ง \nเนื่องจากระบบชำระค่าเทอมจำเป็นต้องอ้างอิงข้อมูลจากทะเบียนของมหาวิทยาลัย \nท่านจำเป็นต้องกรอกข้อมูล \nรหัสนักศึกษา และ รหัสผ่านที่่ใช้กับมหาวิทยาลัย.',
-              )
-            }
           />
-          <Button
-            buttonStyle={{
-              width: wp('70%'),
-              height: 70,
-              backgroundColor: '#fd8c04',
-              marginTop: 10,
-            }}
-            title="สแกน QR Code"
-            titleStyle={{fontFamily: FONT_FAMILY, fontSize: 18}}
-            disabled={true}
-          />
-          <Button
-            buttonStyle={{
-              width: wp('70%'),
-              height: 70,
-              backgroundColor: '#f5b461',
-              marginTop: 10,
-            }}
-            title="บัตรนักศึกษา"
-            titleStyle={{fontFamily: FONT_FAMILY, fontSize: 18}}
-          />
+        </View>
+
+        <Text style={styles.titleName}> {this.state.studentName} </Text>
+        <View style={tailwind('pt-2 items-center')}>
+          <View style={tailwind('bg-blue-200 px-3 py-1 rounded-full')}>
+            <Text style={tailwind('text-blue-800 font-semibold')}>
+              <Text style={styles.detailText}> {this.state.studentId} </Text>
+            </Text>
+          </View>
+        </View>
+        <View style={tailwind('pt-2 items-center')}>
+          <View style={tailwind('bg-green-200 px-3 py-1 rounded-full')}>
+            <Text style={tailwind('text-green-800 font-semibold')}>
+              <Text style={styles.detailText}>
+                คณะ : วิทยาศาสตร์และเทคโนโลยี{' '}
+              </Text>
+            </Text>
+          </View>
+        </View>
+        <View style={tailwind('pt-2 items-center')}>
+          <View style={tailwind('bg-green-200 px-3 py-1 rounded-full')}>
+            <Text style={tailwind('text-green-800 font-semibold')}>
+              <Text style={styles.detailText}> สาขา : เทคโนโลยีสารสนเทศ </Text>
+            </Text>
+          </View>
         </View>
       </SafeAreaView>
     );
@@ -81,55 +90,14 @@ const styles = StyleSheet.create({
     width: wp('100%'),
     backgroundColor: 'white',
   },
-
-  header: {
-    width: 464,
-    height: 165,
-  },
-  Logo: {
-    height: 77,
-    width: 77,
-    left: 17,
-    top: 82,
-  },
-  HeadImage: {width: 424, height: 165, shadowOpacity: 10},
-  HeaderText: {
-    fontFamily: 'DBHelvethaicaX-Bd',
-    fontSize: 30,
-    textAlign: 'center',
-    margin: 20,
-  },
-  classRoom: {
+  titleName: {
     fontFamily: FONT_BOLD,
     fontSize: 24,
-    marginHorizontal: 10,
-    margin: 2,
-    color: 'white',
-  },
-  subjectName: {
-    fontFamily: FONT_BOLD,
-    fontSize: 17,
-    marginHorizontal: 10,
-    margin: 2,
-    color: 'white',
-  },
-  subjectTeacher: {
-    fontFamily: FONT_BOLD,
-    fontSize: 16,
-    marginHorizontal: 10,
-    color: 'white',
-  },
-  Day: {
-    fontFamily: FONT_BOLD,
-    fontSize: 25,
-    marginHorizontal: 10,
-    margin: 2,
-    color: 'white',
-  },
-  DebugText: {
-    fontFamily: FONT_BOLD,
-    fontSize: 12,
     textAlign: 'center',
-    color: 'red',
+  },
+  detailText: {
+    fontFamily: FONT_BOLD,
+    fontSize: 14,
+    textAlign: 'center',
   },
 });

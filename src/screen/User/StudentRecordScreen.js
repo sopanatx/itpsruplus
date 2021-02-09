@@ -9,8 +9,9 @@ import {
   ImageBackground,
   FlatList,
   LogBox,
+  ActivityIndicator,
 } from 'react-native';
-import {Button, Card} from 'react-native-elements';
+import {Button, Card, Overlay} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
 import {getAllGrade, getAvailableSemester} from '../../api/StudentGradeApi';
@@ -26,6 +27,8 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import AsyncStorage from '@react-native-community/async-storage';
 import EncryptedStorage from 'react-native-encrypted-storage';
+import moment from 'moment';
+import {Picker} from '@react-native-picker/picker';
 
 async function regexClassID() {
   const jwtToken = await EncryptedStorage.getItem('accessToken');
@@ -38,7 +41,7 @@ async function regexClassID() {
 const _GetGradeHandler = async () => {
   const studentId = await EncryptedStorage.getItem('studentID');
   const semesterList = await getAvailableSemester(studentId);
-  console.log(semesterList.semesterCount);
+  // console.log(semesterList.semesterCount);
 
   const lastSemester = semesterList.semesterInfo.availableSemesterData;
   const gradeResponse = await getAllGrade(
@@ -50,6 +53,7 @@ const _GetGradeHandler = async () => {
     lastSemester: lastSemester[semesterList.semesterCount - 1],
   };
 };
+
 export default class StudentRecordScreen extends React.Component {
   state = {
     studentID: '',
@@ -57,18 +61,38 @@ export default class StudentRecordScreen extends React.Component {
     semesterList: [],
     lastSemester: '',
     isLoading: true,
+    timestamp: 0,
+    gpa: 0,
+    major: 0,
   };
+
   async componentDidMount() {
     const data = await _GetGradeHandler();
+
     this.setState({
-      studentGrade: data.gradeResponse,
+      studentId: data.gradeResponse.studentInfo.studentId,
+      timestamp: moment().format('DD-MM-YYYY hh:mm:ss'),
+      studentGrade: data.gradeResponse.data,
       lastSemester: data.lastSemester,
+      semesterList: data.gradeResponse.semesterInfo.availableSemesterData,
+      gpa: data.gradeResponse.TotalCalculateGrade.TotalAverageGrade,
+      major: data.gradeResponse.TotalCalculateGrade.TotalMainSubjectGrade,
       isLoading: false,
     });
 
+    // console.log('SemesterList', this.state.semesterList);
     LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
   }
   render() {
+    const ChangeSemesterView = (e) => {
+      this.setState({lastSemester: e});
+      getAllGrade(this.state.studentId, e).then((result) => {
+        console.log(result);
+        this.setState({studentGrade: []});
+
+        this.setState({studentGrade: result.data});
+      });
+    };
     return (
       <SafeAreaView>
         <HeaderBar />
@@ -76,7 +100,7 @@ export default class StudentRecordScreen extends React.Component {
         <ScrollView contentContainerStyle={{paddingBottom: 80}}>
           <View style={{alignItems: 'center', width: wp('100%')}}>
             {this.state.isLoading ? (
-              <Text> Loading...</Text>
+              <CustomProgressBar visible={this.state.isLoading} />
             ) : (
               <View>
                 <Text
@@ -88,8 +112,26 @@ export default class StudentRecordScreen extends React.Component {
                     fontSize: 14,
                   }}>
                   ข้อมูลของภาคเรียนที่ {this.state.lastSemester} {'\n'}
-                  อัพเดทเมื่อ : 03-02-2020 12:54
+                  อัพเดทเมื่อ : {this.state.timestamp}
                 </Text>
+
+                <Picker
+                  itemStyle={{fontFamily: FONT_FAMILY}}
+                  mode="dropdown"
+                  selectedValue={this.state.lastSemester}
+                  style={styles.input}
+                  onValueChange={(e) => ChangeSemesterView(e)}>
+                  {Object.keys(this.state.semesterList).map((key) => {
+                    return (
+                      <Picker.Item
+                        label={`ภาคเรียนที่: ${this.state.semesterList[key]}`}
+                        value={this.state.semesterList[key]}
+                        key={key}
+                      />
+                    );
+                  })}
+                </Picker>
+
                 <Card
                   containerStyle={{
                     borderRadius: 10,
@@ -116,7 +158,7 @@ export default class StudentRecordScreen extends React.Component {
                       fontSize: 30,
                       color: 'orange',
                     }}>
-                    3.60
+                    {this.state.gpa}
                   </Text>
                 </Card>
                 <Card
@@ -144,7 +186,7 @@ export default class StudentRecordScreen extends React.Component {
                       fontSize: 30,
                       color: 'orange',
                     }}>
-                    3.60
+                    {this.state.major}
                   </Text>
                 </Card>
                 <FlatList
@@ -230,4 +272,27 @@ const styles = StyleSheet.create({
     color: 'black',
     paddingRight: 10,
   },
+  input: {
+    height: 48,
+    borderRadius: 5,
+    overflow: 'hidden',
+    backgroundColor: 'white',
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 30,
+    marginRight: 30,
+    paddingLeft: 16,
+    fontFamily: FONT_FAMILY,
+    fontSize: 14,
+  },
 });
+const CustomProgressBar = ({visible}) => (
+  <Overlay isVisible={visible}>
+    <View style={{borderRadius: 10, backgroundColor: 'white', padding: 25}}>
+      <ActivityIndicator size="large" color="#FFDE6A" />
+      <Text style={{fontSize: 18, fontWeight: '300', fontFamily: FONT_FAMILY}}>
+        กำลังดาวน์โหลดข้อมูล กรุณารอสักครู่...
+      </Text>
+    </View>
+  </Overlay>
+);
