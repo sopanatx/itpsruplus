@@ -115,7 +115,7 @@ const MainStackNavigator = () => {
               name="Setting"
               component={SettingScreen}
               options={{
-                tabBarLabel: 'ตั้งค่าแอพลิเคชั่น',
+                tabBarLabel: 'ตั้งค่า',
                 tabBarIcon: ({color, size}) => (
                   <Ionicons name="settings-outline" color={color} size={size} />
                 ),

@@ -43,8 +43,8 @@ export default class SettingScreen extends React.Component {
     return (
       <SafeAreaView>
         <View>
-          <Text>การตั้งค่าแอพลิเคชั่น - BETA</Text>
-          <Text>App Version: 1.9.5</Text>
+          <Text>การตั้งค่าแอปพลิเคชัน</Text>
+          <Text>App Version: 1.9.7</Text>
           <Button title="ออกจากระบบ" onPress={() => this.logout()} />
         </View>
       </SafeAreaView>

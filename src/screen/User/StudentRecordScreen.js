@@ -14,7 +14,11 @@ import {
 import {Button, Card, Overlay} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
-import {getAllGrade, getAvailableSemester} from '../../api/StudentGradeApi';
+import {
+  getAllGrade,
+  getAvailableSemester,
+  getGradeBySemester,
+} from '../../api/StudentGradeApi';
 import {convertGrade} from '../../utils/misc';
 import {
   widthPercentageToDP as wp,
@@ -39,22 +43,19 @@ async function regexClassID() {
 }
 
 const _GetGradeHandler = async () => {
-  const studentId = await EncryptedStorage.getItem('studentID');
-  const semesterList = await getAvailableSemester(studentId);
-  // console.log(semesterList.semesterCount);
-
-  const lastSemester = semesterList.semesterInfo.availableSemesterData;
-  const gradeResponse = await getAllGrade(
-    studentId,
-    lastSemester[semesterList.semesterCount - 1],
-  );
+  const semesterList = await getAvailableSemester();
+  const lastSemester = semesterList;
+  const gradeResponse = await getAllGrade();
   return {
     gradeResponse,
-    lastSemester: lastSemester[semesterList.semesterCount - 1],
+    lastSemester: semesterList[lastSemester.length - 1],
   };
 };
 
 export default class StudentRecordScreen extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   state = {
     studentID: '',
     studentGrade: [],
@@ -68,6 +69,7 @@ export default class StudentRecordScreen extends React.Component {
 
   async componentDidMount() {
     const data = await _GetGradeHandler();
+    //console.log('data --->', data.gradeResponse.data);
 
     this.setState({
       studentId: data.gradeResponse.studentInfo.studentId,
@@ -79,20 +81,25 @@ export default class StudentRecordScreen extends React.Component {
       major: data.gradeResponse.TotalCalculateGrade.TotalMainSubjectGrade,
       isLoading: false,
     });
-
-    // console.log('SemesterList', this.state.semesterList);
     LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
   }
-  render() {
-    const ChangeSemesterView = (e) => {
-      this.setState({lastSemester: e});
-      getAllGrade(this.state.studentId, e).then((result) => {
-        console.log(result);
-        this.setState({studentGrade: []});
 
-        this.setState({studentGrade: result.data});
+  ChangeSemesterView = async (e) => {
+    if (e != this.state.lastSemester) {
+      this.setState({isLoading: true});
+
+      const response = await getGradeBySemester(e).then((result) => {
+        console.log('RSP->', result.data);
+        this.setState({studentGrade: []});
+        this.setState({
+          lastSemester: e,
+          studentGrade: result.data,
+          isLoading: false,
+        });
       });
-    };
+    }
+  };
+  render() {
     return (
       <SafeAreaView>
         <HeaderBar />
@@ -112,7 +119,7 @@ export default class StudentRecordScreen extends React.Component {
                     fontSize: 14,
                   }}>
                   ข้อมูลของภาคเรียนที่ {this.state.lastSemester} {'\n'}
-                  อัพเดทเมื่อ : {this.state.timestamp}
+                  อัปเดตเมื่อ : {this.state.timestamp}
                 </Text>
 
                 <Picker
@@ -120,7 +127,7 @@ export default class StudentRecordScreen extends React.Component {
                   mode="dropdown"
                   selectedValue={this.state.lastSemester}
                   style={styles.input}
-                  onValueChange={(e) => ChangeSemesterView(e)}>
+                  onValueChange={(e) => this.ChangeSemesterView(e)}>
                   {Object.keys(this.state.semesterList).map((key) => {
                     return (
                       <Picker.Item
