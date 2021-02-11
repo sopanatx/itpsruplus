@@ -1,44 +1,34 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {
   View,
   StyleSheet,
   Text,
-  Image,
   ScrollView,
-  Alert,
-  ImageBackground,
   FlatList,
   LogBox,
   ActivityIndicator,
 } from 'react-native';
-import {Button, Card, Overlay} from 'react-native-elements';
+import {Card, Overlay} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import LinearGradient from 'react-native-linear-gradient';
 import {
   getAllGrade,
   getAvailableSemester,
   getGradeBySemester,
 } from '../../api/StudentGradeApi';
-import {convertGrade} from '../../utils/misc';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {FONT_FAMILY, FONT_BOLD, THEME} from '../../styles';
+import {FONT_FAMILY, FONT_BOLD} from '../../styles';
 import {HeaderBar} from '../../components/headerBar';
-
-import axios from 'axios';
-import jwt_decode from 'jwt-decode';
-import AsyncStorage from '@react-native-community/async-storage';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import moment from 'moment';
 import {Picker} from '@react-native-picker/picker';
-
+import DropDownPicker from 'react-native-dropdown-picker';
+import Icon from 'react-native-vector-icons/Feather';
 async function regexClassID() {
   const jwtToken = await EncryptedStorage.getItem('accessToken');
-  const decodeJWT = await jwt_decode(jwtToken);
   const studentId = await EncryptedStorage.getItem('studentID');
-
   return studentId;
 }
 
@@ -65,6 +55,7 @@ export default class StudentRecordScreen extends React.Component {
     timestamp: 0,
     gpa: 0,
     major: 0,
+    countries: ['uk'],
   };
 
   async componentDidMount() {
@@ -101,9 +92,8 @@ export default class StudentRecordScreen extends React.Component {
   };
   render() {
     return (
-      <SafeAreaView>
+      <View>
         <HeaderBar />
-
         <ScrollView contentContainerStyle={{paddingBottom: 80}}>
           <View style={{alignItems: 'center', width: wp('100%')}}>
             {this.state.isLoading ? (
@@ -113,13 +103,12 @@ export default class StudentRecordScreen extends React.Component {
                 <Text
                   style={{
                     margin: 10,
-                    // marginBottom: 16,
                     fontFamily: FONT_FAMILY,
                     textAlign: 'center',
                     fontSize: 14,
                   }}>
                   ข้อมูลของภาคเรียนที่ {this.state.lastSemester} {'\n'}
-                  อัปเดตเมื่อ : {this.state.timestamp}
+                  ปรับปรุงล่าสุด : {this.state.timestamp}
                 </Text>
 
                 <Picker
@@ -233,7 +222,7 @@ export default class StudentRecordScreen extends React.Component {
           </View>
           <View style={{height: 100}}></View>
         </ScrollView>
-      </SafeAreaView>
+      </View>
     );
   }
 }
@@ -297,8 +286,8 @@ const CustomProgressBar = ({visible}) => (
   <Overlay isVisible={visible}>
     <View style={{borderRadius: 10, backgroundColor: 'white', padding: 25}}>
       <ActivityIndicator size="large" color="#FFDE6A" />
-      <Text style={{fontSize: 18, fontWeight: '300', fontFamily: FONT_FAMILY}}>
-        กำลังดาวน์โหลดข้อมูล กรุณารอสักครู่...
+      <Text style={{fontSize: 14, fontWeight: '300', fontFamily: FONT_FAMILY}}>
+        กำลังประมวลผล กรุณารอสักครู่...
       </Text>
     </View>
   </Overlay>

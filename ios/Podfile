@@ -31,7 +31,7 @@ end
 
 target 'itpsruplus-tvOS' do
   # Pods for itpsruplus-tvOS
-
+end
   target 'itpsruplus-tvOSTests' do
     inherit! :search_paths
     # Pods for testing

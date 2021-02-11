@@ -236,6 +236,7 @@ export default class TOSScreen extends Component {
               maxLength={10}
             />
             <Picker
+              mode="dropdown"
               selectedValue={this.state.educateGroup}
               style={styles.input}
               onValueChange={(itemValue, itemIndex) =>

@@ -3,30 +3,19 @@ import {
   View,
   StyleSheet,
   Text,
-  Image,
   ScrollView,
-  Alert,
-  ImageBackground,
-  FlatList,
+  ActivityIndicator,
 } from 'react-native';
-import {Button, Badge, Avatar} from 'react-native-elements';
+import {Overlay} from 'react-native-elements';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import LinearGradient from 'react-native-linear-gradient';
-import tailwind from 'tailwind-rn';
-
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {FONT_FAMILY, FONT_BOLD, THEME} from '../../styles';
 import axios from 'axios';
-import jwt_decode from 'jwt-decode';
-import AsyncStorage from '@react-native-community/async-storage';
-import {dayPeriodConvert, stylePeriodBadge} from '../../utils/misc';
 import {HeaderBar} from '../../components/headerBar';
 import EncryptedStorage from 'react-native-encrypted-storage';
-import {PUBLIC_API, PUBLIC_API_KEY} from '../../constant/API';
-
 export default class TimeTableScreen extends React.Component {
   state = {
     monday: [],
@@ -35,6 +24,7 @@ export default class TimeTableScreen extends React.Component {
     thursday: [],
     friday: [],
     classID: '',
+    isLoading: true,
   };
 
   async componentDidMount() {
@@ -51,153 +41,158 @@ export default class TimeTableScreen extends React.Component {
       wednesday: subject.data.wednesday,
       thursday: subject.data.thursday,
       friday: subject.data.friday,
+      isLoading: false,
     });
     console.log('STATE_CLASS_ID:', this.state.classID);
   }
   render() {
     return (
-      <SafeAreaView>
+      <View>
         <HeaderBar />
-        <ScrollView
-          overScrollMode="always"
-          contentContainerStyle={{paddingBottom: 80}}
-          showsVerticalScrollIndicator={false}>
-          <View>
-            <Text style={styles.HeaderText}>
-              กิจกรรมการเรียนการสอนภาคเรียนที่: 2 / 2563
-            </Text>
-            {this.state.monday.map((item) => (
-              <View
-                style={{
-                  width: wp('90%'),
-                  height: hp('17%'),
-                  backgroundColor: '#f2f2f2',
-                  alignSelf: 'center',
-                  borderRadius: 9,
-                  elevation: 4,
-                  marginVertical: 5,
-                  shadowColor: '#000',
-                  shadowOpacity: 0.2,
-                  borderLeftColor: '#F87E4D',
-                  borderLeftWidth: 9,
-                }}>
-                <Text style={styles.Day}>{item.subjectTime} </Text>
+        {this.state.isLoading ? (
+          <CustomProgressBar visible={this.state.isLoading} />
+        ) : (
+          <ScrollView
+            overScrollMode="always"
+            contentContainerStyle={{paddingBottom: 80}}
+            showsVerticalScrollIndicator={false}>
+            <View>
+              <Text style={styles.HeaderText}>
+                กิจกรรมการเรียนการสอนภาคเรียนที่: 2 / 2563
+              </Text>
+              {this.state.monday.map((item) => (
+                <View
+                  style={{
+                    width: wp('90%'),
+                    height: hp('17%'),
+                    backgroundColor: '#f2f2f2',
+                    alignSelf: 'center',
+                    borderRadius: 9,
+                    elevation: 4,
+                    marginVertical: 5,
+                    shadowColor: '#000',
+                    shadowOpacity: 0.2,
+                    borderLeftColor: '#F87E4D',
+                    borderLeftWidth: 9,
+                  }}>
+                  <Text style={styles.Day}>{item.subjectTime} </Text>
 
-                <Text style={styles.subjectName}>
-                  {item.subjectCode} {item.subjectName}
-                </Text>
-                <Text style={styles.subjectName}>
-                  ผู้สอน: {item.subjectTeacher} {'\n'}ห้องเรียน :{' '}
-                  {item.subjectClassroom}
-                </Text>
-              </View>
-            ))}
+                  <Text style={styles.subjectName}>
+                    {item.subjectCode} {item.subjectName}
+                  </Text>
+                  <Text style={styles.subjectName}>
+                    ผู้สอน: {item.subjectTeacher} {'\n'}ห้องเรียน :{' '}
+                    {item.subjectClassroom}
+                  </Text>
+                </View>
+              ))}
 
-            {this.state.tuesday.map((item) => (
-              <View
-                style={{
-                  width: wp('90%'),
-                  height: hp('17%'),
-                  backgroundColor: '#f2f2f2',
-                  alignSelf: 'center',
-                  borderRadius: 9,
-                  elevation: 4,
-                  marginVertical: 5,
-                  shadowColor: '#000',
-                  shadowOpacity: 0.2,
-                  borderLeftColor: '#F87E4D',
-                  borderLeftWidth: 9,
-                }}>
-                <Text style={styles.Day}>{item.subjectTime} </Text>
-                <Text style={styles.subjectName}>
-                  {item.subjectCode} {item.subjectName}
-                </Text>
-                <Text style={styles.subjectName}>
-                  ผู้สอน: {item.subjectTeacher} {'\n'}ห้องเรียน :{' '}
-                  {item.subjectClassroom}
-                </Text>
-              </View>
-            ))}
+              {this.state.tuesday.map((item) => (
+                <View
+                  style={{
+                    width: wp('90%'),
+                    height: hp('17%'),
+                    backgroundColor: '#f2f2f2',
+                    alignSelf: 'center',
+                    borderRadius: 9,
+                    elevation: 4,
+                    marginVertical: 5,
+                    shadowColor: '#000',
+                    shadowOpacity: 0.2,
+                    borderLeftColor: '#F87E4D',
+                    borderLeftWidth: 9,
+                  }}>
+                  <Text style={styles.Day}>{item.subjectTime} </Text>
+                  <Text style={styles.subjectName}>
+                    {item.subjectCode} {item.subjectName}
+                  </Text>
+                  <Text style={styles.subjectName}>
+                    ผู้สอน: {item.subjectTeacher} {'\n'}ห้องเรียน :{' '}
+                    {item.subjectClassroom}
+                  </Text>
+                </View>
+              ))}
 
-            {this.state.wednesday.map((item) => (
-              <View
-                style={{
-                  width: wp('90%'),
-                  height: hp('17%'),
-                  backgroundColor: '#f2f2f2',
-                  alignSelf: 'center',
-                  borderRadius: 9,
-                  elevation: 4,
-                  marginVertical: 5,
-                  borderLeftColor: '#F87E4D',
-                  borderLeftWidth: 9,
-                }}>
-                <Text style={styles.Day}>{item.subjectTime} </Text>
-                <Text style={styles.subjectName}>
-                  {item.subjectCode} {item.subjectName}
-                </Text>
-                <Text style={styles.subjectName}>
-                  ผู้สอน: {item.subjectTeacher} {'\n'}ห้องเรียน :{' '}
-                  {item.subjectClassroom}
-                </Text>
-              </View>
-            ))}
+              {this.state.wednesday.map((item) => (
+                <View
+                  style={{
+                    width: wp('90%'),
+                    height: hp('17%'),
+                    backgroundColor: '#f2f2f2',
+                    alignSelf: 'center',
+                    borderRadius: 9,
+                    elevation: 4,
+                    marginVertical: 5,
+                    borderLeftColor: '#F87E4D',
+                    borderLeftWidth: 9,
+                  }}>
+                  <Text style={styles.Day}>{item.subjectTime} </Text>
+                  <Text style={styles.subjectName}>
+                    {item.subjectCode} {item.subjectName}
+                  </Text>
+                  <Text style={styles.subjectName}>
+                    ผู้สอน: {item.subjectTeacher} {'\n'}ห้องเรียน :{' '}
+                    {item.subjectClassroom}
+                  </Text>
+                </View>
+              ))}
 
-            {this.state.thursday.map((item) => (
-              <View
-                style={{
-                  width: wp('90%'),
-                  height: hp('17%'),
-                  backgroundColor: '#f2f2f2',
-                  alignSelf: 'center',
-                  borderRadius: 9,
-                  elevation: 4,
-                  marginVertical: 5,
-                  shadowColor: '#000',
-                  shadowOpacity: 0.2,
-                  borderLeftColor: '#F87E4D',
-                  borderLeftWidth: 9,
-                }}>
-                <Text style={styles.Day}>{item.subjectTime} </Text>
-                <Text style={styles.subjectName}>
-                  {item.subjectCode} {item.subjectName}
-                </Text>
-                <Text style={styles.subjectName}>
-                  ผู้สอน: {item.subjectTeacher} {'\n'}ห้องเรียน :{' '}
-                  {item.subjectClassroom}
-                </Text>
-              </View>
-            ))}
+              {this.state.thursday.map((item) => (
+                <View
+                  style={{
+                    width: wp('90%'),
+                    height: hp('17%'),
+                    backgroundColor: '#f2f2f2',
+                    alignSelf: 'center',
+                    borderRadius: 9,
+                    elevation: 4,
+                    marginVertical: 5,
+                    shadowColor: '#000',
+                    shadowOpacity: 0.2,
+                    borderLeftColor: '#F87E4D',
+                    borderLeftWidth: 9,
+                  }}>
+                  <Text style={styles.Day}>{item.subjectTime} </Text>
+                  <Text style={styles.subjectName}>
+                    {item.subjectCode} {item.subjectName}
+                  </Text>
+                  <Text style={styles.subjectName}>
+                    ผู้สอน: {item.subjectTeacher} {'\n'}ห้องเรียน :{' '}
+                    {item.subjectClassroom}
+                  </Text>
+                </View>
+              ))}
 
-            {this.state.friday.map((item) => (
-              <View
-                style={{
-                  width: wp('90%'),
-                  height: hp('17%'),
-                  backgroundColor: '#f2f2f2',
-                  alignSelf: 'center',
-                  borderRadius: 9,
-                  elevation: 4,
-                  marginVertical: 5,
-                  shadowColor: '#000',
-                  shadowOpacity: 0.2,
-                  borderLeftColor: '#F87E4D',
-                  borderLeftWidth: 9,
-                }}>
-                <Text style={styles.Day}>{item.subjectTime} </Text>
-                <Text style={styles.subjectName}>
-                  {item.subjectCode} {item.subjectName}
-                </Text>
-                <Text style={styles.subjectName}>
-                  ผู้สอน: {item.subjectTeacher} {'\n'}ห้องเรียน :{' '}
-                  {item.subjectClassroom}
-                </Text>
-              </View>
-            ))}
-          </View>
-          <View style={{height: 100}}></View>
-        </ScrollView>
-      </SafeAreaView>
+              {this.state.friday.map((item) => (
+                <View
+                  style={{
+                    width: wp('90%'),
+                    height: hp('17%'),
+                    backgroundColor: '#f2f2f2',
+                    alignSelf: 'center',
+                    borderRadius: 9,
+                    elevation: 4,
+                    marginVertical: 5,
+                    shadowColor: '#000',
+                    shadowOpacity: 0.2,
+                    borderLeftColor: '#F87E4D',
+                    borderLeftWidth: 9,
+                  }}>
+                  <Text style={styles.Day}>{item.subjectTime} </Text>
+                  <Text style={styles.subjectName}>
+                    {item.subjectCode} {item.subjectName}
+                  </Text>
+                  <Text style={styles.subjectName}>
+                    ผู้สอน: {item.subjectTeacher} {'\n'}ห้องเรียน :{' '}
+                    {item.subjectClassroom}
+                  </Text>
+                </View>
+              ))}
+            </View>
+            <View style={{height: 100}}></View>
+          </ScrollView>
+        )}
+      </View>
     );
   }
 }
@@ -265,3 +260,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+const CustomProgressBar = ({visible}) => (
+  <Overlay isVisible={visible}>
+    <View style={{borderRadius: 10, backgroundColor: 'white', padding: 25}}>
+      <ActivityIndicator size="large" color="#FFDE6A" />
+      <Text style={{fontSize: 14, fontWeight: '300', fontFamily: FONT_FAMILY}}>
+        กำลังประมวลผล กรุณารอสักครู่...
+      </Text>
+    </View>
+  </Overlay>
+);
