@@ -64,13 +64,13 @@ export default class TimeTableScreen extends React.Component {
           showsVerticalScrollIndicator={false}>
           <View>
             <Text style={styles.HeaderText}>
-              กิจกรรมการเรียนการสอนเทอมนี้ 2 / 2563
+              กิจกรรมการเรียนการสอนภาคเรียนที่: 2 / 2563
             </Text>
             {this.state.monday.map((item) => (
               <View
                 style={{
                   width: wp('90%'),
-                  height: hp('15%'),
+                  height: hp('17%'),
                   backgroundColor: '#f2f2f2',
                   alignSelf: 'center',
                   borderRadius: 9,
@@ -97,7 +97,7 @@ export default class TimeTableScreen extends React.Component {
               <View
                 style={{
                   width: wp('90%'),
-                  height: hp('15%'),
+                  height: hp('17%'),
                   backgroundColor: '#f2f2f2',
                   alignSelf: 'center',
                   borderRadius: 9,
@@ -123,7 +123,7 @@ export default class TimeTableScreen extends React.Component {
               <View
                 style={{
                   width: wp('90%'),
-                  height: hp('15%'),
+                  height: hp('17%'),
                   backgroundColor: '#f2f2f2',
                   alignSelf: 'center',
                   borderRadius: 9,
@@ -147,7 +147,7 @@ export default class TimeTableScreen extends React.Component {
               <View
                 style={{
                   width: wp('90%'),
-                  height: hp('15%'),
+                  height: hp('17%'),
                   backgroundColor: '#f2f2f2',
                   alignSelf: 'center',
                   borderRadius: 9,
@@ -173,7 +173,7 @@ export default class TimeTableScreen extends React.Component {
               <View
                 style={{
                   width: wp('90%'),
-                  height: hp('15%'),
+                  height: hp('17%'),
                   backgroundColor: '#f2f2f2',
                   alignSelf: 'center',
                   borderRadius: 9,

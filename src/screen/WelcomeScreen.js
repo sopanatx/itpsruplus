@@ -35,15 +35,14 @@ export default class WelcomeScreen extends Component {
                 paddingRight: 30,
               })
             }>
-            <View style={tailwind('bg-blue-200 px-3 py-1 rounded-full')}>
+            <View style={tailwind('bg-green-200 px-3 py-1 rounded-full')}>
               <Text
                 style={
-                  (tailwind('text-blue-800 font-semibold'),
+                  (tailwind('text-green-800 font-semibold'),
                   {textAlign: 'center', fontFamily: FONT_BOLD, fontSize: 10})
                 }>
-                นักศึกษาที่ยังไม่เคยลงทะเบียน
+                รองรับการเข้าสู่ระบบ ITPSRU ID เท่านั้น
                 {'\n'}
-                จำเป็นต้องลงทะเบียนก่อนการใช้งาน {'\n'}
                 *ข้อมูลการเข้าสู่ระบบกับมหาวิทยาลัย
                 ไม่สามารถใช้งานกับระบบนี้ได้*
               </Text>

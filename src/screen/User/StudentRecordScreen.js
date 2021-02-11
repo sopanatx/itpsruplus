@@ -143,7 +143,7 @@ export default class StudentRecordScreen extends React.Component {
                   containerStyle={{
                     borderRadius: 10,
                     width: wp('90%'),
-                    height: 120,
+                    height: wp('35%'),
                   }}
                   wrapperStyle={{fontFamily: FONT_FAMILY}}>
                   <Text
@@ -172,7 +172,7 @@ export default class StudentRecordScreen extends React.Component {
                   containerStyle={{
                     borderRadius: 10,
                     width: wp('90%'),
-                    height: 120,
+                    height: wp('35%'),
                   }}>
                   <Text
                     style={{
@@ -204,7 +204,7 @@ export default class StudentRecordScreen extends React.Component {
                     <View
                       style={{
                         width: wp('90%'),
-                        height: 120,
+                        height: wp('35%'),
                         backgroundColor: '#f2f2f2',
                         margin: 10,
                         borderRadius: 8,
