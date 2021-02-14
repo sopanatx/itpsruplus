@@ -33,8 +33,8 @@ export const PrimaryButton = ({
         }}
         title={title}
         titleStyle={{
-          fontSize: 14,
-          textAlign: 'center',
+          fontSize: 12,
+          textAlign: 'auto',
           fontFamily: FONT_BOLD,
           ...titleStyle,
         }}
