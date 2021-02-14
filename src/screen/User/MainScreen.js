@@ -56,7 +56,7 @@ class MainUserScreen extends React.Component {
   render() {
     return (
       <>
-        <SafeAreaView style={tailwind('h-full')}>
+        <View>
           <HeaderBar studentName={this.state.studentName} />
           <Text style={styles.MenuText}>Upcoming Event</Text>
           <View style={{}}>
@@ -94,7 +94,6 @@ class MainUserScreen extends React.Component {
               )}
             />
           </View>
-
           <View>
             <Text style={styles.MenuText}> เมนูอำนวยความสะดวก </Text>
           </View>
@@ -128,7 +127,7 @@ class MainUserScreen extends React.Component {
               </Text>
             </ImageBackground>
           </TouchableOpacity> */}
-        </SafeAreaView>
+        </View>
       </>
     );
   }
