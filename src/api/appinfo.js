@@ -1,15 +1,10 @@
-import axios from 'axios';
-import AsyncStorage from '@react-native-community/async-storage';
-import jwt_decode from 'jwt-decode';
-import Axios from 'axios';
+import {USER_DATA_API_KEY} from '../constant/API';
 
-let totalGrade;
-let totalGradeMain;
-let totalCredit;
-let profileImage;
-let studentID;
 export const getVersion = async () => {
-  const getversion = await fetch('https://api.itpsru.in.th/appversion');
-  //console.log(awaitcalendar.json());
+  const getversion = await fetch('https://api.itpsru.in.th/appversion', {
+    headers: {
+      apikey: USER_DATA_API_KEY,
+    },
+  });
   return await getversion;
 };

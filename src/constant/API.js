@@ -1,7 +1,7 @@
 const PRODUCTION_URL = `https://api.itpsru.in.th`;
 const TEST_URL = `https://test-api.itpsru.in.th`;
 
-export const USER_DATA_API_KEY = 'et6wg8uu7qw5b49xjte8mf3uw'; //API Key สำหรับ user data
+export const USER_DATA_API_KEY = 'kvNUdNOzaSUedaRE2c8s'; //API Key สำหรับ user data
 export const PUBLIC_API_KEY = 'nNTegX6JnIiVNSmiHvzojxYL'; //API Key สำหรับ Query ผลการเรียน
 export const APP_KEY = 'demr3exhwje76y8a';
 
