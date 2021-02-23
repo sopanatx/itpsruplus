@@ -35,8 +35,10 @@ export const HeaderBar = () => {
         imageStyle={{borderBottomRightRadius: 250}}>
         <View
           style={{
+            //    width: '120%',
+            //   height: Dimensions.get('window').height / 4.5,
             backgroundColor: 'rgba( 0, 0, 0, 0.5 )',
-            borderBottomRightRadius: 250,
+            borderBottomRightRadius: 290,
             flex: 1,
             resizeMode: 'cover',
             justifyContent: 'center',

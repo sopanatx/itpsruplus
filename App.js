@@ -88,7 +88,18 @@ export default class App extends React.Component {
     const response = await getVersion();
     //console.log(response.json());
     if (!response.ok) {
-      Alert.alert(ErrorMessage.TITLE_API_ERROR, ErrorMessage.APP_SERVER_ERROR);
+      const message = await response.json();
+      if (message.message) {
+        Alert.alert(
+          ErrorMessage.TITLE_API_ERROR,
+          'ไม่สามารถให้บริการได้ขณะนี้ เนื่องจากข้อผิดพลาดของระบบ',
+        );
+      } else {
+        Alert.alert(
+          ErrorMessage.TITLE_API_ERROR,
+          ErrorMessage.APP_SERVER_ERROR,
+        );
+      }
 
       RNBootSplash.show();
     } else {
